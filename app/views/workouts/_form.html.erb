@@ -1,0 +1,28 @@
+<h2>Add a Workout</h2>
+<%= simple_form_for(@workout) do |f| %>
+  <%= f.input :activity_type, as: :select, collection: [
+    'Cycle',
+    'Other',
+    'Park Workout',
+    'Pilates Class',
+    'Run',
+    'Swim',
+    'Tennis',
+    'Walk',
+    'Workout Class',
+    'Yoga Class'
+    ], prompt: 'Select Category' %>
+  <%= f.input :intensity_level,
+              as: :radio_buttons,
+              collection: [[1, 'Gentle'], [2, 'Less Gentle'], [3, 'Moderate'], [4, 'Fairly Intense'], [5, 'Hardcore']],
+              label_method: :second,
+              value_method: :first,
+              required: true %>
+  <%= f.input :location %>
+  <%= f.input :date, as: :date, html5: true, label: 'Select a date:' %>
+  <%= f.input :start_time %>
+  <%= f.input :duration, placeholder: 'E.g. 30', label: 'Duration (mins)' %>
+  <%= f.input :description, placeholder: 'Provide full details of the workout, including a link to the class if applicable' %>
+  <%= f.input :capacity %>
+  <%= f.submit "Add Workout", class: "btn btn-primary"%>
+<% end %>
