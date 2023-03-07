@@ -17,11 +17,11 @@ Booking.destroy_all
 puts "Creating 10 Let's Go users."
 
 user1 = User.create!(
-  first_name: Faker::Name.first_name,
+  first_name: 'Sarah',
   last_name: Faker::Name.last_name,
-  username: Faker::Internet.username,
-  email: 'test@test.com',
-  encrypted_password: '123456',
+  username: 'sedentary_sarah',
+  email: 'sarah@test.com',
+  password: '123456',
   date_of_birth: Faker::Date.between(from: '1975-03-06', to: '2005-03-06'),
   about_me: Faker::Quote.famous_last_words,
   fitness_goal: Faker::Movie.quote,
@@ -34,11 +34,11 @@ user1 = User.create!(
 puts "#{user1.username} created."
 
 user2 = User.create!(
-  first_name: Faker::Name.first_name,
+  first_name: 'Lindsay',
   last_name: Faker::Name.last_name,
-  username: Faker::Internet.username,
-  email: Faker::Internet.email,
-  encrypted_password: '123456',
+  username: 'lazy_lindsay',
+  email: 'lindsay@test.com',
+  password: '123456',
   date_of_birth: Faker::Date.between(from: '1975-03-06', to: '2005-03-06'),
   about_me: Faker::Quote.famous_last_words,
   fitness_goal: Faker::Movie.quote,
@@ -50,11 +50,11 @@ user2 = User.create!(
 puts "#{user2.username} created."
 
 user3 = User.create!(
-  first_name: Faker::Name.first_name,
+  first_name: 'Lucy',
   last_name: Faker::Name.last_name,
-  username: Faker::Internet.username,
-  email: Faker::Internet.email,
-  encrypted_password: '123456',
+  username: 'lethargic_lucy',
+  email: 'lucy@test.com',
+  password: '123456',
   date_of_birth: Faker::Date.between(from: '1975-03-06', to: '2005-03-06'),
   about_me: Faker::Quote.famous_last_words,
   fitness_goal: Faker::Movie.quote,
@@ -66,11 +66,11 @@ user3 = User.create!(
 puts "#{user3.username} created."
 
 user4 = User.create!(
-  first_name: Faker::Name.first_name,
+  first_name: 'Fiona',
   last_name: Faker::Name.last_name,
-  username: Faker::Internet.username,
-  email: Faker::Internet.email,
-  encrypted_password: '123456',
+  username: 'flagging_fiona',
+  email: 'fiona@test.com',
+  password: '123456',
   date_of_birth: Faker::Date.between(from: '1975-03-06', to: '2005-03-06'),
   about_me: Faker::Quote.famous_last_words,
   fitness_goal: Faker::Movie.quote,
@@ -82,11 +82,11 @@ user4 = User.create!(
 puts "#{user4.username} created."
 
 user5 = User.create!(
-  first_name: Faker::Name.first_name,
+  first_name: 'Sandra',
   last_name: Faker::Name.last_name,
-  username: Faker::Internet.username,
-  email: Faker::Internet.email,
-  encrypted_password: '123456',
+  username: 'sleepy_sandra',
+  email: 'sandra@test.com',
+  password: '123456',
   date_of_birth: Faker::Date.between(from: '1975-03-06', to: '2005-03-06'),
   about_me: Faker::Quote.famous_last_words,
   fitness_goal: Faker::Movie.quote,
@@ -98,11 +98,11 @@ user5 = User.create!(
 puts "#{user5.username} created."
 
 user6 = User.create!(
-  first_name: Faker::Name.first_name,
+  first_name: 'Emma',
   last_name: Faker::Name.last_name,
-  username: Faker::Internet.username,
-  email: Faker::Internet.email,
-  encrypted_password: '123456',
+  username: 'energetic_emma',
+  email: 'emma@test.com',
+  password: '123456',
   date_of_birth: Faker::Date.between(from: '1975-03-06', to: '2005-03-06'),
   about_me: Faker::Quote.famous_last_words,
   fitness_goal: Faker::Movie.quote,
@@ -114,11 +114,11 @@ user6 = User.create!(
 puts "#{user6.username} created."
 
 user7 = User.create!(
-  first_name: Faker::Name.first_name,
+  first_name: 'Katie',
   last_name: Faker::Name.last_name,
-  username: Faker::Internet.username,
-  email: Faker::Internet.email,
-  encrypted_password: '123456',
+  username: 'kickass_katie',
+  email: 'katie@test.com',
+  password: '123456',
   date_of_birth: Faker::Date.between(from: '1975-03-06', to: '2005-03-06'),
   about_me: Faker::Quote.famous_last_words,
   fitness_goal: Faker::Movie.quote,
@@ -130,11 +130,11 @@ user7 = User.create!(
 puts "#{user7.username} created."
 
 user8 = User.create!(
-  first_name: Faker::Name.first_name,
+  first_name: 'Stuart',
   last_name: Faker::Name.last_name,
-  username: Faker::Internet.username,
-  email: Faker::Internet.email,
-  encrypted_password: '123456',
+  username: 'speedy_stuart',
+  email: 'stuart@test.com',
+  password: '123456',
   date_of_birth: Faker::Date.between(from: '1975-03-06', to: '2005-03-06'),
   about_me: Faker::Quote.famous_last_words,
   fitness_goal: Faker::Movie.quote,
@@ -145,9 +145,76 @@ user8 = User.create!(
 
 puts "#{user8.username} created."
 
+user9 = User.create!(
+  first_name: 'Fred',
+  last_name: Faker::Name.last_name,
+  username: 'fit_fred',
+  email: 'fred@test.com',
+  password: '123456',
+  date_of_birth: Faker::Date.between(from: '1975-03-06', to: '2005-03-06'),
+  about_me: Faker::Quote.famous_last_words,
+  fitness_goal: Faker::Movie.quote,
+  fitness_level: rand(1..5),
+  attendance: rand(1..100),
+  avg_rating: rand(1..5),
+)
+
+puts "#{user9.username} created."
+
+user10 = User.create!(
+  first_name: 'Laura',
+  last_name: Faker::Name.last_name,
+  username: 'lively_laura',
+  email: 'laura@test.com',
+  password: '123456',
+  date_of_birth: Faker::Date.between(from: '1975-03-06', to: '2005-03-06'),
+  about_me: Faker::Quote.famous_last_words,
+  fitness_goal: Faker::Movie.quote,
+  fitness_level: rand(1..5),
+  attendance: rand(1..100),
+  avg_rating: rand(1..5),
+)
+
+puts "#{user10.username} created."
+
 # Create workouts
-puts "Creating Workouts for ..."
-# TODO
+puts "Creating Workouts for #{user1.username}."
+
+workout_one = Workout.new(
+  activity_type: 'Brisk Walk',
+  intensity_level: rand(1..5),
+  location: 'London',
+  date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
+  start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now),
+  duration: 60,
+  description: 'Planning a brisk walk around Victoria Park.',
+  capacity: 2,
+  user_id: user1.id
+)
+
+workout_photo_file_one = URI.open("https://katiecouric.com/wp-content/uploads/2022/04/GettyImages-1192508928.jpg")
+workout_one.photo.attach(io: workout_photo_file_one, filename: "#{workout_photo_file_one}.png", content_type: "image/png")
+workout_one.save!
+
+puts "#{user1.username} #{workout_one.activity_type} created."
+
+workout_two = Workout.new(
+  activity_type: 'Interval Run',
+  intensity_level: rand(1..5),
+  location: 'London',
+  date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
+  start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now),
+  duration: 30,
+  description: 'An interval run along a stretch of Regents Canal.',
+  capacity: 2,
+  user_id: user1.id
+)
+
+workout_photo_file_two = URI.open("https://katiecouric.com/wp-content/uploads/2022/04/GettyImages-1192508928.jpg")
+workout_two.photos.attach(io: workout_photo_file_two, filename: "#{workout_photo_file_two}.png", content_type: "image/png")
+workout_two.save!
+
+puts "#{user1.username} #{workout_two.activity_type} created."
 
 # Create bookings
 puts "Creating Bookings for ..."
