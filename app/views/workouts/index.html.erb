@@ -1,14 +1,16 @@
-<ul>
-  <% @workouts.each do |workout| %>
-    <li><%= link_to workout.activity_type, workout_path(workout) %></li>
-  <% end %>
-</ul>
+<div class="container">
+  <ul>
+    <% @workouts.each do |workout| %>
+      <li><%= link_to workout.activity_type, workout_path(workout) %></li>
+    <% end %>
+  </ul>
 
-<%= form_with url: workouts_path, method: :get, class: "d-flex" do %>
-  <%= text_field_tag :query,
-    params[:query],
-    class: "form-control",
-    placeholder: "Find a workout"
-  %>
-  <%= submit_tag "Search", class: "btn btn-primary" %>
-<% end %>
+  <%= form_with url: workouts_path, method: :get, class: "d-flex" do %>
+    <%= text_field_tag :query,
+      params[:query],
+      class: "form-control",
+      placeholder: "Find a workout"
+    %>
+    <%= submit_tag "Search", class: "btn btn-primary" %>
+  <% end %>
+</div>
