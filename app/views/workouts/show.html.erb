@@ -9,4 +9,5 @@
   <strong>Duration: </strong><%= @workout.duration %> mins<br>
   <strong>Description: </strong><%= @workout.description %><br>
   <strong>Capacity: </strong><%= @workout.capacity %><br></p>
+  <%= render "bookings/form", workout: @workout, booking: @booking %>
 </div>

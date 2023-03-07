@@ -1,2 +1,34 @@
 class BookingsController < ApplicationController
+  before_action :set_user, only: %i[new create]
+  before_action :set_workout, only: %i[new create]
+
+  def new
+    @booking = Booking.new
+  end
+
+  def create
+    @booking = Booking.new(booking_params)
+    @booking.user = @user
+    @booking.workout = @workout
+    @booking.booking_date = @workout.date
+    if @booking.save
+      redirect_to workouts_path
+    else
+      render "workouts/show", status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def set_user
+    @user = User.find(current_user.id)
+  end
+
+  def set_workout
+    @workout = Workout.find(params[:workout_id])
+  end
+
+  def booking_params
+    params.require(:booking).permit(:user_id, :workout_id, :booking_date)
+  end
 end
