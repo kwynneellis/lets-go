@@ -11,7 +11,7 @@ require "open-uri"
 
 User.destroy_all
 Workout.destroy_all
-Booking.destroy_all
+# Booking.destroy_all
 
 # Create users
 puts "Creating 10 Let's Go users."
@@ -23,12 +23,13 @@ user1 = User.create!(
   email: 'sarah@test.com',
   password: '123456',
   date_of_birth: Faker::Date.between(from: '1975-03-06', to: '2005-03-06'),
-  about_me: Faker::Quote.famous_last_words,
+  about_me: '35-year-old software engineer spending too many hours sat in a chair.
+  Looking for a fitness buddy in the local area to workout with for runs, brisk walks,
+  yoga sessions, and swimming.',
   fitness_goal: Faker::Movie.quote,
   fitness_level: rand(1..5),
   attendance: rand(1..100),
   avg_rating: rand(1..5),
-
 )
 
 puts "#{user1.username} created."
@@ -205,13 +206,13 @@ workout_two = Workout.new(
   date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
   start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now),
   duration: 30,
-  description: 'An interval run along a stretch of Regents Canal.',
+  description: 'An interval run along a lovely stretch of Regents Canal.',
   capacity: 2,
   user_id: user1.id
 )
 
-workout_photo_file_two = URI.open("https://katiecouric.com/wp-content/uploads/2022/04/GettyImages-1192508928.jpg")
-workout_two.photos.attach(io: workout_photo_file_two, filename: "#{workout_photo_file_two}.png", content_type: "image/png")
+workout_photo_file_two = URI.open("https://hips.hearstapps.com/hmg-prod/images/4-interval-training-sessions-for-runners-1657810907.jpg")
+workout_two.photo.attach(io: workout_photo_file_two, filename: "#{workout_photo_file_two}.png", content_type: "image/png")
 workout_two.save!
 
 puts "#{user1.username} #{workout_two.activity_type} created."
