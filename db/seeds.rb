@@ -11,7 +11,7 @@ require "open-uri"
 
 User.destroy_all
 Workout.destroy_all
-# Booking.destroy_all
+Booking.destroy_all
 
 # Create users
 puts "Creating 10 Let's Go users."
