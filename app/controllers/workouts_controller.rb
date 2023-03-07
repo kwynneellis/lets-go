@@ -41,6 +41,17 @@ class WorkoutsController < ApplicationController
     @my_workouts = Workout.where(user_id: current_user.id) if user_signed_in?
   end
 
+  def edit
+    @workout = Workout.find(params[:id])
+  end
+
+  def update
+    @workout = Workout.find(params[:id])
+    @workout.update(workout_params)
+
+    redirect_to workout_path(@workout)
+  end
+
   private
 
   def set_user
