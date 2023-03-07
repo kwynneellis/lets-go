@@ -1,5 +1,6 @@
 class WorkoutsController < ApplicationController
   before_action :set_user, only: %i[new create show]
+  before_action :set_booking, only: %i[show]
 
   def new
     @workout = Workout.new
@@ -47,7 +48,12 @@ class WorkoutsController < ApplicationController
     @user = User.find(current_user.id)
   end
 
+  def set_booking
+    @booking = Booking.new
+  end
+
   def workout_params
-    params.require(:workout).permit(:activity_type, :intensity_level, :location, :date, :start_time, :duration, :description, :capacity)
+    params.require(:workout).permit(:activity_type, :intensity_level, :location, :date,
+                                    :start_time, :duration, :description, :capacity, :user_id)
   end
 end
