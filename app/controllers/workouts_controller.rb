@@ -1,5 +1,5 @@
 class WorkoutsController < ApplicationController
-
+  before_action :set_user, only: %i[new create show]
 
   def new
     @workout = Workout.new
@@ -15,6 +15,9 @@ class WorkoutsController < ApplicationController
     end
   end
 
+  def show
+    @workout = Workout.find(params[:id])
+  end
 
   def index
     # The code below enables a filtered search
@@ -38,4 +41,13 @@ class WorkoutsController < ApplicationController
     @my_workouts = Workout.where(user_id: current_user.id) if user_signed_in?
   end
 
+  private
+
+  def set_user
+    @user = User.find(current_user.id)
+  end
+
+  def workout_params
+    params.require(:workout).permit(:activity_type, :intensity_level, :location, :date, :start_time, :duration, :description, :capacity)
+  end
 end
