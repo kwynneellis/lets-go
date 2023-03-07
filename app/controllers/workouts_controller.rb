@@ -25,9 +25,9 @@ class WorkoutsController < ApplicationController
     search = params[:search]
     if params[:query].present?
       sql_query = <<~SQL
-        listings.title ILIKE :query
-        OR workouts.description ILIKE :query
-        OR workouts.category ILIKE :query
+        workouts.activity_type ILIKE :query
+        OR workouts.intensity_level::text ILIKE :query
+        OR workouts.location ILIKE :query
         OR users.first_name ILIKE :query
       SQL
       @workouts = Workout.joins(:user).where(sql_query, query: "%#{params[:query]}%")
