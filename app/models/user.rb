@@ -17,5 +17,5 @@ class User < ApplicationRecord
   validates :fitness_level, numericality: { only_integer: true, in: 1..5 }
   validates :attendance, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100.0 }
   validates :avg_rating, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 5.0 }
-  validates :about_me, :fitness_goal, length: { minimum: 50 }
+  validates :about_me, :fitness_goal, length: { minimum: 10 }
 end
