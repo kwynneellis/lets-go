@@ -67,10 +67,10 @@ user3 = User.create!(
 puts "#{user3.username} created."
 
 user4 = User.create!(
-  first_name: 'Fiona',
+  first_name: 'Anthony',
   last_name: Faker::Name.last_name,
-  username: 'flagging_fiona',
-  email: 'fiona@test.com',
+  username: 'anabolic_anthony',
+  email: 'anthony@test.com',
   password: '123456',
   date_of_birth: Faker::Date.between(from: '1975-03-06', to: '2005-03-06'),
   about_me: Faker::Quote.famous_last_words,
@@ -181,7 +181,7 @@ puts "#{user10.username} created."
 # Create workouts
 puts "Creating Workouts for #{user1.username}."
 
-workout_one = Workout.new(
+workout_one = Workout.create!(
   activity_type: 'Brisk Walk',
   intensity_level: rand(1..5),
   location: 'London',
@@ -199,7 +199,7 @@ workout_one.save!
 
 puts "#{user1.username} #{workout_one.activity_type} created."
 
-workout_two = Workout.new(
+workout_two = Workout.create!(
   activity_type: 'Interval Run',
   intensity_level: rand(1..5),
   location: 'London',
@@ -221,8 +221,21 @@ puts "#{user1.username} #{workout_two.activity_type} created."
 puts "Creating Bookings for ..."
 # TODO
 
+booking_one = Booking.create!(
+  user_id: user2.id,
+  workout_id: workout_two.id,
+  # booking_date: workout_two.date
+)
+puts "#{booking_one}"
+
+booking_one = Booking.create!(
+  user_id: user2.id,
+  workout_id: workout_two.id,
+  booking_date: workout_two.date
+)
+puts "#{booking_one}"
+
 # Create ratings
-puts "Creating Ratings for ..."
 # TODO
 
 # TODO
