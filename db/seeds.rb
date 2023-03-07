@@ -32,6 +32,10 @@ user1 = User.create!(
   avg_rating: rand(1..5),
 )
 
+user1_photo_file = URI.open("https://media.istockphoto.com/id/1264330893/photo/when-did-i-lose-my-passion-for-this-job.jpg?s=612x612&w=0&k=20&c=5bIbLJvcOAZTd5iAZPWh0ZnYApYOayDEwt9ZUWnXGR0=")
+user1.photo.attach(io: user1_photo_file, filename: "#{user1_photo_file}.png", content_type: "image/png")
+user1.save!
+
 puts "#{user1.username} created."
 
 user2 = User.create!(
@@ -47,6 +51,10 @@ user2 = User.create!(
   attendance: rand(1..100),
   avg_rating: rand(1..5),
 )
+
+user2_photo_file = URI.open("https://images.pond5.com/bored-young-woman-office-worker-footage-129058710_iconl.jpeg")
+user2.photo.attach(io: user2_photo_file, filename: "#{user2_photo_file}.png", content_type: "image/png")
+user2.save!
 
 puts "#{user2.username} created."
 
@@ -64,12 +72,16 @@ user3 = User.create!(
   avg_rating: rand(1..5),
 )
 
+user3_photo_file = URI.open("https://media.istockphoto.com/id/1028394762/photo/woman-eating-pizza-image-taken-from-above.jpg?s=612x612&w=0&k=20&c=bmbNfNtLf22xd9Ecjk7Kr89DSkvtrGiSnsCcizrYBy0=")
+user3.photo.attach(io: user3_photo_file, filename: "#{user3_photo_file}.png", content_type: "image/png")
+user3.save!
+
 puts "#{user3.username} created."
 
 user4 = User.create!(
   first_name: 'Anthony',
   last_name: Faker::Name.last_name,
-  username: 'anabolic_anthony',
+  username: 'apathetic_anthony',
   email: 'anthony@test.com',
   password: '123456',
   date_of_birth: Faker::Date.between(from: '1975-03-06', to: '2005-03-06'),
@@ -79,6 +91,8 @@ user4 = User.create!(
   attendance: rand(1..100),
   avg_rating: rand(1..5),
 )
+
+# TODO - add photo
 
 puts "#{user4.username} created."
 
@@ -96,13 +110,15 @@ user5 = User.create!(
   avg_rating: rand(1..5),
 )
 
+# TODO - add photo
+
 puts "#{user5.username} created."
 
 user6 = User.create!(
-  first_name: 'Emma',
+  first_name: 'Dan',
   last_name: Faker::Name.last_name,
-  username: 'energetic_emma',
-  email: 'emma@test.com',
+  username: 'drowsy_dan',
+  email: 'dan@test.com',
   password: '123456',
   date_of_birth: Faker::Date.between(from: '1975-03-06', to: '2005-03-06'),
   about_me: Faker::Quote.famous_last_words,
@@ -111,6 +127,8 @@ user6 = User.create!(
   attendance: rand(1..100),
   avg_rating: rand(1..5),
 )
+
+# TODO - add photo
 
 puts "#{user6.username} created."
 
@@ -128,12 +146,14 @@ user7 = User.create!(
   avg_rating: rand(1..5),
 )
 
+# TODO - add photo
+
 puts "#{user7.username} created."
 
 user8 = User.create!(
   first_name: 'Stuart',
   last_name: Faker::Name.last_name,
-  username: 'speedy_stuart',
+  username: 'slowcoach_stuart',
   email: 'stuart@test.com',
   password: '123456',
   date_of_birth: Faker::Date.between(from: '1975-03-06', to: '2005-03-06'),
@@ -144,12 +164,14 @@ user8 = User.create!(
   avg_rating: rand(1..5),
 )
 
+# TODO - add photo
+
 puts "#{user8.username} created."
 
 user9 = User.create!(
   first_name: 'Fred',
   last_name: Faker::Name.last_name,
-  username: 'fit_fred',
+  username: 'frumpy_fred',
   email: 'fred@test.com',
   password: '123456',
   date_of_birth: Faker::Date.between(from: '1975-03-06', to: '2005-03-06'),
@@ -160,12 +182,14 @@ user9 = User.create!(
   avg_rating: rand(1..5),
 )
 
+# TODO - add photo
+
 puts "#{user9.username} created."
 
 user10 = User.create!(
   first_name: 'Laura',
   last_name: Faker::Name.last_name,
-  username: 'lively_laura',
+  username: 'loafing_laura',
   email: 'laura@test.com',
   password: '123456',
   date_of_birth: Faker::Date.between(from: '1975-03-06', to: '2005-03-06'),
@@ -176,10 +200,12 @@ user10 = User.create!(
   avg_rating: rand(1..5),
 )
 
+# TODO - add photo
+
 puts "#{user10.username} created."
 
 # Create workouts
-puts "Creating Workouts for #{user1.username}."
+puts "Creating workouts for #{user1.username}."
 
 workout_one = Workout.create!(
   activity_type: 'Brisk Walk',
@@ -197,7 +223,7 @@ workout_photo_file_one = URI.open("https://katiecouric.com/wp-content/uploads/20
 workout_one.photo.attach(io: workout_photo_file_one, filename: "#{workout_photo_file_one}.png", content_type: "image/png")
 workout_one.save!
 
-puts "#{user1.username} #{workout_one.activity_type} created."
+puts "#{user1.username}: #{workout_one.activity_type} created."
 
 workout_two = Workout.create!(
   activity_type: 'Interval Run',
@@ -215,27 +241,67 @@ workout_photo_file_two = URI.open("https://hips.hearstapps.com/hmg-prod/images/4
 workout_two.photo.attach(io: workout_photo_file_two, filename: "#{workout_photo_file_two}.png", content_type: "image/png")
 workout_two.save!
 
-puts "#{user1.username} #{workout_two.activity_type} created."
+# TODO - add more workouts
+
+puts "#{user1.username}: #{workout_two.activity_type} created."
 
 # Create bookings
-puts "Creating Bookings for ..."
-# TODO
+puts "Creating bookings for #{user2.username}."
 
 booking_one = Booking.create!(
   user_id: user2.id,
-  workout_id: workout_two.id,
-  # booking_date: workout_two.date
+  workout_id: workout_one.id,
+  booking_date: workout_one.date
 )
-puts "#{booking_one}"
+puts "#{user2.username}: #{booking_one}."
 
-booking_one = Booking.create!(
+booking_two = Booking.create!(
   user_id: user2.id,
   workout_id: workout_two.id,
   booking_date: workout_two.date
 )
-puts "#{booking_one}"
+puts "#{user2.username}: #{booking_two}."
+
+# TODO - Add more bookings
 
 # Create ratings
-# TODO
+puts "Creating ratings for #{user1.username}."
 
-# TODO
+rating_one = Rating.create!(
+  booking_id: booking_one.id,
+  buddy_attended: true,
+  buddy_rating: 4,
+  comment: 'Best buddy on Earth!'
+)
+puts "#{user1.username}: #{rating_one}."
+
+# TODO - Add more ratings
+
+# Create tags
+puts "Creating tags..."
+
+tag_one = Tag.create!(
+    name: 'brunch',
+  )
+
+tag_two = Tag.create!(
+  name: 'sleep',
+)
+
+tag_three = Tag.create!(
+  name: 'spa',
+)
+
+tag_four = Tag.create!(
+  name: 'food',
+)
+
+tag_five = Tag.create!(
+  name: 'music',
+)
+
+tag_six = Tag.create!(
+  name: 'TV',
+)
+
+puts "#{tag_one.name}, #{tag_two.name}, #{tag_three.name}, #{tag_four.name}, #{tag_five.name}, #{tag_six.name}"
