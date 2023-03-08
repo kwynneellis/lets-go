@@ -1,5 +1,6 @@
 <div class="container">
   <% if @user == current_user %>
+  <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete} %>
     <h2>Account</h2>
     <%= cl_image_tag @user.photo.key %>
     <p><%= @user.first_name %> <%= @user.last_name %></p>
