@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     end
   end
   resources :bookings, only: %i[index show destroy edit update]
+  resources :users, only: [:show]
 end
 
 # Defines the root path route ("/")
