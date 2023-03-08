@@ -1,7 +1,7 @@
 <div class="container">
   <% if @user == current_user %>
     <h2>Account</h2>
-    <%= cl_image_tag @user.photo.key %>
+    <%= cl_image_tag @user.photo.key, width: 200 %>
     <p><%= @user.first_name %> <%= @user.last_name %></p>
     <p><%= @user.username %></p>
     <p>About: <%= @user.about_me %></p>
