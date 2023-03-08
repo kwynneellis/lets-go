@@ -1,6 +1,7 @@
 class BookingsController < ApplicationController
   before_action :set_user, only: %i[new create index show]
   before_action :set_workout, only: %i[new create]
+  before_action :set_rating, only: %i[show]
 
   def index
     @bookings = Booking.all
@@ -34,6 +35,10 @@ class BookingsController < ApplicationController
 
   def set_workout
     @workout = Workout.find(params[:workout_id])
+  end
+
+  def set_rating
+    @rating = Rating.new
   end
 
   def booking_params

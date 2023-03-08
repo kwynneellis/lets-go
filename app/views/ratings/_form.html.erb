@@ -1,5 +1,5 @@
 <h2>New review</h2>
-<%= simple_form_for [@booking, @rating] do |f| %>
+<%= simple_form_for([booking, rating]) do |f| %>
   <%= f.input :buddy_attended, as: :boolean %>
   <%= f.input :buddy_rating,
               as: :radio_buttons,

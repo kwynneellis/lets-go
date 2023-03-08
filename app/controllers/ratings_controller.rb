@@ -12,9 +12,9 @@ class RatingsController < ApplicationController
     @rating.user = @user
     @rating.booking = @booking
     if @rating.save
-      redirect_to bookings_path
+      redirect_to booking_path
     else
-      render "workouts/show", status: :unprocessable_entity
+      render "bookings/show", status: :unprocessable_entity
     end
   end
 
