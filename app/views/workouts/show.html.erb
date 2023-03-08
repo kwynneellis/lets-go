@@ -1,16 +1,40 @@
 <div class="container">
-  <h1>This is the workout show page</h1>
+  <div class="row justify-content-center">
+    <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+    <%= link_to workouts_path do %>
+      <div class="secondary-button">
+        <i class="fa-solid fa-arrow-left"></i>
+      </div>
+    <% end %>
 
-  <p><strong>Activity: </strong><%= @workout.activity_type %><br>
-  <strong>Intensity: </strong><%= @workout.intensity_level %><br>
-  <strong>Location: </strong><%= @workout.location %><br>
-  <strong>Date: </strong><%= @workout.date %><br>
-  <strong>Start time: </strong><%= @workout.start_time %><br>
-  <strong>Duration: </strong><%= @workout.duration %> mins<br>
-  <strong>Description: </strong><%= @workout.description %><br>
-  <strong>Capacity: </strong><%= @workout.capacity %><br></p>
-  <%= render "bookings/form", workout: @workout, booking: @booking %>
+    <h1>This is the workout show page</h1>
+
+    <p><strong>Activity: </strong><%= @workout.activity_type %><br>
+    <strong>Intensity: </strong><%= @workout.intensity_level %><br>
+    <strong>Location: </strong><%= @workout.location %><br>
+    <strong>Date: </strong><%= @workout.date %><br>
+    <strong>Start time: </strong><%= @workout.start_time %><br>
+    <strong>Duration: </strong><%= @workout.duration %> mins<br>
+    <strong>Description: </strong><%= @workout.description %><br>
+    <strong>Capacity: </strong><%= @workout.capacity %><br></p>
+    <%= link_to "See user's profile", user_path(@user) %>
+    <%= render "bookings/form", workout: @workout, booking: @booking %>
+
+    <%= link_to edit_workout_path(@workout.id) do %>
+      <div class="secondary-button">
+          <p><i class="fa-solid fa-pen-to-square"></i>Amend workout</p>
+      </div>
+    <% end %>
+
+    <%= link_to workout_path(@workout.id),
+      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+        <div class="secondary-button">
+          <p><i class="fa-solid fa-trash"></i> Delete workout</p>
+        </div>
+    <% end %>
+  </div>
 </div>
+
 <%= render "shared/navbar_footer" %>
 
 <div style="width: 100%; height: 600px;"
@@ -18,3 +42,5 @@
   data-map-markers-value="<%= @markers.to_json %>"
   data-map-api-key-value="<%= ENV['MAPBOX_API_KEY']%>">
 </div>
+
+<%= render "shared/navbar_footer" %>

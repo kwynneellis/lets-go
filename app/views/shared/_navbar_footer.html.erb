@@ -10,12 +10,12 @@
      <%= link_to new_workout_path do %>
       <i class="fa-regular fa-2x fa-square-plus"></i>
      <% end %>
-    <%# THE LINK BELOW NEEDS CHANGING IF WE ADD THIS FUNCTIONALITY (UNLIKELY) %>
+    <%# THE LINK BELOW NEEDS CHANGING %>
      <%= link_to workouts_path do %>
-      <i class="fa-regular fa-2x fa-bell"></i>
+      <i class="fa-regular fa-2x fa-calendar"></i>
      <% end %>
-     <%# THE LINK BELOW NEEDS CHANGING!!! %>
-     <%= link_to workouts_path do %>
+     <%# THE LINK BELOW NEEDS CHANGING %>
+     <%= link_to user_path(current_user) do %>
       <i class="fa-regular fa-2x fa-user"></i>
      <% end %>
   </div>

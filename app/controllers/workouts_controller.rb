@@ -1,5 +1,5 @@
 class WorkoutsController < ApplicationController
-  before_action :set_user, only: %i[new create show]
+  before_action :set_user, only: %i[new create show destroy]
   before_action :set_booking, only: %i[show]
 
   def new
@@ -18,6 +18,7 @@ class WorkoutsController < ApplicationController
 
   def show
     @workout = Workout.find(params[:id])
+    @user.id = @workout.user_id
     @markers = [{
       lat: @workout.latitude,
       lng: @workout.longitude
@@ -53,6 +54,27 @@ class WorkoutsController < ApplicationController
       @workouts = Workout.all
     end
     @my_workouts = Workout.where(user_id: current_user.id) if user_signed_in?
+  end
+
+  def edit
+    @workout = Workout.find(params[:id])
+  end
+
+  def update
+    @workout = Workout.find(params[:id])
+    @workout.update(workout_params)
+
+    redirect_to workout_path(@workout)
+  end
+
+  def destroy
+    @workout = Workout.find(params[:id])
+
+    if @workout.destroy!
+      redirect_to workouts_path, status: :see_other
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private
