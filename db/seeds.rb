@@ -8,6 +8,7 @@
 
 require "faker"
 require "open-uri"
+require "date"
 
 User.destroy_all
 Workout.destroy_all
@@ -26,7 +27,7 @@ user1 = User.create!(
   about_me: '35-year-old software engineer spending too many hours sat in a chair.
   Looking for a fitness buddy in the local area to workout with for runs, brisk walks,
   yoga sessions, and swimming.',
-  fitness_goal: Faker::Movie.quote,
+  fitness_goal: 'Consistency - to work out 10 days in one month.',
   fitness_level: rand(1..5),
   attendance: rand(1..100),
   avg_rating: rand(1..5),
@@ -45,14 +46,14 @@ user2 = User.create!(
   email: 'lindsay@test.com',
   password: '123456',
   date_of_birth: Faker::Date.between(from: '1975-03-06', to: '2005-03-06'),
-  about_me: Faker::Quote.famous_last_words,
-  fitness_goal: Faker::Movie.quote,
+  about_me: '21-year-old recent graduate who would rather go to the pub than exercise.',
+  fitness_goal: 'Complete a 5k run in 3 months time.',
   fitness_level: rand(1..5),
   attendance: rand(1..100),
   avg_rating: rand(1..5),
 )
 
-user2_photo_file = URI.open("https://images.pond5.com/bored-young-woman-office-worker-footage-129058710_iconl.jpeg")
+user2_photo_file = URI.open("https://pyxis.nymag.com/v1/imgs/8d6/f64/3876ba5a2e4bfad63beb9e99bba217b0eb-bored-quiz.rsquare.w700.jpg")
 user2.photo.attach(io: user2_photo_file, filename: "#{user2_photo_file}.png", content_type: "image/png")
 user2.save!
 
@@ -65,7 +66,7 @@ user3 = User.create!(
   email: 'lucy@test.com',
   password: '123456',
   date_of_birth: Faker::Date.between(from: '1975-03-06', to: '2005-03-06'),
-  about_me: Faker::Quote.famous_last_words,
+  about_me: 'Looking for a fitness buddy in the local area',
   fitness_goal: Faker::Movie.quote,
   fitness_level: rand(1..5),
   attendance: rand(1..100),
@@ -85,14 +86,16 @@ user4 = User.create!(
   email: 'anthony@test.com',
   password: '123456',
   date_of_birth: Faker::Date.between(from: '1975-03-06', to: '2005-03-06'),
-  about_me: Faker::Quote.famous_last_words,
+  about_me: 'Looking for a fitness buddy in the local area',
   fitness_goal: Faker::Movie.quote,
   fitness_level: rand(1..5),
   attendance: rand(1..100),
   avg_rating: rand(1..5),
 )
 
-# TODO - add photo
+user4_photo_file = URI.open("https://wp-media.patheos.com/blogs/sites/507/2015/10/lazy-man-on-couch.jpeg")
+user4.photo.attach(io: user4_photo_file, filename: "#{user4_photo_file}.png", content_type: "image/png")
+user4.save!
 
 puts "#{user4.username} created."
 
@@ -103,86 +106,96 @@ user5 = User.create!(
   email: 'sandra@test.com',
   password: '123456',
   date_of_birth: Faker::Date.between(from: '1975-03-06', to: '2005-03-06'),
-  about_me: Faker::Quote.famous_last_words,
+  about_me: 'Looking for a fitness buddy in the local area',
   fitness_goal: Faker::Movie.quote,
   fitness_level: rand(1..5),
   attendance: rand(1..100),
   avg_rating: rand(1..5),
 )
 
-# TODO - add photo
+user5_photo_file = URI.open("https://cdn.vanguardngr.com/wp-content/uploads/2017/02/sleep11.png")
+user5.photo.attach(io: user5_photo_file, filename: "#{user5_photo_file}.png", content_type: "image/png")
+user5.save!
 
 puts "#{user5.username} created."
 
 user6 = User.create!(
-  first_name: 'Dan',
+  first_name: 'Damon',
   last_name: Faker::Name.last_name,
-  username: 'drowsy_dan',
-  email: 'dan@test.com',
+  username: 'drowsy_damon',
+  email: 'damon@test.com',
   password: '123456',
   date_of_birth: Faker::Date.between(from: '1975-03-06', to: '2005-03-06'),
-  about_me: Faker::Quote.famous_last_words,
+  about_me: 'Looking for a fitness buddy in the local area',
   fitness_goal: Faker::Movie.quote,
   fitness_level: rand(1..5),
   attendance: rand(1..100),
   avg_rating: rand(1..5),
 )
 
-# TODO - add photo
+user6_photo_file = URI.open("https://media.gq-magazine.co.uk/photos/5e6902a155ca550008940db8/master/pass/20200311-Sleep.jpg")
+user6.photo.attach(io: user6_photo_file, filename: "#{user6_photo_file}.png", content_type: "image/png")
+user6.save!
 
 puts "#{user6.username} created."
 
 user7 = User.create!(
-  first_name: 'Katie',
+  first_name: 'Maya',
   last_name: Faker::Name.last_name,
-  username: 'kickass_katie',
-  email: 'katie@test.com',
+  username: 'moderate_maya',
+  email: 'maya@test.com',
   password: '123456',
   date_of_birth: Faker::Date.between(from: '1975-03-06', to: '2005-03-06'),
-  about_me: Faker::Quote.famous_last_words,
+  about_me: 'Looking for a fitness buddy in the local area',
   fitness_goal: Faker::Movie.quote,
   fitness_level: rand(1..5),
   attendance: rand(1..100),
   avg_rating: rand(1..5),
 )
 
-# TODO - add photo
+user7_photo_file = URI.open("https://media.istockphoto.com/id/1217692711/photo/portrait-of-bored-lazy-upset-girl-with-brunette-hair-leaning-on-hand-and-looking-with-gloomy.jpg?s=612x612&w=0&k=20&c=gVtK9b3PcORY5xwH6m3F-9Okj_HiRycMw_fbRkGegp4=")
+user7.photo.attach(io: user7_photo_file, filename: "#{user7_photo_file}.png", content_type: "image/png")
+user7.save!
 
 puts "#{user7.username} created."
 
 user8 = User.create!(
   first_name: 'Stuart',
   last_name: Faker::Name.last_name,
-  username: 'slowcoach_stuart',
+  username: 'slack_stuart',
   email: 'stuart@test.com',
   password: '123456',
   date_of_birth: Faker::Date.between(from: '1975-03-06', to: '2005-03-06'),
-  about_me: Faker::Quote.famous_last_words,
+  about_me: 'Looking for a fitness buddy in the local area',
   fitness_goal: Faker::Movie.quote,
   fitness_level: rand(1..5),
   attendance: rand(1..100),
   avg_rating: rand(1..5),
 )
 
-# TODO - add photo
+user8_photo_file = URI.open("https://media.istockphoto.com/id/1270851157/photo/tired-african-american-businessman-sleeping-sitting-at-work-desk.jpg?s=612x612&w=0&k=20&c=F1xUgqWRiyPj6cLcvEiOJ6wxTdkB0IhCM-3uFKwLgYI=")
+user8.photo.attach(io: user8_photo_file, filename: "#{user8_photo_file}.png", content_type: "image/png")
+user8.save!
 
 puts "#{user8.username} created."
 
 user9 = User.create!(
-  first_name: 'Fred',
+  first_name: 'Doris',
   last_name: Faker::Name.last_name,
-  username: 'frumpy_fred',
-  email: 'fred@test.com',
+  username: 'dormant_doris',
+  email: 'doris@test.com',
   password: '123456',
   date_of_birth: Faker::Date.between(from: '1975-03-06', to: '2005-03-06'),
-  about_me: Faker::Quote.famous_last_words,
+  about_me: 'Looking for a fitness buddy in the local area',
   fitness_goal: Faker::Movie.quote,
   fitness_level: rand(1..5),
   attendance: rand(1..100),
   avg_rating: rand(1..5),
 )
 
-# TODO - add photo
+user9_photo_file = URI.open("https://media.istockphoto.com/id/1253023912/photo/tired-student-leaning-on-books-in-the-campus-library.jpg?s=612x612&w=0&k=20&c=NMQ9A4hiOFKortv_io1M7_bt4haqSrRbLKfOHGKTLHI=")
+user9.photo.attach(io: user9_photo_file, filename: "#{user9_photo_file}.png", content_type: "image/png")
+user9.save!
 
 puts "#{user9.username} created."
 
@@ -193,14 +206,16 @@ user10 = User.create!(
   email: 'laura@test.com',
   password: '123456',
   date_of_birth: Faker::Date.between(from: '1975-03-06', to: '2005-03-06'),
-  about_me: Faker::Quote.famous_last_words,
+  about_me: 'Looking for a fitness buddy in the local area',
   fitness_goal: Faker::Movie.quote,
   fitness_level: rand(1..5),
   attendance: rand(1..100),
   avg_rating: rand(1..5),
 )
 
-# TODO - add photo
+user10_photo_file = URI.open("https://st2.depositphotos.com/1049680/42563/i/600/depositphotos_425634606-stock-photo-beautiful-hispanic-woman-expecting-baby.jpg")
+user10.photo.attach(io: user10_photo_file, filename: "#{user10_photo_file}.png", content_type: "image/png")
+user10.save!
 
 puts "#{user10.username} created."
 
@@ -212,7 +227,7 @@ workout_one = Workout.create!(
   intensity_level: rand(1..5),
   location: 'Shoreditch',
   date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
-  start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now),
+  start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
   duration: 60,
   description: 'Planning a brisk walk around Victoria Park.',
   capacity: 2,
@@ -230,7 +245,7 @@ workout_two = Workout.create!(
   intensity_level: rand(1..5),
   location: 'Hoxton',
   date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
-  start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now),
+  start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
   duration: 30,
   description: 'An interval run along a lovely stretch of Regents Canal.',
   capacity: 2,
@@ -241,9 +256,123 @@ workout_photo_file_two = URI.open("https://hips.hearstapps.com/hmg-prod/images/4
 workout_two.photo.attach(io: workout_photo_file_two, filename: "#{workout_photo_file_two}.png", content_type: "image/png")
 workout_two.save!
 
-# TODO - add more workouts
-
 puts "#{user1.username}: #{workout_two.activity_type} created."
+
+puts "Creating workouts for #{user5.username}."
+
+workout_three = Workout.create!(
+  activity_type: 'Yoga Class',
+  intensity_level: 2,
+  location: 'Hoxton',
+  date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
+  start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
+  duration: 50,
+  description: 'Join me for a beginners yoga class.',
+  capacity: 2,
+  user_id: user5.id
+)
+
+workout_photo_file_three = URI.open("https://media.healthnews.com/images/featured/2022/08/The-yoga-equipment.jpg")
+workout_three.photo.attach(io: workout_photo_file_three, filename: "#{workout_photo_file_three}.png", content_type: "image/png")
+workout_three.save!
+
+puts "#{user5.username}: #{workout_three.activity_type} created."
+
+workout_four = Workout.create!(
+  activity_type: 'Tennis Lesson',
+  intensity_level: 4,
+  location: 'Hoxton',
+  date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
+  start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
+  duration: 60,
+  description: 'Join me for a tennis lesson.',
+  capacity: 2,
+  user_id: user5.id
+)
+
+workout_photo_file_four = URI.open("https://hctennis.co.uk/static/images/ballonra.jpg")
+workout_four.photo.attach(io: workout_photo_file_four, filename: "#{workout_photo_file_four}.png", content_type: "image/png")
+workout_four.save!
+
+puts "#{user5.username}: #{workout_four.activity_type} created."
+
+puts "Creating workouts for #{user6.username}."
+
+workout_five = Workout.create!(
+  activity_type: 'Cycle Ride',
+  intensity_level: 4,
+  location: 'Hoxton',
+  date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
+  start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
+  duration: 60,
+  description: 'Join me for a cycle ride.',
+  capacity: 2,
+  user_id: user6.id
+)
+
+workout_photo_file_five = URI.open("https://thebridge.in/wp-content/uploads/2020/12/Source-Cyclist.png")
+workout_five.photo.attach(io: workout_photo_file_five, filename: "#{workout_photo_file_five}.png", content_type: "image/png")
+workout_five.save!
+
+puts "#{user6.username}: #{workout_five.activity_type} created."
+
+workout_six = Workout.create!(
+  activity_type: 'Swim Session',
+  intensity_level: 4,
+  location: 'Hoxton',
+  date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
+  start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
+  duration: 60,
+  description: 'Join me for a swim.',
+  capacity: 2,
+  user_id: user6.id
+)
+
+workout_photo_file_six = URI.open("https://static01.nyt.com/images/2022/05/27/well/27WELL-SWIM-FOR-EXERCISE3/27WELL-SWIM-FOR-EXERCISE3-mobileMasterAt3x.jpg")
+workout_six.photo.attach(io: workout_photo_file_six, filename: "#{workout_photo_file_six}.png", content_type: "image/png")
+workout_six.save!
+
+puts "#{user6.username}: #{workout_six.activity_type} created."
+
+puts "Creating workouts for #{user9.username}."
+
+workout_seven = Workout.create!(
+  activity_type: 'Pilates Class',
+  intensity_level: 2,
+  location: 'Hoxton',
+  date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
+  start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
+  duration: 50,
+  description: 'Join me for a pilates class.',
+  capacity: 2,
+  user_id: user9.id
+)
+
+workout_photo_file_seven = URI.open("https://styleanddecor.co.uk/system/wp-content/uploads/2020/02/Waiting-for-a-Pilates-class.jpg")
+workout_seven.photo.attach(io: workout_photo_file_seven, filename: "#{workout_photo_file_seven}.png", content_type: "image/png")
+workout_seven.save!
+
+puts "#{user9.username}: #{workout_seven.activity_type} created."
+
+workout_eight = Workout.create!(
+  activity_type: 'Park Workout',
+  intensity_level: 2,
+  location: 'Hoxton',
+  date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
+  start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
+  duration: 30,
+  description: 'Join me for a gentle park workout.',
+  capacity: 2,
+  user_id: user9.id
+)
+
+workout_photo_file_eight = URI.open("https://www.shape.com/thmb/5bLzpsVPTPwwvnNm8WuS9NQExRQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/outdoor-workout-promo-2000-d8aca15ab94e4ef49137b4ae10a02593.jpg")
+workout_eight.photo.attach(io: workout_photo_file_eight, filename: "#{workout_photo_file_eight}.png", content_type: "image/png")
+workout_eight.save!
+
+puts "#{user9.username}: #{workout_eight.activity_type} created."
+
+# TODO - add more workouts
 
 # Create bookings
 puts "Creating bookings for #{user2.username}."
@@ -253,14 +382,14 @@ booking_one = Booking.create!(
   workout_id: workout_one.id,
   booking_date: workout_one.date
 )
-puts "#{user2.username}: #{booking_one}."
+puts "#{user2.username}: #{booking_one.booking_date}."
 
 booking_two = Booking.create!(
   user_id: user2.id,
   workout_id: workout_two.id,
   booking_date: workout_two.date
 )
-puts "#{user2.username}: #{booking_two}."
+puts "#{user2.username}: #{booking_two.booking_date}."
 
 # TODO - Add more bookings
 
@@ -273,7 +402,7 @@ rating_one = Rating.create!(
   buddy_rating: 4,
   comment: 'Best buddy on Earth!'
 )
-puts "#{user1.username}: #{rating_one}."
+puts "#{user1.username}: #{rating_one.comment}"
 
 # TODO - Add more ratings
 
@@ -304,4 +433,4 @@ tag_six = Tag.create!(
   name: 'TV',
 )
 
-puts "#{tag_one.name}, #{tag_two.name}, #{tag_three.name}, #{tag_four.name}, #{tag_five.name}, #{tag_six.name}"
+puts "#{tag_one.name}, #{tag_two.name}, #{tag_three.name}, #{tag_four.name}, #{tag_five.name}, #{tag_six.name} ... to be continued."
