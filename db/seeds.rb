@@ -210,7 +210,7 @@ puts "Creating workouts for #{user1.username}."
 workout_one = Workout.create!(
   activity_type: 'Brisk Walk',
   intensity_level: rand(1..5),
-  location: 'London',
+  location: 'Shoreditch',
   date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
   start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now),
   duration: 60,
@@ -228,7 +228,7 @@ puts "#{user1.username}: #{workout_one.activity_type} created."
 workout_two = Workout.create!(
   activity_type: 'Interval Run',
   intensity_level: rand(1..5),
-  location: 'London',
+  location: 'Hoxton',
   date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
   start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now),
   duration: 30,
