@@ -1,0 +1,6 @@
+<div class="container">
+  <h2>This is the booking index page</h2>
+  <% @bookings.each do |booking| %>
+    <%= link_to booking.booking_date, booking_path(booking) %><br>
+  <% end %>
+</div>

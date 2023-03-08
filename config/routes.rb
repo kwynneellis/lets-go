@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   root to: "pages#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   resources :workouts, only: %i[index new create show destroy edit update] do
-    resources :bookings, only: %i[new create]
+    resources :bookings, only: %i[new create] do
+      resources :reviews, only: %i[new create]
+    end
   end
   resources :bookings, only: %i[index show destroy edit update]
 end
