@@ -17,6 +17,7 @@
     <strong>Duration: </strong><%= @workout.duration %> mins<br>
     <strong>Description: </strong><%= @workout.description %><br>
     <strong>Capacity: </strong><%= @workout.capacity %><br></p>
+    <%= link_to "See user's profile", user_path(@user) %>
     <%= render "bookings/form", workout: @workout, booking: @booking %>
 
     <%= link_to edit_workout_path(@workout.id) do %>
