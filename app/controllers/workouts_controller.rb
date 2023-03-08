@@ -1,5 +1,5 @@
 class WorkoutsController < ApplicationController
-  before_action :set_user, only: %i[new create show]
+  before_action :set_user, only: %i[new create show destroy]
   before_action :set_booking, only: %i[show]
 
   def new
@@ -56,6 +56,27 @@ class WorkoutsController < ApplicationController
   #     }
   #   end
   # end
+
+  def edit
+    @workout = Workout.find(params[:id])
+  end
+
+  def update
+    @workout = Workout.find(params[:id])
+    @workout.update(workout_params)
+
+    redirect_to workout_path(@workout)
+  end
+
+  def destroy
+    @workout = Workout.find(params[:id])
+
+    if @workout.destroy!
+      redirect_to workouts_path, status: :see_other
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
 
   private
 

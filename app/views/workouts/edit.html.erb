@@ -1,7 +1,14 @@
 <div class="container">
-  <div class="form-workout">
-    <h2>Add a Workout</h2>
-      <%= simple_form_for(@workout) do |f| %>
+  <div class="row justify-content-center">
+    <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+    <%= link_to workouts_path do %>
+      <div class="secondary-button">
+        <i class="fa-solid fa-arrow-left"></i>
+      </div>
+    <% end %>
+      <div class="form-workout">
+          <h2>Amend Workout</h2>
+            <%= simple_form_for(@workout) do |f| %>
               <%= f.input :activity_type, as: :select, collection: [
                 'Cycle',
                 'Other',
@@ -27,7 +34,9 @@
               <%= f.input :description, placeholder: 'Provide full details of the workout, including a link to the class if applicable' %>
               <%= f.input :capacity %>
               <%= f.input :photo, as: :file %>
-              <%= f.submit "Add Workout", class: "btn btn-primary"%>
+              <%= f.submit "Amend Workout", class: "btn btn-primary"%>
             <% end %>
+      </div>
+    </div>
   </div>
 </div>
