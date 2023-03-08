@@ -18,11 +18,16 @@ class WorkoutsController < ApplicationController
 
   def show
     @workout = Workout.find(params[:id])
+    @markers = {
+      lat: @workout.latitude,
+      lng: @workout.longitude
+    }
   end
 
   def index
     # The code below enables a filtered search
     # There is a listing class method to ensure that if search is nil, all Listings are displayed
+    # workout_location_markers
     search = params[:search]
     if params[:query].present?
       sql_query = <<~SQL
@@ -41,6 +46,16 @@ class WorkoutsController < ApplicationController
     end
     @my_workouts = Workout.where(user_id: current_user.id) if user_signed_in?
   end
+
+  # def workout_location_markers
+  #   @workouts = Workout.all
+  #   @workout_location = @workouts.geocoded.map do |workout|
+  #     {
+  #       lat: workout.latitude,
+  #       lng: workout.longitude
+  #     }
+  #   end
+  # end
 
   private
 
