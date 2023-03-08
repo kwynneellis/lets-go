@@ -4,5 +4,6 @@
 
   <p><strong>Booking ID: </strong><%= @booking.id %><br>
   <strong>Date of booking: </strong><%= @booking.booking_date %><br></p>
+  <%= link_to "Go to workout", workout_path(@booking.workout_id)   %><br><br>
 </div>
 <%= render "shared/navbar_footer" %>
