@@ -1,10 +1,4 @@
 <div class="container">
-  <ul>
-    <% @workouts.each do |workout| %>
-      <li><%= link_to workout.activity_type, workout_path(workout) %></li>
-    <% end %>
-  </ul>
-
   <%= form_with url: workouts_path, method: :get, class: "d-flex" do %>
     <%= text_field_tag :query,
       params[:query],
@@ -13,4 +7,28 @@
     %>
     <%= submit_tag "Search", class: "btn btn-primary" %>
   <% end %>
+
+  <div class="container-workouts">
+    <% @workouts.each do |workout| %>
+      <div class="card-workout">
+        <%= link_to workout_path(workout), class: "text-decoration-none" do %>
+          <%= cl_image_tag workout.photo.key %>
+          <%# <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" /> %>
+          <div class="card-workout-infos">
+            <div>
+              <h2><%= workout.activity_type %></h2>
+              <p>Date: <%= workout.date %></p>
+              <%# <p>Time: <%= workout.time %>
+              <p>Location: <%= workout.location %></p>
+              <p>Intensity: <%= workout.intensity_level %></p>
+            </div>
+            <p>Duration: <%= workout.duration %></p>
+            <%# <%= cl_image_tag workout.user_id.photo.key, class: "card-workout-user card-avatar" %>
+            <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-workout-user card-avatar" />
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
 </div>

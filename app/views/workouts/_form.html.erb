@@ -24,5 +24,6 @@
   <%= f.input :duration, placeholder: 'E.g. 30', label: 'Duration (mins)' %>
   <%= f.input :description, placeholder: 'Provide full details of the workout, including a link to the class if applicable' %>
   <%= f.input :capacity %>
+  <%= f.input :photo, as: :file %>
   <%= f.submit "Add Workout", class: "btn btn-primary"%>
 <% end %>
