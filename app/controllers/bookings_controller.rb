@@ -9,6 +9,7 @@ class BookingsController < ApplicationController
 
   def show
     @booking = Booking.find(params[:id])
+    @existing_rating = Rating.where(booking_id: @booking.id)
   end
 
   def new

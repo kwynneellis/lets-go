@@ -4,6 +4,18 @@
 
   <p><strong>Booking ID: </strong><%= @booking.id %><br>
   <strong>Date of booking: </strong><%= @booking.booking_date %><br></p>
-  <%= link_to "Go to workout", workout_path(@booking.workout_id)   %><br><br>
+  <%= link_to "Go to workout", workout_path(@booking.workout_id) %><br><br>
+  <h3>Ratings</h3>
+  <% if @existing_rating.empty? %>
+    <p class="text-start"> There are no ratings yet 💔 </p>
+  <% end %>
+  <% @existing_rating.each do |rating| %>
+    <p><strong>Rating ID: </strong><%= rating.id %><br>
+    <strong>Your name: </strong><%= rating.booking.user.first_name %><br>
+    <strong>Did buddy attend: </strong><%= rating.buddy_attended %><br>
+    <strong>You rated your buddy: </strong><%= rating.buddy_rating %><br>
+    <strong>Comment: </strong><%= rating.comment %><br></p>
+  <% end %>
+  <%= render "ratings/form" %>
 </div>
 <%= render "shared/navbar_footer" %>
