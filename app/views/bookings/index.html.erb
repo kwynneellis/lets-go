@@ -1,0 +1,6 @@
+<div class="container">
+  <h2>This is the booking index page</h2>
+  <% @bookings.each do |booking| %>
+    <p><strong>Booking Date: </strong><%= booking.booking_date %><br></p>
+  <% end %>
+</div>
