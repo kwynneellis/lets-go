@@ -12,10 +12,14 @@ class RatingsController < ApplicationController
     @rating.user = @user
     @rating.booking = @booking
     if @rating.save
-      redirect_to booking_path
+      redirect_to booking_path(@booking)
     else
       render "bookings/show", status: :unprocessable_entity
     end
+  end
+
+  def show
+    @rating = Rating.find(params[:id])
   end
 
   private
