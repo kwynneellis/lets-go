@@ -8,7 +8,7 @@ class WorkoutsController < ApplicationController
 
   def create
     @workout = Workout.new(workout_params)
-    @workout.user = @user
+    @workout.user_id = current_user.id
     if @workout.save
       redirect_to workout_path(@workout)
     else

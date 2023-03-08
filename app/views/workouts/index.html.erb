@@ -13,7 +13,6 @@
       <div class="card-workout">
         <%= link_to workout_path(workout), class: "text-decoration-none" do %>
           <%= cl_image_tag workout.photo.key %>
-          <%# <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" /> %>
           <div class="card-workout-infos">
             <div>
               <h2><%= workout.activity_type %></h2>
@@ -23,8 +22,7 @@
               <p>Intensity: <%= workout.intensity_level %></p>
             </div>
             <p>Duration: <%= workout.duration %></p>
-            <%# <%= cl_image_tag workout.user_id.photo.key, class: "card-workout-user card-avatar" %>
-            <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-workout-user card-avatar" />
+            <%= cl_image_tag workout.user.photo.key, class: "card-workout-user card-avatar" %>
           </div>
         <% end %>
       </div>
