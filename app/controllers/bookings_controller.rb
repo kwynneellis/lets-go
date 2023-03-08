@@ -9,6 +9,7 @@ class BookingsController < ApplicationController
 
   def show
     @booking = Booking.find(params[:id])
+    @existing_rating = Rating.where(booking_id: @booking.id)
   end
 
   def new
@@ -21,7 +22,7 @@ class BookingsController < ApplicationController
     @booking.workout = @workout
     @booking.booking_date = @workout.date
     if @booking.save
-      redirect_to workouts_path
+      redirect_to bookings_path
     else
       render "workouts/show", status: :unprocessable_entity
     end
