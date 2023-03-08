@@ -1,14 +1,15 @@
 import { Controller } from "@hotwired/stimulus"
+import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder"
 
 // Connects to data-controller="map"
 export default class extends Controller {
   static values = {
     apiKey: String,
-    markers: Object
+    markers: Array
     }
 
   connect() {
-    console.log(this.markersValue)
+    // console.log(this.markersValue)
     mapboxgl.accessToken = this.apiKeyValue
 
     this.map = new mapboxgl.Map({
@@ -17,18 +18,30 @@ export default class extends Controller {
     })
     this.#addMarkersToMap()
     this.#fitMapToMarkers()
+    this.map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
+      mapboxgl: mapboxgl }))
   }
-
 
   #fitMapToMarkers() {
     const bounds = new mapboxgl.LngLatBounds()
-    bounds.extend([ this.markersValue.lng, this.markersValue.lat ])
-    this.map.fitBounds(bounds, { padding: 70, maxZoom: 70, duration: 0 })
+    this.markersValue.forEach((marker) => {
+      bounds.extend([ marker.lng, marker.lat ])
+      this.map.fitBounds(bounds, { padding: 70, maxZoom: 1000, duration: 0 })
+    })
+
   }
 
   #addMarkersToMap() {
-      new mapboxgl.Marker()
-        .setLngLat([ this.markersValue.lng, this.markersValue.lat ])
+    // console.log(this.markersValue)
+    this.markersValue.forEach((marker) => {
+      // console.log(marker)
+      const popup = new mapboxgl.Popup().setHTML(marker.info_window_html)
+      const customMarker = document.createElement("div")
+      customMarker.innerHTML = marker.marker_html
+      new mapboxgl.Marker(customMarker)
+        .setLngLat([ marker.lng, marker.lat ])
+        .setPopup(popup)
         .addTo(this.map)
+    })
   }
 }
