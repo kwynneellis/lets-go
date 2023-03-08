@@ -1,0 +1,18 @@
+.container-workouts {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 12px;
+  margin: 20px auto;
+}
+
+@media(max-width: 992px) {
+  .container-workouts {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media(max-width: 768px) {
+  .container-workouts {
+    grid-template-columns: 1fr;
+  }
+}
