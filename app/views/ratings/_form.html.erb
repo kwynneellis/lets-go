@@ -1,10 +1,12 @@
 <h2>New review</h2>
-<%= simple_form_for([booking, rating]) do |f| %>
-  <%= f.input :buddy_attended, as: :boolean %>
+<%= simple_form_for([@booking, @rating]) do |f| %>
+  <%= f.input :buddy_attended, as: :boolean,
+              label: "Did your buddy show up?" %>
   <%= f.input :buddy_rating,
               as: :radio_buttons,
               collection: [1, 2, 3, 4, 5],
               label: "How great was your buddy?" %>
-  <%= f.input :comment %>
+  <%= f.input :comment,
+              label: "More feedback (optional)" %>
   <%= f.submit "Submit review", class: "btn btn-primary" %>
 <% end %>

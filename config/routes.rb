@@ -5,10 +5,13 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   resources :workouts, only: %i[index new create show destroy edit update] do
     resources :bookings, only: %i[new create] do
-      resources :reviews, only: %i[new create]
+      resources :ratings, only: %i[new create]
     end
   end
-  resources :bookings, only: %i[index show destroy edit update]
+  resources :users, only: [:show]
+  resources :bookings, only: %i[index show destroy edit update] do
+    resources :ratings, only: %i[new create]
+  end
 end
 
 # Defines the root path route ("/")

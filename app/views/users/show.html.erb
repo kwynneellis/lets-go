@@ -1,0 +1,25 @@
+<div class="container">
+  <% if @user == current_user %>
+    <h2>Account</h2>
+    <%= cl_image_tag @user.photo.key %>
+    <p><%= @user.first_name %> <%= @user.last_name %></p>
+    <p><%= @user.username %></p>
+    <p>About: <%= @user.about_me %></p>
+    <p>Fitness goal: <%= @user.fitness_goal %></p>
+    <p>Fitness level: <%= @user.fitness_level %></p>
+    <p>Attendance: <%= @user.attendance %></p>
+    <p>Rating: <%= @user.avg_rating %></p>
+    <br>
+    <%= link_to "Update my Profile", edit_user_registration_path(@user) %>
+  <% else %>
+    <h2>Find out more about <%= @user.username %></h2>
+    <%= cl_image_tag @user.photo.key %>
+    <p>About: <%= @user.about_me %></p>
+    <p>Fitness goal: <%= @user.fitness_goal %></p>
+    <p>Fitness level: <%= @user.fitness_level %></p>
+    <p>Attendance: <%= @user.attendance %></p>
+    <p>Rating: <%= @user.avg_rating %></p>
+  <% end %>
+</div>
+
+<%= render "shared/navbar_footer" %>
