@@ -276,7 +276,7 @@ workout_three = Workout.create!(
   user_id: user5.id
 )
 
-workout_photo_file_three = URI.open("https://media.healthnews.com/images/featured/2022/08/The-yoga-equipment.jpg")
+workout_photo_file_three = URI.open("https://katiecouric.com/wp-content/uploads/2022/04/GettyImages-1192508928.jpg")
 workout_three.photo.attach(io: workout_photo_file_three, filename: "#{workout_photo_file_three}", content_type: "image/jpg")
 if !workout_three.save!
   puts "workout_three failed"
