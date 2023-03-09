@@ -25,7 +25,9 @@ class WorkoutsController < ApplicationController
     @user.id = @workout.user_id
     @markers = [{
       lat: @workout.latitude,
-      lng: @workout.longitude
+      lng: @workout.longitude,
+      info_window_html: render_to_string(partial: "info_window", locals: {workout: @workout}),
+      marker_html: render_to_string(partial: "marker", locals: {workout: @workout})
     }]
   end
 
