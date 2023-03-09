@@ -20,8 +20,8 @@
 }
 
 .avatar-bordered-user-profile {
-  width: 200px;
-  height: 200px;
+  width: 240px;
+  height: 220px;
   border-radius: 50%;
   box-shadow: 0 1px 2px rgba(0,0,0,0.2);
   border: white 1px solid;
@@ -31,7 +31,7 @@
 }
 
 .background-image {
-  background-color: #91AA95;
+  background: linear-gradient(#91AA95,lightgrey);
   background-position: 100%;
   background-size: cover;
   display: flex;
