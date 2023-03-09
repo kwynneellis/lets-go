@@ -62,7 +62,15 @@ class WorkoutsController < ApplicationController
 
   def my_workouts
     @my_workouts = Workout.where(user_id: current_user.id) if user_signed_in?
-    @booking = Booking.where(user_id: current_user.id) if user_signed_in?
+    @bookings = Booking.where(user_id: current_user.id) if user_signed_in?
+
+    @all_workouts = []
+    @bookings.each do |booking|
+      @all_workouts.push(booking.workout)
+    end
+    @my_workouts.each do |workout|
+      @all_workouts.push(workout)
+    end
   end
 
   def edit
