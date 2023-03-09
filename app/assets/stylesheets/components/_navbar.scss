@@ -5,10 +5,14 @@
   padding: 0px 2px !important;
   text-decoration: none !important;
   text-align: center !important;
+  transition: 0.5s color ease;
   p {
     margin: 0;
     text-decoration: none !important;
     font-size: 1em;
+  }
+  :hover {
+    color: black;
   }
 }
 
