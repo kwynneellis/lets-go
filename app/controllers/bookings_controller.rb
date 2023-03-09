@@ -17,12 +17,12 @@ class BookingsController < ApplicationController
   end
 
   def create
-    @booking = Booking.new(booking_params)
+    @booking = Booking.new
     @booking.user = @user
     @booking.workout = @workout
     @booking.booking_date = @workout.date
-    if @booking.save
-      redirect_to bookings_path
+    if @booking.save!
+      redirect_to booking_path(@booking)
     else
       render "workouts/show", status: :unprocessable_entity
     end
