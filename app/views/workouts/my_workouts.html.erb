@@ -1,0 +1,15 @@
+<h1>CALENDAR</h1>
+
+<h5>MY WORKOUTS</h5>
+
+<% @my_workouts.each do |workout| %>
+  <p><%= workout.date %></p>
+<% end %>
+
+<h5>MY BOOKINGS</h5>
+<% @booking.each do |booking| %>
+  <p>Date: <%= booking.booking_date %></p>
+  <p>Details: <%= booking.workout.activity_type %></p>
+  <p>Buddy: <%= booking.workout.user.username %></p>
+  <p>Details: <%= booking.workout.description %></p>
+<% end %>
