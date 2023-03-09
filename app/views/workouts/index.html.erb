@@ -16,7 +16,7 @@
           <div class="card-workout-infos">
             <div>
               <h2><%= workout.activity_type %></h2>
-              <p>Date: <%= workout.date %></p>
+              <p>Date: <%= workout.date.strftime("%e %h %Y") %></p>
               <%# <p>Time: <%= workout.time %>
               <p>Location: <%= workout.location %></p>
               <p>Intensity: <%= workout.intensity_level %></p>

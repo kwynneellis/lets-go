@@ -1,8 +1,33 @@
-<div>
+<div class="banner-home" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.unsplash.com/photo-1513593771513-7b58b6c4af38?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80)">
+  <div class="d-flex flex-column">
+    <div>
+      <h1>Let's Go</h1>
+    </div>
+    <div>
+      <p>We are stronger together</p>
+    </div>
+    <div>
+      <%= link_to "Get Started", workouts_path, class: "btn btn-primary" %>
+    </div>
+  </div>
+</div>
+
+<div class="container-home">
+  <div class="container-home-text">
+    <p>Let's Go helps you find a local workout buddy to motivate you to achieve your fitness goals, no matter what stage of your exercise journey you are at.</p>
+  </div>
+  <div class="container-home-text">
+    <p>*****<br>"Before I signed up to Let's Go, my dream of exercising more was just that, a dream! Now I exercise twice a week, meeting a different buddy from my local area each time."</p>
+    <p style="font-size: 12px"><em>-MotivatedMary</em></p>
+  </div>
+</div>
+
+
+<%# <div>
   <div class="home-title">
     <h1 style="color: white; font-size: 72px; font-weight: bold">LET'S GO</h1>
     <h4 style="color: white">Find a local workout buddy</h4>
     <p> Find a local workout buddy to motivate you and give you the confidence to achieve your fitness goals. </p>
     <%= link_to "Let's Go", workouts_path, class: "button-design" %>
-    </div>
-  </div>
+    <%# </div> %>
+  <%# </div> %>
