@@ -19,8 +19,6 @@
     <%= link_to "See user's profile", user_path(@user) %>
     <% if @workout.bookings.empty? %>
       <%= render "bookings/form", workout: @workout, booking: @booking %>
-    <% elsif @workout.user == current_user %>
-      <h2>Show workout content</h2>
     <% end %>
 
     <% if current_user == @workout.user %>
