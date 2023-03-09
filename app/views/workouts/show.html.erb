@@ -12,8 +12,8 @@
     <p><strong>Activity: </strong><%= @workout.activity_type %><br>
     <strong>Intensity: </strong><%= @workout.intensity_level %><br>
     <strong>Location: </strong><%= @workout.location %><br>
-    <strong>Date: </strong><%= @workout.date %><br>
-    <strong>Start time: </strong><%= @workout.start_time %><br>
+    <strong>Date: </strong><%= @workout.date.strftime("%e %h %Y") %><br>
+    <strong>Start time: </strong><%= @workout.start_time.strftime("%H:%M") %><br>
     <strong>Duration: </strong><%= @workout.duration %> mins<br>
     <strong>Description: </strong><%= @workout.description %><br>
     <strong>Capacity: </strong><%= @workout.capacity %><br></p>
