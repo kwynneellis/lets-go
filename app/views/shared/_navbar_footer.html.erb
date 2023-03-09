@@ -1,23 +1,23 @@
-<div id="fcontain">
+<div class="fcontain">
   <div id="footer">
     <div class="column">
-      <div class="footer-icons"><%= link_to workouts_path do %>
+      <div class="footer-icons"><%= link_to workouts_path, style: "text-decoration: none" do %>
         <i class="fa-solid fa-1x fa-magnifying-glass"></i>
         <p>Find</p>
       <% end %></div>
-      <div class="footer-icons"><%= link_to workouts_path do %>
+      <div class="footer-icons"><%= link_to workouts_path, style: "text-decoration: none" do %>
         <i class="fa-regular fa-1x fa-message"></i>
         <p>Chats</p>
       <% end %></div>
-      <div class="footer-icons"><%= link_to new_workout_path do %>
+      <div class="footer-icons"><%= link_to new_workout_path, style: "text-decoration: none" do %>
         <i class="fa-regular fa-1x fa-square-plus"></i>
         <p>New</p>
       <% end %></div>
-      <div class="footer-icons"><%= link_to workouts_my_workouts_path do %>
+      <div class="footer-icons"><%= link_to workouts_my_workouts_path, style: "text-decoration: none" do %>
         <i class="fa-regular fa-1x fa-calendar"></i>
         <p>Workouts</p>
       <% end %></div>
-      <div class="footer-icons"><%= link_to user_path(current_user) do %>
+      <div class="footer-icons"><%= link_to user_path(current_user), style: "text-decoration: none" do %>
         <i class="fa-regular fa-1x fa-user"></i>
         <p>Profile</p>
       <% end %></div>
