@@ -224,7 +224,7 @@ puts "Creating workouts for #{user1.username}."
 
 workout_one = Workout.create!(
   activity_type: 'Brisk Walk',
-  intensity_level: rand(1..5),
+  intensity_level: 2,
   location: 'Shoreditch Park, 188 New North Road, London N1 6TA',
   date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
   start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
@@ -244,7 +244,7 @@ puts "#{user1.username}: #{workout_one.activity_type} created."
 
 workout_two = Workout.create!(
   activity_type: 'Interval Run',
-  intensity_level: rand(1..5),
+  intensity_level: 5,
   location: '283 Kingsland Road, London E2 8AS',
   date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
   start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
@@ -387,6 +387,90 @@ if !workout_eight.save!
 end
 
 puts "#{user9.username}: #{workout_eight.activity_type} created."
+
+puts "Creating workouts for #{user7.username}."
+
+workout_nine = Workout.create!(
+  activity_type: 'Boxing Class',
+  intensity_level: 4,
+  location: 'Fighter Fit Boxing Gym, 2-4 Rufus Street, London N1 6PE',
+  date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
+  start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
+  duration: 45,
+  description: 'Join me for an intense boxing session.',
+  capacity: 2,
+  user_id: user7.id
+)
+
+workout_photo_file_nine = URI.open("https://images.unsplash.com/photo-1521800641212-77d98bb90d21?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80")
+workout_nine.photo.attach(io: workout_photo_file_nine, filename: "#{workout_photo_file_nine}.jpg", content_type: "image/jpg")
+if !workout_nine.save!
+  puts "workout_nine failed"
+end
+
+puts "#{user7.username}: #{workout_nine.activity_type} created."
+
+workout_ten = Workout.create!(
+  activity_type: 'Interval Run',
+  intensity_level: 4,
+  location: 'London Fields West Side, London E8 3EU',
+  date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
+  start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
+  duration: 45,
+  description: 'Join me for a HIIT run in London Fields.',
+  capacity: 2,
+  user_id: user7.id
+)
+
+workout_photo_file_ten = URI.open("https://hips.hearstapps.com/hmg-prod/images/4-interval-training-sessions-for-runners-1657810907.jpg")
+workout_ten.photo.attach(io: workout_photo_file_ten, filename: "#{workout_photo_file_ten}.jpg", content_type: "image/jpg")
+if !workout_ten.save!
+  puts "workout_ten failed"
+end
+
+puts "#{user7.username}: #{workout_ten.activity_type} created."
+
+puts "Creating workouts for #{user8.username}."
+
+workout_eleven = Workout.create!(
+  activity_type: 'Vinyasa Yoga Class',
+  intensity_level: 2,
+  location: 'Held, 42 Hoxton Square, London N1 6PB',
+  date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
+  start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
+  duration: 45,
+  description: 'Join me for a vinyasa yoga session.',
+  capacity: 2,
+  user_id: user8.id
+)
+
+workout_photo_file_eleven = URI.open("https://media.healthnews.com/images/featured/2022/08/The-yoga-equipment.jpg")
+workout_eleven.photo.attach(io: workout_photo_file_eleven, filename: "#{workout_photo_file_eleven}.jpg", content_type: "image/jpg")
+if !workout_eleven.save!
+  puts "workout_eleven failed"
+end
+
+puts "#{user8.username}: #{workout_eleven.activity_type} created."
+
+workout_twelve = Workout.create!(
+  activity_type: 'Strength Workout',
+  intensity_level: 5,
+  location: 'Fighter Fit Boxing Gym, 2-4 Rufus Street, London N1 6PE',
+  date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
+  start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
+  duration: 45,
+  description: 'Join me for an high energy strength session.',
+  capacity: 2,
+  user_id: user8.id
+)
+
+workout_photo_file_twelve = URI.open("https://images.unsplash.com/photo-1599058917212-d750089bc07e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80")
+workout_twelve.photo.attach(io: workout_photo_file_twelve, filename: "#{workout_photo_file_twelve}.jpg", content_type: "image/jpg")
+if !workout_twelve.save!
+  puts "workout_twelve failed"
+end
+
+puts "#{user8.username}: #{workout_twelve.activity_type} created."
 
 # TODO - add more workouts
 
