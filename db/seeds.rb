@@ -225,7 +225,7 @@ puts "Creating workouts for #{user1.username}."
 workout_one = Workout.create!(
   activity_type: 'Brisk Walk',
   intensity_level: rand(1..5),
-  location: 'Shoreditch',
+  location: 'Shoreditch Park, 188 New North Road, London N1 6TA',
   date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
   start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
   duration: 60,
@@ -243,7 +243,7 @@ puts "#{user1.username}: #{workout_one.activity_type} created."
 workout_two = Workout.create!(
   activity_type: 'Interval Run',
   intensity_level: rand(1..5),
-  location: 'Hoxton',
+  location: '283 Kingsland Road, London E2 8AS',
   date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
   start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
   duration: 30,
@@ -263,7 +263,7 @@ puts "Creating workouts for #{user5.username}."
 workout_three = Workout.create!(
   activity_type: 'Yoga Class',
   intensity_level: 2,
-  location: 'Hoxton',
+  location: 'Held, 42 Hoxton Square, London N1 6PB',
   date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
   start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
   duration: 50,
@@ -281,7 +281,7 @@ puts "#{user5.username}: #{workout_three.activity_type} created."
 workout_four = Workout.create!(
   activity_type: 'Tennis Lesson',
   intensity_level: 4,
-  location: 'Hoxton',
+  location: 'London Fields Tennis Courts, Richmond Road, London E8 3QN',
   date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
   start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
   duration: 60,
@@ -301,7 +301,7 @@ puts "Creating workouts for #{user6.username}."
 workout_five = Workout.create!(
   activity_type: 'Cycle Ride',
   intensity_level: 4,
-  location: 'Hoxton',
+  location: 'London Fields West Side, London E8 3EU',
   date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
   start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
   duration: 60,
@@ -319,7 +319,7 @@ puts "#{user6.username}: #{workout_five.activity_type} created."
 workout_six = Workout.create!(
   activity_type: 'Swim Session',
   intensity_level: 4,
-  location: 'Hoxton',
+  location: 'Britannia Leisure Centre, Pitfield Street, London N1 5FT',
   date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
   start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
   duration: 60,
@@ -357,7 +357,7 @@ puts "#{user9.username}: #{workout_seven.activity_type} created."
 workout_eight = Workout.create!(
   activity_type: 'Park Workout',
   intensity_level: 2,
-  location: 'Hoxton',
+  location: 'Haggerston Park, Yorkton Street, London E2 8NH',
   date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
   start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
   duration: 30,
