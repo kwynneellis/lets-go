@@ -23,7 +23,7 @@
     <% if current_user == @workout.user %>
       <%= link_to edit_workout_path(@workout.id) do %>
       <div class="secondary-button">
-          <p><i class="fa-solid fa-pen-to-square"></i>Amend workout</p>
+          <i class="fa-solid fa-pen-to-square"></i>
       </div>
       <% end %>
     <% end %>
@@ -32,7 +32,7 @@
     <%= link_to workout_path(@workout.id),
       data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
         <div class="secondary-button">
-          <p><i class="fa-solid fa-trash"></i> Delete workout</p>
+          <i class="fa-solid fa-trash"></i>
         </div>
       <% end %>
     <% end %>
