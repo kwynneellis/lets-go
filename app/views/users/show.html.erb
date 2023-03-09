@@ -1,7 +1,7 @@
 <div class="container-users">
   <% if @user == current_user %>
-  <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete} %>
-    <h2>Account</h2>
+  <%= link_to "Log out", destroy_user_session_path, class: "log-out-button", data: {turbo_method: :delete} %>
+    <h2><center>My Profile<center></h2>
    <div class="background-image"><%= cl_image_tag @user.photo.key, class: "avatar-bordered-user-profile" %></div>
     <p style="padding: 10px; border-bottom: 2px solid grey;"><strong><%= @user.first_name %> <%= @user.last_name %></strong></p>
     <%# <p><%= @user.username %>
@@ -11,9 +11,9 @@
     <p style="padding: 10px; border-bottom: 2px solid grey;"><strong>Attendance:</strong> <i class="fa-sharp fa-solid fa-clipboard-user"></i><%= @user.attendance %></p>
     <p style="padding: 10px; border-bottom: 2px solid grey;"><strong>Rating:</strong> <i class="fa-solid fa-star"></i><%= @user.avg_rating %></p>
     <br>
-    <%= link_to "Update my Profile", edit_user_registration_path(@user) %>
+    <%= link_to "Update my Profile", edit_user_registration_path(@user), class: "update-my-profile-button" %>
   <% else %>
-    <h2>Find out more about <%= @user.username %></h2>
+    <h2><center> <%= @user.username %><center> </h2>
     <div class="background-image d-flex justify-content-center"> <%= cl_image_tag @user.photo.key, class: "avatar-bordered-user-profile" %></div>
     <p style="padding: 10px; border-bottom: 2px solid grey;"><strong>About me:</strong> <i class="fa-thin fa-book-user"></i> <%= @user.about_me %></p>
     <p style="padding: 10px; border-bottom: 2px solid grey;"><strong>Fitness goal:</strong> <i class="fa-solid fa-bullseye"></i> <%= @user.fitness_goal %></p>
