@@ -1,3 +1,3 @@
-<%= simple_form_for([workout, booking]) do |f| %>
-  <%= f.submit "Join #{workout.user.first_name.capitalize}'s workout now!" %>
+<%= simple_form_for([workout, Booking.new]) do |f| %>
+  <%= f.submit "Join #{workout.user.first_name.capitalize}'s workout now!", class: "button-design" %>
 <% end %>

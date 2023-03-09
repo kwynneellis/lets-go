@@ -1,0 +1,63 @@
+.form-login {
+  position: relative;
+  background: #91AA95;
+  background: linear-gradient(#91AA95,white);
+  padding: 10px 20px;
+  margin-top: 20px;
+  border-radius: 4px;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  margin-bottom: 80px;
+
+  h2 {
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    text-align: center;
+  }
+  .btn {
+    color: black;
+    background-color: #537A5A;
+    display: inline-block;
+    border: 1px solid transparent;
+    box-shadow: 0 0.25px 0.25px 0 #474A48;
+    padding: 15px 46px;
+    cursor: pointer;
+    line-height: 1;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition-property: background-color,border-color,color,box-shadow,filter;
+    transition-duration: .3s;
+    font-size: 24px;
+    font-weight: 500;
+    font-family: "Bebas Neue", "cursive";
+    border-radius: 8px;
+    letter-spacing: 2px;
+    width: 100%;
+    justify-content: center;
+    top: 8px;
+    bottom: 8px;
+    right: 8px;
+    margin-top: 10px;
+    margin-bottom: 20px
+  }
+}
+
+.form-inputs .form-control {
+  height: 2.5rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  border: 1px solid #909590;
+}
+
+.form-login .form-control {
+  height: 2.5rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  border: 1px solid #909590;
+}
+
+.form-login .form-control:focus {
+  border: 1px solid #537A5A;
+  outline: none !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}

@@ -6,14 +6,10 @@
         <i class="fa-solid fa-arrow-left"></i>
       </div>
     <% end %>
-    <h2>Add a Workout</h2>
-    <div>
-        <%= render "form", workout: @workout %>
-      </div>
-    </div>
-    <%= render "shared/navbar_footer" %>
-
-      </div>
+    <div class="form-login">
+      <h2>Add a Workout</h2>
+      <%= render "form", workout: @workout %>
     </div>
   </div>
 </div>
+<%= render "shared/navbar_footer" %>

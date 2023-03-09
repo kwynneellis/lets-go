@@ -1,6 +1,6 @@
 class WorkoutsController < ApplicationController
   before_action :set_user, only: %i[new create show destroy]
-  before_action :set_booking, only: %i[show]
+  before_action :set_booking, only: %i[show my_workouts]
 
   def new
     @workout = Workout.new
@@ -54,6 +54,11 @@ class WorkoutsController < ApplicationController
       @workouts = Workout.all
     end
     @my_workouts = Workout.where(user_id: current_user.id) if user_signed_in?
+  end
+
+  def my_workouts
+    @my_workouts = Workout.where(user_id: current_user.id) if user_signed_in?
+    @booking = Booking.where(user_id: current_user.id) if user_signed_in?
   end
 
   def edit
