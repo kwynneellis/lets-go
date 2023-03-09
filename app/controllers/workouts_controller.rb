@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class WorkoutsController < ApplicationController
   before_action :set_user, only: %i[new create show destroy]
   before_action :set_booking, only: %i[show my_workouts]
@@ -7,8 +9,10 @@ class WorkoutsController < ApplicationController
   end
 
   def create
+    image = URI.open("https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8d29ya291dHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60")
     @workout = Workout.new(workout_params)
     @workout.user_id = current_user.id
+    @workout.photo.attach(io: image, filename: "image", content_type: "image/png") unless @workout.photo.attached?
     if @workout.save
       redirect_to workout_path(@workout)
     else
@@ -60,7 +64,15 @@ class WorkoutsController < ApplicationController
 
   def my_workouts
     @my_workouts = Workout.where(user_id: current_user.id) if user_signed_in?
-    @booking = Booking.where(user_id: current_user.id) if user_signed_in?
+    @bookings = Booking.where(user_id: current_user.id) if user_signed_in?
+
+    @all_workouts = []
+    @bookings.each do |booking|
+      @all_workouts.push(booking.workout)
+    end
+    @my_workouts.each do |workout|
+      @all_workouts.push(workout)
+    end
   end
 
   def edit

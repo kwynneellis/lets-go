@@ -1,15 +1,23 @@
-<h1>CALENDAR</h1>
+<div class="banner-my-workouts" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://hult-center-assets.s3.amazonaws.com/uploads/2022/07/Running-WebBanner-2100x700-1-1800x600.jpg)">
+  <h1>Workouts</h1>
+</div>
 
-<h5>MY WORKOUTS</h5>
 
-<% @my_workouts.each do |workout| %>
-  <p><%= workout.date %></p>
+<% @all_workouts.each do |workout| %>
+  <%= link_to workout_path(workout), class: "text-decoration-none" do %>
+    <div class="d-flex flex-row justify-content-between card-my-workouts">
+      <div>
+        <%= cl_image_tag workout.photo.key, height: 80, width: 80, crop: "fill" %>
+      </div>
+      <div class="card-my-workouts-info">
+        <h2>Details: <%= workout.activity_type %></h2>
+        <p>Date: <%= workout.date.strftime("%e %h %Y") %></p>
+      </div>
+      <div>
+        <%= cl_image_tag workout.user.photo.key, height: 72, width: 72, radius: "max", crop: "fill", gravity: "face" %>
+      </div>
+    </div>
+  <% end %>
 <% end %>
 
-<h5>MY BOOKINGS</h5>
-<% @booking.each do |booking| %>
-  <p>Date: <%= booking.booking_date %></p>
-  <p>Details: <%= booking.workout.activity_type %></p>
-  <p>Buddy: <%= booking.workout.user.username %></p>
-  <p>Details: <%= booking.workout.description %></p>
-<% end %>
+<%= render "shared/navbar_footer" %>

@@ -54,7 +54,7 @@ user2 = User.create!(
 )
 
 user2_photo_file = URI.open("https://pyxis.nymag.com/v1/imgs/8d6/f64/3876ba5a2e4bfad63beb9e99bba217b0eb-bored-quiz.rsquare.w700.jpg")
-user2.photo.attach(io: user2_photo_file, filename: "#{user2_photo_file}.png", content_type: "image/png")
+user2.photo.attach(io: user2_photo_file, filename: "#{user2_photo_file}", content_type: "image/png")
 user2.save!
 
 puts "#{user2.username} created."
@@ -94,7 +94,7 @@ user4 = User.create!(
 )
 
 user4_photo_file = URI.open("https://wp-media.patheos.com/blogs/sites/507/2015/10/lazy-man-on-couch.jpeg")
-user4.photo.attach(io: user4_photo_file, filename: "#{user4_photo_file}.png", content_type: "image/png")
+user4.photo.attach(io: user4_photo_file, filename: "#{user4_photo_file}.jpg", content_type: "image/png")
 user4.save!
 
 puts "#{user4.username} created."
@@ -133,7 +133,7 @@ user6 = User.create!(
   avg_rating: rand(1..5),
 )
 
-user6_photo_file = URI.open("https://media.gq-magazine.co.uk/photos/5e6902a155ca550008940db8/master/pass/20200311-Sleep.jpg")
+user6_photo_file = URI.open("https://media.gq-magazine.co.uk/photos/5e6902a155ca550008940db8/master/pass/20200311-Sleep")
 user6.photo.attach(io: user6_photo_file, filename: "#{user6_photo_file}.png", content_type: "image/png")
 user6.save!
 
@@ -190,7 +190,7 @@ user9 = User.create!(
   fitness_goal: Faker::Movie.quote,
   fitness_level: rand(1..5),
   attendance: rand(1..100),
-  avg_rating: rand(1..5),
+  avg_rating: rand(1..5)
 )
 
 user9_photo_file = URI.open("https://media.istockphoto.com/id/1253023912/photo/tired-student-leaning-on-books-in-the-campus-library.jpg?s=612x612&w=0&k=20&c=NMQ9A4hiOFKortv_io1M7_bt4haqSrRbLKfOHGKTLHI=")
@@ -214,7 +214,7 @@ user10 = User.create!(
 )
 
 user10_photo_file = URI.open("https://st2.depositphotos.com/1049680/42563/i/600/depositphotos_425634606-stock-photo-beautiful-hispanic-woman-expecting-baby.jpg")
-user10.photo.attach(io: user10_photo_file, filename: "#{user10_photo_file}.png", content_type: "image/png")
+user10.photo.attach(io: user10_photo_file, filename: "#{user10_photo_file}.jpg", content_type: "image/jpg")
 user10.save!
 
 puts "#{user10.username} created."
@@ -224,7 +224,7 @@ puts "Creating workouts for #{user1.username}."
 
 workout_one = Workout.create!(
   activity_type: 'Brisk Walk',
-  intensity_level: rand(1..5),
+  intensity_level: 2,
   location: 'Shoreditch Park, 188 New North Road, London N1 6TA',
   date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
   start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
@@ -235,14 +235,16 @@ workout_one = Workout.create!(
 )
 
 workout_photo_file_one = URI.open("https://katiecouric.com/wp-content/uploads/2022/04/GettyImages-1192508928.jpg")
-workout_one.photo.attach(io: workout_photo_file_one, filename: "#{workout_photo_file_one}.png", content_type: "image/png")
-workout_one.save!
+workout_one.photo.attach(io: workout_photo_file_one, filename: "#{workout_photo_file_one}.jpg", content_type: "image/jpg")
+if !workout_one.save!
+  puts "workout one failed"
+end
 
 puts "#{user1.username}: #{workout_one.activity_type} created."
 
 workout_two = Workout.create!(
   activity_type: 'Interval Run',
-  intensity_level: rand(1..5),
+  intensity_level: 5,
   location: '283 Kingsland Road, London E2 8AS',
   date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
   start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
@@ -253,8 +255,10 @@ workout_two = Workout.create!(
 )
 
 workout_photo_file_two = URI.open("https://hips.hearstapps.com/hmg-prod/images/4-interval-training-sessions-for-runners-1657810907.jpg")
-workout_two.photo.attach(io: workout_photo_file_two, filename: "#{workout_photo_file_two}.png", content_type: "image/png")
-workout_two.save!
+workout_two.photo.attach(io: workout_photo_file_two, filename: "#{workout_photo_file_two}.jpg", content_type: "image/jpg")
+if !workout_two.save!
+  puts "workout_two failed"
+end
 
 puts "#{user1.username}: #{workout_two.activity_type} created."
 
@@ -273,8 +277,10 @@ workout_three = Workout.create!(
 )
 
 workout_photo_file_three = URI.open("https://media.healthnews.com/images/featured/2022/08/The-yoga-equipment.jpg")
-workout_three.photo.attach(io: workout_photo_file_three, filename: "#{workout_photo_file_three}.png", content_type: "image/png")
-workout_three.save!
+workout_three.photo.attach(io: workout_photo_file_three, filename: "#{workout_photo_file_three}", content_type: "image/jpg")
+if !workout_three.save!
+  puts "workout_three failed"
+end
 
 puts "#{user5.username}: #{workout_three.activity_type} created."
 
@@ -291,8 +297,10 @@ workout_four = Workout.create!(
 )
 
 workout_photo_file_four = URI.open("https://hctennis.co.uk/static/images/ballonra.jpg")
-workout_four.photo.attach(io: workout_photo_file_four, filename: "#{workout_photo_file_four}.png", content_type: "image/png")
-workout_four.save!
+workout_four.photo.attach(io: workout_photo_file_four, filename: "#{workout_photo_file_four}.jpg", content_type: "image/jpg")
+if !workout_four.save!
+  puts "workout_four failed"
+end
 
 puts "#{user5.username}: #{workout_four.activity_type} created."
 
@@ -312,7 +320,9 @@ workout_five = Workout.create!(
 
 workout_photo_file_five = URI.open("https://thebridge.in/wp-content/uploads/2020/12/Source-Cyclist.png")
 workout_five.photo.attach(io: workout_photo_file_five, filename: "#{workout_photo_file_five}.png", content_type: "image/png")
-workout_five.save!
+if !workout_five.save!
+  puts "workout_five failed"
+end
 
 puts "#{user6.username}: #{workout_five.activity_type} created."
 
@@ -329,8 +339,10 @@ workout_six = Workout.create!(
 )
 
 workout_photo_file_six = URI.open("https://static01.nyt.com/images/2022/05/27/well/27WELL-SWIM-FOR-EXERCISE3/27WELL-SWIM-FOR-EXERCISE3-mobileMasterAt3x.jpg")
-workout_six.photo.attach(io: workout_photo_file_six, filename: "#{workout_photo_file_six}.png", content_type: "image/png")
-workout_six.save!
+workout_six.photo.attach(io: workout_photo_file_six, filename: "#{workout_photo_file_six}.jpg", content_type: "image/jpg")
+if !workout_six.save!
+  puts "workout_six failed"
+end
 
 puts "#{user6.username}: #{workout_six.activity_type} created."
 
@@ -349,8 +361,10 @@ workout_seven = Workout.create!(
 )
 
 workout_photo_file_seven = URI.open("https://styleanddecor.co.uk/system/wp-content/uploads/2020/02/Waiting-for-a-Pilates-class.jpg")
-workout_seven.photo.attach(io: workout_photo_file_seven, filename: "#{workout_photo_file_seven}.png", content_type: "image/png")
-workout_seven.save!
+workout_seven.photo.attach(io: workout_photo_file_seven, filename: "#{workout_photo_file_seven}.jpg", content_type: "image/jpg")
+if !workout_seven.save!
+  puts "workout_seven failed"
+end
 
 puts "#{user9.username}: #{workout_seven.activity_type} created."
 
@@ -367,10 +381,96 @@ workout_eight = Workout.create!(
 )
 
 workout_photo_file_eight = URI.open("https://www.shape.com/thmb/5bLzpsVPTPwwvnNm8WuS9NQExRQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/outdoor-workout-promo-2000-d8aca15ab94e4ef49137b4ae10a02593.jpg")
-workout_eight.photo.attach(io: workout_photo_file_eight, filename: "#{workout_photo_file_eight}.png", content_type: "image/png")
-workout_eight.save!
+workout_eight.photo.attach(io: workout_photo_file_eight, filename: "#{workout_photo_file_eight}.jpg", content_type: "image/jpg")
+if !workout_eight.save!
+  puts "workout_eight failed"
+end
 
 puts "#{user9.username}: #{workout_eight.activity_type} created."
+
+puts "Creating workouts for #{user7.username}."
+
+workout_nine = Workout.create!(
+  activity_type: 'Boxing Class',
+  intensity_level: 4,
+  location: 'Fighter Fit Boxing Gym, 2-4 Rufus Street, London N1 6PE',
+  date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
+  start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
+  duration: 45,
+  description: 'Join me for an intense boxing session.',
+  capacity: 2,
+  user_id: user7.id
+)
+
+workout_photo_file_nine = URI.open("https://images.unsplash.com/photo-1521800641212-77d98bb90d21?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80")
+workout_nine.photo.attach(io: workout_photo_file_nine, filename: "#{workout_photo_file_nine}.jpg", content_type: "image/jpg")
+if !workout_nine.save!
+  puts "workout_nine failed"
+end
+
+puts "#{user7.username}: #{workout_nine.activity_type} created."
+
+workout_ten = Workout.create!(
+  activity_type: 'Interval Run',
+  intensity_level: 4,
+  location: 'London Fields West Side, London E8 3EU',
+  date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
+  start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
+  duration: 45,
+  description: 'Join me for a HIIT run in London Fields.',
+  capacity: 2,
+  user_id: user7.id
+)
+
+workout_photo_file_ten = URI.open("https://hips.hearstapps.com/hmg-prod/images/4-interval-training-sessions-for-runners-1657810907.jpg")
+workout_ten.photo.attach(io: workout_photo_file_ten, filename: "#{workout_photo_file_ten}.jpg", content_type: "image/jpg")
+if !workout_ten.save!
+  puts "workout_ten failed"
+end
+
+puts "#{user7.username}: #{workout_ten.activity_type} created."
+
+puts "Creating workouts for #{user8.username}."
+
+workout_eleven = Workout.create!(
+  activity_type: 'Vinyasa Yoga Class',
+  intensity_level: 2,
+  location: 'Held, 42 Hoxton Square, London N1 6PB',
+  date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
+  start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
+  duration: 45,
+  description: 'Join me for a vinyasa yoga session.',
+  capacity: 2,
+  user_id: user8.id
+)
+
+workout_photo_file_eleven = URI.open("https://media.healthnews.com/images/featured/2022/08/The-yoga-equipment.jpg")
+workout_eleven.photo.attach(io: workout_photo_file_eleven, filename: "#{workout_photo_file_eleven}.jpg", content_type: "image/jpg")
+if !workout_eleven.save!
+  puts "workout_eleven failed"
+end
+
+puts "#{user8.username}: #{workout_eleven.activity_type} created."
+
+workout_twelve = Workout.create!(
+  activity_type: 'Strength Workout',
+  intensity_level: 5,
+  location: 'Fighter Fit Boxing Gym, 2-4 Rufus Street, London N1 6PE',
+  date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
+  start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
+  duration: 45,
+  description: 'Join me for an high energy strength session.',
+  capacity: 2,
+  user_id: user8.id
+)
+
+workout_photo_file_twelve = URI.open("https://images.unsplash.com/photo-1599058917212-d750089bc07e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80")
+workout_twelve.photo.attach(io: workout_photo_file_twelve, filename: "#{workout_photo_file_twelve}.jpg", content_type: "image/jpg")
+if !workout_twelve.save!
+  puts "workout_twelve failed"
+end
+
+puts "#{user8.username}: #{workout_twelve.activity_type} created."
 
 # TODO - add more workouts
 
