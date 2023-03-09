@@ -1,7 +1,7 @@
 .form-login {
   position: relative;
-  background: #91aa95;
-  background: linear-gradient(#537A5A, #91aa95);
+  background: #91AA95;
+  background: linear-gradient(#91AA95,white);
   padding: 10px 20px;
   margin-top: 20px;
   border-radius: 4px;
@@ -16,8 +16,26 @@
     text-align: center;
   }
   .btn {
-    color: white;
+    color: black;
+    background-color: #537A5A;
+    display: inline-block;
+    border: 1px solid transparent;
+    box-shadow: 0 0.25px 0.25px 0 #474A48;
+    padding: 15px 46px;
+    cursor: pointer;
+    line-height: 1;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition-property: background-color,border-color,color,box-shadow,filter;
+    transition-duration: .3s;
+    font-size: 24px;
+    font-weight: 500;
+    font-family: "Bebas Neue", "cursive";
+    border-radius: 8px;
+    letter-spacing: 2px;
     width: 100%;
+    justify-content: center;
     top: 8px;
     bottom: 8px;
     right: 8px;
