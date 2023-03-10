@@ -10,11 +10,11 @@
         <%= cl_image_tag workout.photo.key, height: 80, width: 80, crop: "fill" %>
       </div>
       <div class="card-my-workouts-info">
-        <h2>Details: <%= workout.activity_type %></h2>
-        <p>Date: <%= workout.date.strftime("%e %h %Y") %></p>
+        <h2><%= workout.activity_type %></h2>
+        <p class="m-0"><%= workout.start_time.strftime("%H") %>:00<br><%= workout.date.strftime("%e %h %Y") %></p>
       </div>
-      <div>
-        <%= cl_image_tag workout.user.photo.key, height: 72, width: 72, radius: "max", crop: "fill", gravity: "face" %>
+      <div class="p-1">
+        <%= cl_image_tag workout.user.photo.key, class: "p-2", height: 72, width: 72, radius: "max", crop: "fill", gravity: "face" %>
       </div>
     </div>
   <% end %>
