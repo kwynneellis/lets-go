@@ -1,50 +1,100 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-xs-12 col-sm-4 col-sm-offset-4">
-    <%= link_to workouts_path do %>
-      <div class="secondary-button">
-        <i class="fa-solid fa-arrow-left"></i>
+<div class="container pb-5 mb-4">
+  <div class="container-white">
+    <div class="mb-2">
+      <%= link_to workouts_path do %>
+        <div>
+          <i class="fa-solid fa-arrow-left"></i>
+        </div>
+      <% end %>
+    </div>
+    <div class="card-workout">
+      <%= cl_image_tag @workout.photo.key, class: "img" %>
+    </div>
+    <div class="container-content">
+      <h1><%= @workout.activity_type %> with <%= @user.first_name.capitalize %></h1>
+      <p class="text-end"><%= @workout.duration %> mins, <%= @workout.intensity_level %>/5 intensity</p>
+    </div>
+
+    <div class="container-content">
+      <div class="d-flex flex-row justify-content-between">
+        <div class="flex-fill">
+          <h4 class="m-0">Workout details</h4>
+        </div>
+        <div class="align-self-center mx-2">
+          <% if current_user == @workout.user %>
+            <%= link_to edit_workout_path(@workout.id) do %>
+              <div>
+                  <i class="fa-solid fa-sm fa-pen-to-square"></i>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="align-self-center mx-2">
+          <% if current_user == @workout.user %>
+            <%= link_to workout_path(@workout.id),
+                data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+                  <div>
+                    <i class="fa-solid fa-sm fa-trash"></i>
+                  </div>
+            <% end %>
+          <% end %>
+        </div>
       </div>
-    <% end %>
+      <p class="m-1"><%=  @workout.description.capitalize %></p>
 
-    <h1><%= @workout.activity_type %></h1>
 
-    <p><strong>Activity: </strong><%= @workout.activity_type %><br>
-    <strong>Intensity: </strong><%= @workout.intensity_level %><br>
-    <strong>Location: </strong><%= @workout.location %><br>
-    <strong>Date: </strong><%= @workout.date.strftime("%e %h %Y") %><br>
-    <strong>Start time: </strong><%= @workout.start_time.strftime("%H:%M") %><br>
-    <strong>Duration: </strong><%= @workout.duration %> mins<br>
-    <strong>Description: </strong><%= @workout.description %><br>
-    <strong>Capacity: </strong><%= @workout.capacity %><br></p>
-    <%= link_to "See user's profile", user_path(@user) %>
+
+      <div class="d-flex flex-row justify-content-between">
+        <div>
+          <h5 class="m-0">When: </h5>
+        </div>
+        <div class="flex-fill text-end">
+          <p><%= @workout.date.strftime("%e %h %Y") %>, <%= @workout.start_time.strftime("%H:%M") %></p>
+        </div>
+      </div>
+      <div class="d-flex flex-row justify-content-between">
+        <div>
+          <h5 class="m-0">Duration: </h5>
+        </div>
+        <div class="flex-fill text-end">
+          <p><%= @workout.duration %> (mins)</p>
+        </div>
+      </div>
+      <div class="d-flex flex-row justify-content-between">
+        <div>
+          <h5 class="m-0">Where: </h5>
+        </div>
+        <div class="flex-fill text-end">
+          <p><%= @workout.location%></p>
+        </div>
+      </div>
+    </div>
+
     <% if @workout.bookings.empty? %>
       <%= render "bookings/form", workout: @workout, booking: @booking %>
     <% end %>
-
-    <% if current_user == @workout.user %>
-      <%= link_to edit_workout_path(@workout.id) do %>
-      <div class="secondary-button">
-          <i class="fa-solid fa-pen-to-square"></i>
+    <div class="container-content">
+      <div class="show-page-map"
+        data-controller="map"
+        data-map-markers-value="<%= @markers.to_json %>"
+        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY']%>">
       </div>
-      <% end %>
-    <% end %>
+    </div>
 
-    <% if current_user == @workout.user %>
-    <%= link_to workout_path(@workout.id),
-      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
-        <div class="secondary-button">
-          <i class="fa-solid fa-trash"></i>
+    <div class="container-content">
+      <%= link_to user_path(@user), style: "color: #2C302E; text-decoration: none;" do %>
+        <div class="d-flex flex-row justify-content-between">
+          <div class="flex-fill">
+            <h4>Check out <%= @user.first_name.capitalize %>'s profile >></h4>
+            <p><%= @user.first_name.capitalize %> joined <span style="color: $fern-green">Let's Go</span> in <%= @user.created_at.strftime("%b %y") %><br>
+            A little about them: <%= @user.about_me.truncate(30) %></p>
+          </div>
+          <div class="align-self-center">
+            <%= cl_image_tag @workout.user.photo.key, class: "avatar-large" %>
+          </div>
         </div>
       <% end %>
-    <% end %>
+    </div>
   </div>
+  <%= render "shared/navbar_footer" %>
 </div>
-
-<div class="show-page-map"
-  data-controller="map"
-  data-map-markers-value="<%= @markers.to_json %>"
-  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY']%>">
-</div>
-
-<%= render "shared/navbar_footer" %>
