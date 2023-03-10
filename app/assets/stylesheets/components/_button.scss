@@ -146,3 +146,18 @@
   margin-bottom: 2px;
   margin-left: 5px;
 }
+
+.btn-ghost {
+  color: #2C302E;
+  border: 1px solid #474A48;
+  padding: 4px 12px;
+  border-radius: 50px;
+  margin: 4px;
+  font-weight: lighter;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.btn-ghost:hover {
+  opacity: 1;
+}
