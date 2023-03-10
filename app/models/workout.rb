@@ -11,4 +11,17 @@ class Workout < ApplicationRecord
   validates :intensity_level, numericality: { only_integer: true, in: 1..5 }
   validates :duration, numericality: { only_integer: true, greater_than_or_equal_to: 10, less_than_or_equal_to: 300 }
   validates :description, length: { minimum: 10 }
+
+  WORKOUT_EMOJIS = {
+    'Cycle' => 'Cycle 🚴',
+    'Other' => 'Other 🏅',
+    'Park Workout' => 'Park Workout 🌳',
+    'Pilates Class' => 'Pilates Class 🧘',
+    'Run' => 'Run 🏃',
+    'Swim' => 'Swim 🏊',
+    'Tennis' => 'Tennis 🎾',
+    'Walk' => 'Walk 🚶',
+    'Workout Class' => 'Workout Class 🏋️',
+    'Yoga Class' => 'Yoga Class 🧘'
+  }
 end

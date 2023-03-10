@@ -35,6 +35,20 @@ class WorkoutsController < ApplicationController
     # The code below enables a filtered search
     # There is a listing class method to ensure that if search is nil, all Listings are displayed
     @workouts = Workout.all
+    if params[:query].present?
+      sql_query = <<~SQL
+      workouts.activity_type ILIKE :query
+      OR workouts.intensity_level::text ILIKE :query
+      OR workouts.location ILIKE :query
+      OR users.first_name ILIKE :query
+      SQL
+      @workouts = Workout.joins(:user).where(sql_query, query: "%#{params[:query]}%")
+      @search_copy = "Showing search results for: #{params[:query]}"
+    end
+    if params[:category].present?
+      @search_copy = "Showing filter results for: #{params[:category]}"
+      @workouts = @workouts.where(activity_type: params[:category])
+    end
     @workout_location = @workouts.geocoded.map do |workout|
       {
         lat: workout.latitude,
@@ -43,23 +57,6 @@ class WorkoutsController < ApplicationController
         marker_html: render_to_string(partial: "marker", locals: {workout: workout})
       }
     end
-    search = params[:search]
-    if params[:query].present?
-      sql_query = <<~SQL
-        workouts.activity_type ILIKE :query
-        OR workouts.intensity_level::text ILIKE :query
-        OR workouts.location ILIKE :query
-        OR users.first_name ILIKE :query
-      SQL
-      @workouts = Workout.joins(:user).where(sql_query, query: "%#{params[:query]}%")
-      @search_copy = "Showing search results for: #{params[:query]}"
-    elsif search.present?
-      @search_copy = "Showing filter results for: #{search[:category]}"
-      @workouts = Workout.where(category: search[:category])
-    else
-      @workouts = Workout.all
-    end
-    @my_workouts = Workout.where(user_id: current_user.id) if user_signed_in?
   end
 
   def my_workouts
