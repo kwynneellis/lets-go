@@ -393,7 +393,7 @@ puts "Creating workouts for #{user7.username}."
 workout_nine = Workout.create!(
   activity_type: 'Other',
   intensity_level: 4,
-  location: 'Fighter Fit Boxing Gym, London N1 6PE',
+  location: '2-4 Rufus St, London N1 6PE',
   date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
   start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
   duration: 45,
@@ -457,7 +457,7 @@ puts "Creating workouts for #{user8.username}."
 workout_twelve = Workout.create!(
   activity_type: 'Other',
   intensity_level: 5,
-  location: 'Fighter Fit Boxing Gym, 2-4 Rufus Street, London N1 6PE',
+  location: '2-4 Rufus St, London N1 6PE',
   date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
   start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
   duration: 45,
