@@ -54,7 +54,7 @@ user2 = User.create!(
 )
 
 user2_photo_file = URI.open("https://pyxis.nymag.com/v1/imgs/8d6/f64/3876ba5a2e4bfad63beb9e99bba217b0eb-bored-quiz.rsquare.w700.jpg")
-user2.photo.attach(io: user2_photo_file, filename: "#{user2_photo_file}", content_type: "image/png")
+user2.photo.attach(io: user2_photo_file, filename: "#{user2_photo_file}.jpg", content_type: "image/png")
 user2.save!
 
 puts "#{user2.username} created."
@@ -277,7 +277,7 @@ workout_three = Workout.create!(
 )
 
 workout_photo_file_three = URI.open("https://katiecouric.com/wp-content/uploads/2022/04/GettyImages-1192508928.jpg")
-workout_three.photo.attach(io: workout_photo_file_three, filename: "#{workout_photo_file_three}", content_type: "image/jpg")
+workout_three.photo.attach(io: workout_photo_file_three, filename: "#{workout_photo_file_three}.jpg", content_type: "image/jpg")
 if !workout_three.save!
   puts "workout_three failed"
 end
@@ -444,13 +444,15 @@ workout_eleven = Workout.create!(
   user_id: user8.id
 )
 
-workout_photo_file_eleven = URI.open("https://media.healthnews.com/images/featured/2022/08/The-yoga-equipment.jpg")
+workout_photo_file_eleven = URI.open("https://katiecouric.com/wp-content/uploads/2022/04/GettyImages-1192508928.jpg")
 workout_eleven.photo.attach(io: workout_photo_file_eleven, filename: "#{workout_photo_file_eleven}.jpg", content_type: "image/jpg")
 if !workout_eleven.save!
   puts "workout_eleven failed"
 end
 
 puts "#{user8.username}: #{workout_eleven.activity_type} created."
+
+puts "Creating workouts for #{user8.username}."
 
 workout_twelve = Workout.create!(
   activity_type: 'Other',
