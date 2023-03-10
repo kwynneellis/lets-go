@@ -9,7 +9,8 @@
 
     <h1><%= @workout.activity_type %></h1>
 
-    <p><strong>Intensity: </strong><%= @workout.intensity_level %><br>
+    <p><strong>Activity: </strong><%= @workout.activity_type %><br>
+    <strong>Intensity: </strong><%= @workout.intensity_level %><br>
     <strong>Location: </strong><%= @workout.location %><br>
     <strong>Date: </strong><%= @workout.date.strftime("%e %h %Y") %><br>
     <strong>Start time: </strong><%= @workout.start_time.strftime("%H:%M") %><br>
