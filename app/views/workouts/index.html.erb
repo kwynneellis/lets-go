@@ -2,22 +2,27 @@
 
   <div class="d-flex flex-column bd-highlight mb-3">
 
-    <div class="p-2 bd-highlight form-workouts-page-search-bar">
-      <%= form_with url: workouts_path, method: :get, class: "d-flex" do %>
-        <%= text_field_tag :query,
-          params[:query],
-          class: "form-control",
-          placeholder: "Find a workout"
-        %>
-        <%= submit_tag "Search", class: "btn btn-primary" %>
-      <% end %>
+    <div class="container-white">
+      <div class="p-2 bd-highlight">
+        <h3>Search by any word</h3>
+        <%= form_with url: workouts_path, method: :get, class: "d-flex" do %>
+          <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            placeholder: "Hoxton..."
+          %>
+          <%= submit_tag "Search", class: "btn btn-primary" %>
+        <% end %>
+      </div>
     </div>
 
-    <div class="p-2 bd-highlight">
-      <h3>Choose a workout type</h3>
-      <% Workout::WORKOUT_EMOJIS.each do |key, value|%>
-        <%= link_to value, workouts_path(category: key), class: "btn btn-ghost" %>
-      <% end %>
+    <div class="container-white">
+      <div class="p-2 bd-highlight">
+        <h3>Choose a workout type</h3>
+        <% Workout::WORKOUT_EMOJIS.each do |key, value|%>
+          <%= link_to value, workouts_path(category: key), class: "btn btn-ghost" %>
+        <% end %>
+      </div>
     </div>
 
   </div>
