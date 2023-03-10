@@ -11,8 +11,12 @@
       <%= cl_image_tag @workout.photo.key, class: "img" %>
     </div>
     <div class="container-content">
-      <h1><%= @workout.activity_type %> with <%= @user.first_name.capitalize %></h1>
-      <p class="text-end"><%= @workout.duration %> mins, <%= @workout.intensity_level %>/5 intensity</p>
+      <h1 class="m-0"><%= @workout.activity_type %> with <%= @workout.user.first_name.capitalize %></h1>
+      <p><%= @workout.duration %> mins, <%= @workout.intensity_level %>/5 intensity</p>
+
+      <% if @workout.bookings.empty? %>
+        <%= render "bookings/form", workout: @workout, booking: @booking %>
+      <% end %>
     </div>
 
     <div class="container-content">
@@ -69,10 +73,6 @@
         </div>
       </div>
     </div>
-
-    <% if @workout.bookings.empty? %>
-      <%= render "bookings/form", workout: @workout, booking: @booking %>
-    <% end %>
     <div class="container-content">
       <div class="show-page-map"
         data-controller="map"
@@ -85,9 +85,9 @@
       <%= link_to user_path(@user), style: "color: #2C302E; text-decoration: none;" do %>
         <div class="d-flex flex-row justify-content-between">
           <div class="flex-fill">
-            <h4>Check out <%= @user.first_name.capitalize %>'s profile >></h4>
-            <p><%= @user.first_name.capitalize %> joined <span style="color: $fern-green">Let's Go</span> in <%= @user.created_at.strftime("%b %y") %><br>
-            A little about them: <%= @user.about_me.truncate(30) %></p>
+            <h4>Check out <%= @workout.user.first_name.capitalize %>'s profile >></h4>
+            <p><%= @workout.user.first_name.capitalize %> joined <span style="color: $fern-green">Let's Go</span> in <%= @user.created_at.strftime("%b %y") %><br>
+            A little about them: <%= @workout.user.about_me.truncate(30) %></p>
           </div>
           <div class="align-self-center">
             <%= cl_image_tag @workout.user.photo.key, class: "avatar-large" %>
