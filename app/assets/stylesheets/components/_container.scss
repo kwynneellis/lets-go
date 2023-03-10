@@ -5,6 +5,15 @@
   border-radius: 8px;
 }
 
+.container-content {
+  margin: 0 auto;
+  padding: 12px 12px;
+  border-bottom: $battleship-gray 0.5px solid;
+  p {
+    margin: 0;
+  }
+}
+
 .container-workouts {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -26,6 +35,10 @@
 
 .container-users {
   justify-content: center;
+  margin-bottom: 125px;
+  margin-top: 16px;
+  margin-left: 30px;
+  margin-right: 30px;
 }
 
 .container-home {
@@ -42,11 +55,12 @@
   padding-top: 12px;
 }
 
-.container-content {
-  margin: 0 auto;
-  padding: 12px 12px;
-  border-bottom: $battleship-gray 0.5px solid;
-  p {
-    margin: 0;
-  }
+.profile-info {
+  background-color: white;
+}
+
+.my-profile-info {
+  background-color: white;
+  display: inline-block;
+  margin-bottom: 20px;
 }
