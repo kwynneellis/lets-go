@@ -18,7 +18,6 @@
   box-shadow: 0 1px 2px rgba(0,0,0,0.2);
   border: white 1px solid;
 }
-
 .avatar-bordered-user-profile {
   width: 240px;
   height: 240px;
@@ -29,7 +28,6 @@
   justify-content: center;
   align-items: center;
 }
-
 .background-image {
   background: linear-gradient(#91AA95,lightgrey);
   background-position: 100%;
@@ -37,4 +35,5 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 15px;
 }
