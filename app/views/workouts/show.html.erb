@@ -7,7 +7,7 @@
       </div>
     <% end %>
 
-    <h1>This is the workout show page</h1>
+    <h1><%= @workout.activity_type %></h1>
 
     <p><strong>Activity: </strong><%= @workout.activity_type %><br>
     <strong>Intensity: </strong><%= @workout.intensity_level %><br>
@@ -18,7 +18,9 @@
     <strong>Description: </strong><%= @workout.description %><br>
     <strong>Capacity: </strong><%= @workout.capacity %><br></p>
     <%= link_to "See user's profile", user_path(@user) %>
-    <%= render "bookings/form", workout: @workout, booking: @booking %>
+    <% if @workout.bookings.empty? %>
+      <%= render "bookings/form", workout: @workout, booking: @booking %>
+    <% end %>
 
     <% if current_user == @workout.user %>
       <%= link_to edit_workout_path(@workout.id) do %>
