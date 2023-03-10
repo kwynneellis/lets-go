@@ -7,9 +7,10 @@
       </div>
     <% end %>
 
-    <h1><%= @workout.activity_type %></h1>
+    <h1>This is the workout show page</h1>
 
-    <p><strong>Intensity: </strong><%= @workout.intensity_level %><br>
+    <p><strong>Activity: </strong><%= @workout.activity_type %><br>
+    <strong>Intensity: </strong><%= @workout.intensity_level %><br>
     <strong>Location: </strong><%= @workout.location %><br>
     <strong>Date: </strong><%= @workout.date.strftime("%e %h %Y") %><br>
     <strong>Start time: </strong><%= @workout.start_time.strftime("%H:%M") %><br>
@@ -17,9 +18,7 @@
     <strong>Description: </strong><%= @workout.description %><br>
     <strong>Capacity: </strong><%= @workout.capacity %><br></p>
     <%= link_to "See user's profile", user_path(@user) %>
-    <% if @workout.bookings.empty? %>
-      <%= render "bookings/form", workout: @workout, booking: @booking %>
-    <% end %>
+    <%= render "bookings/form", workout: @workout, booking: @booking %>
 
     <% if current_user == @workout.user %>
       <%= link_to edit_workout_path(@workout.id) do %>
