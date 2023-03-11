@@ -1,0 +1,19 @@
+.nav-horizontal-scroll {
+  position: relative;
+  z-index: 2;
+  height: 2.5rem;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+}
+
+.nav-list {
+  display: flex;
+  flex-wrap: nowrap;
+  padding-bottom: 1.5rem;
+  padding-left: 0;
+  margin-block: 0;
+  overflow-x: auto;
+  list-style: none;
+  text-align: center;
+  white-space: nowrap;
+}
