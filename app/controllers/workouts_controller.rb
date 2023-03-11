@@ -34,14 +34,14 @@ class WorkoutsController < ApplicationController
   def index
     # The code below enables a filtered search
     # There is a listing class method to ensure that if search is nil, all Listings are displayed
-    @workouts = Workout.all
+    @workouts = Workout.where.missing(:bookings)
     if params[:query].present?
       sql_query = <<~SQL
-      workouts.activity_type ILIKE :query
-      OR workouts.intensity_level::text ILIKE :query
-      OR workouts.location ILIKE :query
-      OR users.first_name ILIKE :query
+        workouts.location ILIKE :query
       SQL
+      # OR workouts.activity_type ILIKE :query
+      # OR workouts.intensity_level::text ILIKE :query
+      # OR users.first_name ILIKE :query
       @workouts = Workout.joins(:user).where(sql_query, query: "%#{params[:query]}%")
       @search_copy = "Showing search results for: #{params[:query]}"
     end
@@ -61,10 +61,10 @@ class WorkoutsController < ApplicationController
 
   def my_workouts
     @my_workouts = Workout.where(user_id: current_user.id) if user_signed_in?
-    @bookings = Booking.where(user_id: current_user.id) if user_signed_in?
+    @my_bookings = Booking.where(user_id: current_user.id) if user_signed_in?
 
     @all_workouts = []
-    @bookings.each do |booking|
+    @my_bookings.each do |booking|
       @all_workouts.push(booking.workout)
     end
     @my_workouts.each do |workout|

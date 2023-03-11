@@ -4,12 +4,11 @@
 
     <div class="container-white">
       <div class="p-2 bd-highlight">
-        <h3>Search by any word</h3>
         <%= form_with url: workouts_path, method: :get, class: "d-flex" do %>
           <%= text_field_tag :query,
             params[:query],
-            class: "form-control",
-            placeholder: "Hoxton..."
+            class: "form-control me-1",
+            placeholder: "🔍 Location"
           %>
           <%= submit_tag "Search", class: "btn btn-primary" %>
         <% end %>
@@ -17,8 +16,19 @@
     </div>
 
     <div class="container-white">
+      <div class="d-flex flex-row justify-content-between">
+        <div>
+          <h3 class="p-2">Activity filter</h3>
+        </div>
+        <div class="align-items-end w-10 my-1 p-2">
+          <%= link_to workouts_path, style: "text-decoration: none" do %>
+            <div>Reset 
+              <i class="fa-solid fa-lg fa-rotate mx-1"></i>
+            </div>
+          <% end %>
+        </div>
+      </div>
       <div class="p-2 bd-highlight">
-        <h3>Choose a workout type</h3>
         <% Workout::WORKOUT_EMOJIS.each do |key, value|%>
           <%= link_to value, workouts_path(category: key), class: "btn btn-ghost" %>
         <% end %>
