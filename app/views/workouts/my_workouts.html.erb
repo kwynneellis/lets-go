@@ -4,17 +4,38 @@
 
 
 <% @all_workouts.each do |workout| %>
+  <% host = workout.user %>
+  <% has_booking = workout.bookings.first.present? %>
+  <% guest = has_booking ? workout.bookings.first.user : "buddy" %>
+  <% buddy = (workout.user == current_user ? guest : host)  %>
   <%= link_to workout_path(workout), style: "color: #2C302E;", class: "text-decoration-none" do %>
     <div class="d-flex flex-row justify-content-between card-my-workouts">
       <div>
         <%= cl_image_tag workout.photo.key, height: 80, width: 80, crop: "fill" %>
       </div>
-      <div class="card-my-workouts-info">
-        <h2><%= workout.activity_type %></h2>
-        <p class="m-0"><%= workout.start_time.strftime("%H") %>:00<br><%= workout.date.strftime("%e %h %Y") %></p>
+      <div class="ps-3", style="width: 8%">
+        <% if current_user == host %>
+          <%= link_to edit_workout_path(workout.id) do %>
+            <i class="fa-solid fa-sm fa-pen-to-square"></i>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="flex-fill card-my-workouts-info">
+        <h2><%= workout.activity_type %><%= has_booking ? " with " + buddy.first_name : "" %></h2>
+        <p class="m-0"><%= workout.date.strftime("%e %h %Y") %>, <%= workout.start_time.strftime("%H") %>:00</p>
+      </div>
+      <div class="flex-shrink-0">
+        <% if has_booking %>
+          <p class="mx-1 my-0">🤜 🤛</p>
+        <% end %>
       </div>
       <div class="p-1">
-        <%= cl_image_tag workout.user.photo.key, class: "p-2", height: 72, width: 72, radius: "max", crop: "fill", gravity: "face" %>
+        <% unless workout.user == current_user %>
+          <%= cl_image_tag workout.user.photo.key, class: "p-2", height: 72, width: 72, radius: "max", crop: "fill", gravity: "face" %>
+        <% end %>
+        <% if has_booking && current_user == host %>
+          <%= cl_image_tag buddy.photo.key , class: "p-2", height: 72, width: 72, radius: "max", crop: "fill", gravity: "face" %>
+        <% end %>
       </div>
     </div>
   <% end %>
