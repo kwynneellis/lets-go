@@ -6,19 +6,15 @@
 
   <div class="messages" data-chat-subscription-target="messages">
     <% @chat.messages.each do |message| %>
-      <div id="message-<%= message.id %>">
-        <small>
-          <strong><%= message.user.username %></strong>
-          <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
-        </small>
-        <p><%= message.content %></p>
-      </div>
+        <%= render "messages/message", message: message %>
     <% end %>
   </div>
 
   <%= simple_form_for [@booking, @chat, @message],
-  html: {class: "d-flex"} do |f|
-%>
+  html: {class: "d-flex",
+         data: { action: "turbo:submit-end->chat-subscription#resetForm" }
+  } do |f|
+  %>
   <%= f.input :content,
     label: false,
     placeholder: "Message ##{@chat.booking_id}",

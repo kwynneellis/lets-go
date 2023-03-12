@@ -4,11 +4,13 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     @message.chat = @chat
     @message.user = current_user
-    if @message.save
-      redirect_to booking_chat_path(current_user, @chat)
-    else
-      render "chats/show", status: :unprocessable_entity
-    end
+
+    @message.save
+    ChatChannel.broadcast_to(
+      @chat,
+      render_to_string(partial: "message", locals: { message: @message })
+    )
+    head :ok
   end
 
   private
