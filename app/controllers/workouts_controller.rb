@@ -72,6 +72,8 @@ class WorkoutsController < ApplicationController
     end
 
     @all_workouts.sort_by!(&:date)
+    @upcoming_workouts = @all_workouts.reject { |workout| workout.date.past? }
+    @past_workouts = @all_workouts.select { |workout| workout.date.past? }
   end
 
   def edit

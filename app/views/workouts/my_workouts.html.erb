@@ -2,8 +2,8 @@
   <h1>Workouts</h1>
 </div>
 
-
-<% @all_workouts.each do |workout| %>
+<div class="container mt-2"><h2>Next up: </h2></div>
+<% @upcoming_workouts.each do |workout| %>
   <% host = workout.user %>
   <% has_booking = workout.bookings.first.present? %>
   <% guest = has_booking ? workout.bookings.first.user : "buddy" %>
@@ -17,6 +17,40 @@
         <% if current_user == host %>
           <i class="fa-solid fa-sm fa-pen-to-square"></i>
         <% end %>
+      </div>
+      <div class="flex-fill card-my-workouts-info">
+        <h2><%= workout.activity_type %><%= has_booking ? " with " + buddy.first_name : "" %></h2>
+        <p class="m-0"><%= workout.date.strftime("%e %h %Y") %>, <%= workout.start_time.strftime("%H") %>:00</p>
+      </div>
+      <div class="flex-shrink-0">
+        <% if has_booking %>
+          <p class="mx-1 my-0">🤜 🤛</p>
+        <% end %>
+      </div>
+      <div class="p-1">
+        <% unless workout.user == current_user %>
+          <%= cl_image_tag workout.user.photo.key, class: "p-2", height: 72, width: 72, radius: "max", crop: "fill", gravity: "face" %>
+        <% end %>
+        <% if has_booking && current_user == host %>
+          <%= cl_image_tag buddy.photo.key , class: "p-2", height: 72, width: 72, radius: "max", crop: "fill", gravity: "face" %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+<hr>
+<div class="container mt-2"><h2>Past workouts </h2></div>
+<% @past_workouts.each do |workout| %>
+  <% host = workout.user %>
+  <% has_booking = workout.bookings.first.present? %>
+  <% guest = has_booking ? workout.bookings.first.user : "buddy" %>
+  <% buddy = (workout.user == current_user ? guest : host)  %>
+  <%= link_to workout_path(workout), style: "color: #2C302E;", class: "text-decoration-none" do %>
+    <div class="d-flex flex-row justify-content-between card-my-workouts">
+      <div>
+        <%= cl_image_tag workout.photo.key, height: 80, width: 80, crop: "fill" %>
+      </div>
+      <div class="ps-3", style="width: 8%">
       </div>
       <div class="flex-fill card-my-workouts-info">
         <h2><%= workout.activity_type %><%= has_booking ? " with " + buddy.first_name : "" %></h2>

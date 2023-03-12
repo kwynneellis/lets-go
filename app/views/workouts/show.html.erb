@@ -31,56 +31,56 @@
       <% end %>
 
       <% if @workout.bookings.present? && @workout.date.past?  %>
-      <div class="container-yellow">
-        <div class="d-flex align-items-center justify-content-between mt-1">
-          <div class="flex-fill">
-            <h3 class="m-0">Did <%= buddy.first_name.capitalize %> show up?</h3>
+        <div class="container-yellow">
+          <div class="d-flex align-items-center justify-content-between mt-1">
+            <div class="flex-fill">
+              <h3 class="m-0">Did <%= buddy.first_name.capitalize %> show up?</h3>
+            </div>
+            <div class="btn-group" role="group" aria-label="Did buddy attend buttons">
+              <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#sorryModal">No</button>
+              <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#feedbackModal">Yes</button>
+            </div>
           </div>
-          <div class="btn-group" role="group" aria-label="Did buddy attend buttons">
-            <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#sorryModal">No</button>
-            <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#feedbackModal">Yes</button>
+            <%# <%= link_to "How was your workout?", new_workout_booking_rating_path(@workout.id, @booking.id) %>
+            <%# <%= render "ratings/form", booking: @workout.bookings, rating: Rating.new %>
+        </div>
+        <!-- Sorry Modal -->
+        <div class="modal fade" id="sorryModal" tabindex="-1" aria-labelledby="sorryModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="sorryModalLabel">We're sorry they didn't show up 😭</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <%# <div class="modal-body">
+                ...
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div> %>
+            </div>
           </div>
         </div>
-          <%# <%= link_to "How was your workout?", new_workout_booking_rating_path(@workout.id, @booking.id) %>
-          <%# <%= render "ratings/form", booking: @workout.bookings, rating: Rating.new %>
-      </div>
+        <!-- Feedback Modal -->
+        <div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="feedbackModalLabel">How was <%= buddy.first_name %>?</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+              <p>Insert ratings form</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
       <% end %>
-    </div>
-    <!-- Sorry Modal -->
-    <div class="modal fade" id="sorryModal" tabindex="-1" aria-labelledby="sorryModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="sorryModalLabel">We're sorry they didn't show up 😭</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <%# <div class="modal-body">
-            ...
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div> %>
-        </div>
-      </div>
-    </div>
-    <!-- Feedback Modal -->
-    <div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="feedbackModalLabel">How was <%= buddy.first_name %>?</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-          <p>Insert ratings form</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Submit</button>
-          </div>
-        </div>
-      </div>
     </div>
 
     <div class="container-content">
