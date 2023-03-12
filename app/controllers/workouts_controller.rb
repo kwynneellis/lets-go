@@ -70,6 +70,8 @@ class WorkoutsController < ApplicationController
     @my_workouts.each do |workout|
       @all_workouts.push(workout)
     end
+
+    @all_workouts.sort_by!(&:date)
   end
 
   def edit
