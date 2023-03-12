@@ -5,6 +5,14 @@
   border-radius: 8px;
 }
 
+.container-yellow {
+  background-color: $yellow;
+  padding: 8px;
+  margin-top: 12px;
+  border-radius: 8px;
+  color: $success;
+}
+
 .container-content {
   margin: 0 auto;
   padding: 12px 12px;
