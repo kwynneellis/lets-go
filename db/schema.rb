@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_08_121107) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_12_121706) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -50,6 +50,23 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_08_121107) do
     t.date "booking_date"
     t.index ["user_id"], name: "index_bookings_on_user_id"
     t.index ["workout_id"], name: "index_bookings_on_workout_id"
+  end
+
+  create_table "chats", force: :cascade do |t|
+    t.bigint "booking_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["booking_id"], name: "index_chats_on_booking_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "content"
+    t.bigint "user_id", null: false
+    t.bigint "chat_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chat_id"], name: "index_messages_on_chat_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "ratings", force: :cascade do |t|
@@ -119,6 +136,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_08_121107) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "bookings", "users"
   add_foreign_key "bookings", "workouts"
+  add_foreign_key "chats", "bookings"
+  add_foreign_key "messages", "chats"
+  add_foreign_key "messages", "users"
   add_foreign_key "ratings", "bookings"
   add_foreign_key "user_tags", "tags"
   add_foreign_key "user_tags", "users"
