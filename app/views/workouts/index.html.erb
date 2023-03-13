@@ -41,30 +41,31 @@
   </div>
 
   <h3><%= @search_copy %></h3>
-  <% if @workouts.empty? %>
+  <% unless @workouts.present? %>
     <p class="text-start"> There are no results for your search 💔 </p>
   <% end %>
-
-  <div class="container-workouts">
-    <% @workouts.each do |workout| %>
-      <div class="card-workout">
-        <%= link_to workout_path(workout), class: "text-decoration-none" do %>
-          <%= cl_image_tag workout.photo.key %>
-          <div class="card-workout-infos">
-            <div>
-              <h2><%= workout.activity_type %></h2>
-              <p>Date: <%= workout.date.strftime("%e %h %Y") %></p>
-              <%# <p>Time: <%= workout.time %>
-              <p>Location: <%= workout.location %></p>
-              <p>Intensity: <%= workout.intensity_level %></p>
+  <% if @workouts.present? %>
+    <div class="container-workouts">
+      <% @workouts.each do |workout| %>
+        <div class="card-workout">
+          <%= link_to workout_path(workout), class: "text-decoration-none" do %>
+            <%= cl_image_tag workout.photo.key %>
+            <div class="card-workout-infos">
+              <div>
+                <h2><%= workout.activity_type %></h2>
+                <p>Date: <%= workout.date.strftime("%e %h %Y") %></p>
+                <%# <p>Time: <%= workout.time %>
+                <p>Location: <%= workout.location %></p>
+                <p>Intensity: <%= workout.intensity_level %></p>
+              </div>
+              <p>Duration: <%= workout.duration %> mins</p>
+              <%= cl_image_tag workout.user.photo.key, class: "card-workout-user card-avatar" %>
             </div>
-            <p>Duration: <%= workout.duration %> mins</p>
-            <%= cl_image_tag workout.user.photo.key, class: "card-workout-user card-avatar" %>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 
   <div style="width: 100%; height: 600px;"
     data-controller="map"

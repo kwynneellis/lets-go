@@ -1,10 +1,14 @@
-<h2>How was the workout?</h2>
 <%= simple_form_for([workout, booking, Rating.new]) do |f| %>
-  <%= f.input :buddy_attended, as: :boolean,
+  <%= f.input :buddy_attended,
+              as: :radio_buttons,
+              item_wrapper_tag: false,
+              boolean_style: :inline,
               label: "Did your buddy show up?" %>
   <%= f.input :buddy_rating,
               as: :radio_buttons,
-              collection: [1, 2, 3, 4, 5],
+              collection: [[1, '⭐️'], [2, '⭐️⭐️'], [3, '⭐️⭐️⭐️'], [4, '⭐️⭐️⭐️⭐️'], [5, '⭐️⭐️⭐️⭐️⭐️']],
+              label_method: :second,
+              value_method: :first,
               label: "How great was your buddy?" %>
   <%= f.input :comment,
               label: "More feedback (optional)" %>

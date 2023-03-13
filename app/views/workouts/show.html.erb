@@ -34,11 +34,11 @@
         <div class="container-yellow">
           <div class="d-flex align-items-center justify-content-between mt-1">
             <div class="flex-fill">
-              <h3>Did <%= buddy.first_name.capitalize %> show up?</h3>
+              <h3>How was it?</h3>
             </div>
             <div class="btn-group" role="group" aria-label="Did buddy attend buttons">
-              <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#sorryModal">No</button>
-              <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#feedbackModal">Yes</button>
+              <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#sorryModal"> 👎 </button>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#feedbackModal"> 👍 </button>
             </div>
           </div>
             <%# <%= link_to "How was your workout?", new_workout_booking_rating_path(@workout.id, @booking.id) %>
@@ -67,15 +67,15 @@
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h1 class="modal-title fs-5" id="feedbackModalLabel">How was <%= buddy.first_name %>?</h1>
+                <h1 class="modal-title fs-5" id="feedbackModalLabel">How was the workout with <%= buddy.first_name %>?</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body" >
                 <%= render "ratings/form", workout: @workout, booking: @workout.bookings.first, rating: @rating %>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Submit</button>
+                <%# <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Submit</button> %>
               </div>
             </div>
           </div>
