@@ -43,9 +43,11 @@
       <% end %>
     <% end %>
   </div>
-  <div class="container-white p-1">
-    <% if @past_workouts.present? %>
-      <div class="container mt-1"><h2>History </h2></div>
+  <% if @past_workouts.present? %>
+    <div class="container-white p-1">
+      <div class="container mt-1">
+        <h2>History </h2>
+      </div>
     <% end %>
     <% @past_workouts.each do |workout| %>
       <% host = workout.user %>

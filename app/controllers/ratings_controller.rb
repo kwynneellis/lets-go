@@ -10,6 +10,7 @@ class RatingsController < ApplicationController
   def create
     @rating = Rating.new(rating_params)
     @rating.booking_id = @booking.id
+    @rating.workout_host = current_user.id == @booking.workout.user_id
     if @rating.save!
       redirect_to workout_path(@booking.workout)
     else
