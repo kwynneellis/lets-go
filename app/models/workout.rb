@@ -24,4 +24,25 @@ class Workout < ApplicationRecord
     'Workout Class' => 'Workout Class 🏋️',
     'Yoga' => 'Yoga Class 🧘'
   }
+
+  def is_host?(user)
+    self.user == user
+  end
+
+  def has_a_booking?
+     self.bookings.first.present?
+  end
+
+  def has_a_rating?
+    self.bookings.first.ratings.present?
+    # booking.any? { |booking| booking.ratings.any? }
+  end
+
+  def has_host_rating?
+    self.bookings.first.ratings.any?(&:workout_host)
+  end
+
+  def has_guest_rating?
+    self.bookings.first.ratings.any? { |r| r.workout_host == false }
+  end
 end
