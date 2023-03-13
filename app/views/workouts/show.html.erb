@@ -1,9 +1,7 @@
 <% host = @workout.user %>
 <% guest = @workout.has_a_booking? ? @workout.bookings.first.user : "buddy" %>
 <% buddy = (@workout.user == current_user ? guest : host)  %>
-<% has_host_rating = @workout.bookings.first.ratings.any?{|r| r.workout_host } %>
-<% has_guest_rating = @workout.bookings.first.ratings.any?{|r| r[:workout_host] == false} %>
-<% ask_for_rating = (current_user == host && !has_host_rating || current_user == guest && !has_guest_rating) %>
+<% ask_for_rating = (@workout.is_host?(current_user) && !@workout.has_host_rating? || !@workout.is_host?(current_user) && !@workout.has_guest_rating?) %>
 <div class="container pb-5 mb-4">
   <div class="container-white">
     <div class="mb-2">
@@ -81,6 +79,14 @@
               </div>
             </div>
           </div>
+        <% end %>
+        <% if @workout.has_a_rating? %>
+          <% @workout.bookings.first.ratings.each do |rating| %>
+            <div class="container-yellow">
+              <p><%= rating.buddy_rating %> star rating</p>
+              <p><%= rating.comment %></p>
+            </div>
+          <% end %>
         <% end %>
       <% end %>
     </div>
