@@ -226,7 +226,7 @@ workout_one = Workout.create!(
   activity_type: 'Walk',
   intensity_level: 2,
   location: 'Shoreditch Park, London N1 6TA',
-  date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
+  date: Faker::Date.between(from: '2023-03-16', to: '2023-03-17'),
   start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
   duration: 60,
   description: 'Planning a brisk walk around Victoria Park.',
@@ -502,7 +502,8 @@ rating_one = Rating.create!(
   booking_id: booking_one.id,
   buddy_attended: true,
   buddy_rating: 4,
-  comment: 'Best buddy on Earth!'
+  comment: 'Best buddy on Earth!',
+  workout_host: false
 )
 puts "#{user1.username}: #{rating_one.comment}"
 
