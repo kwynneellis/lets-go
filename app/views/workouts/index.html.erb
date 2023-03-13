@@ -29,10 +29,10 @@
         </div>
       </div>
       <div class="p-2 bd-highlight">
-        <div class="nav-horizontal-scroll">
-          <div class="container nav-list" data-controller="nav-scroll-into-view">
+        <div class="nav-horizontal-scroll" data-controller="nav-scroll-into-view" data-nav-scroll-into-view-target="filter" data-nav-scroll-into-view-category-value="<%= params[:category] %>">
+          <div class="container nav-list" data-nav-scroll-into-view-target="filterLinks" >
             <% Workout::WORKOUT_EMOJIS.each do |key, value|%>
-              <%= link_to value, workouts_path(category: key), class: "btn btn-ghost", data: {action: "click->nav_scroll_into_view#scrollIntoView"}%>
+              <%= link_to value, workouts_path(category: key), class: 'btn btn-ghost'%>
             <% end %>
           </div>
         </div>

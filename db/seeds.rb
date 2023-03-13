@@ -391,7 +391,7 @@ puts "#{user9.username}: #{workout_eight.activity_type} created."
 puts "Creating workouts for #{user7.username}."
 
 workout_nine = Workout.create!(
-  activity_type: 'Other',
+  activity_type: 'Strength',
   intensity_level: 4,
   location: '2-4 Rufus St, London N1 6PE',
   date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
@@ -455,7 +455,7 @@ puts "#{user8.username}: #{workout_eleven.activity_type} created."
 puts "Creating workouts for #{user8.username}."
 
 workout_twelve = Workout.create!(
-  activity_type: 'Other',
+  activity_type: 'Strength',
   intensity_level: 5,
   location: '2-4 Rufus St, London N1 6PE',
   date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),

@@ -18,10 +18,10 @@ class Workout < ApplicationRecord
     'Cycle' => 'Cycle 🚴',
     'Strength' => 'Strength 🏋️',
     'Park Workout' => 'Park Workout 🌳',
-    'Pilates' => 'Pilates Class 🧘',
+    'Pilates Class' => 'Pilates Class 🧘',
     'Swim' => 'Swim 🏊',
     'Tennis' => 'Tennis 🎾',
     'Workout Class' => 'Workout Class 🏋️',
-    'Yoga' => 'Yoga Class 🧘'
+    'Yoga Class' => 'Yoga Class 🧘'
   }
 end
