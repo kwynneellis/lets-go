@@ -13,15 +13,15 @@ class Workout < ApplicationRecord
   validates :description, length: { minimum: 10 }
 
   WORKOUT_EMOJIS = {
-    'Cycle' => 'Cycle 🚴',
-    'Other' => 'Other 🏅',
-    'Park Workout' => 'Park Workout 🌳',
-    'Pilates Class' => 'Pilates Class 🧘',
     'Run' => 'Run 🏃',
+    'Walk' => 'Walk 🚶',
+    'Cycle' => 'Cycle 🚴',
+    'Strength' => 'Strength 🏋️',
+    'Park Workout' => 'Park Workout 🌳',
+    'Pilates' => 'Pilates Class 🧘',
     'Swim' => 'Swim 🏊',
     'Tennis' => 'Tennis 🎾',
-    'Walk' => 'Walk 🚶',
     'Workout Class' => 'Workout Class 🏋️',
-    'Yoga Class' => 'Yoga Class 🧘'
+    'Yoga' => 'Yoga Class 🧘'
   }
 end
