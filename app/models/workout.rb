@@ -25,24 +25,39 @@ class Workout < ApplicationRecord
     'Yoga Class' => 'Yoga Class 🧘'
   }
 
-  def is_host?(user)
-    self.user == user
+  def is_host?(logged_in_user)
+    user == logged_in_user
   end
 
   def has_a_booking?
-     self.bookings.first.present?
+    bookings.any?
   end
 
   def has_a_rating?
-    self.bookings.first.ratings.present?
+    has_a_booking? ? bookings.first.ratings.any? : false
     # booking.any? { |booking| booking.ratings.any? }
   end
 
+  def name_of_buddy(logged_in_user)
+    is_host?(logged_in_user) ? (has_a_booking? ? bookings.first.user.first_name.capitalize : "buddy") : user.first_name.capitalize
+  end
+
+  def buddy(logged_in_user)
+    is_host?(logged_in_user) ? (has_a_booking? ? bookings.first.user : "buddy") : user
+  end
+
   def has_host_rating?
-    self.bookings.first.ratings.any?(&:workout_host)
+    bookings.first.ratings.any?(&:workout_host)
   end
 
   def has_guest_rating?
-    self.bookings.first.ratings.any? { |r| r.workout_host == false }
+    bookings.first.ratings.any? { |r| r.workout_host == false }
+  end
+
+  def ask_for_rating?(logged_in_user)
+    # workout should be in the past
+    # workout should have a booking
+    # logged in person (host OR booker) should not have given a rating already
+    (date.past? && bookings.any? && ((is_host?(logged_in_user) && !has_host_rating?) || (!is_host?(logged_in_user) && !has_guest_rating?)))
   end
 end
