@@ -226,7 +226,7 @@ workout_one = Workout.create!(
   activity_type: 'Walk',
   intensity_level: 2,
   location: 'Shoreditch Park, London N1 6TA',
-  date: Faker::Date.between(from: '2023-03-16', to: '2023-03-17'),
+  date: Faker::Date.between(from: '2023-03-10', to: '2023-03-13'),
   start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
   duration: 60,
   description: 'Planning a brisk walk around Victoria Park.',
