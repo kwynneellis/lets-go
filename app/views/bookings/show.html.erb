@@ -23,23 +23,22 @@
   <br><br>
 </div>
   <h3>Ratings</h3>
-  <% if @existing_rating.empty? %>
+  <% if @booking.ratings.empty? %>
     <p class="text-start"> There are no ratings yet 💔 </p>
-    <% else %>
+  <% else %>
 
     <p class="text-start"> Your buddy has a rating of: <%= @booking.ratings.first.buddy_rating %><br>
     <p class="text-start"> Your buddy has been reviewed: <br>
     <%= @booking.ratings.first.comment %><br>
   <% end %>
 
-  <% @existing_rating.each do |rating| %>
+  <% @booking.ratings.each do |rating| %>
     <p><strong>Rating ID: </strong><%= rating.id %><br>
     <strong>Your name: </strong><%= rating.booking.user.first_name %><br>
     <strong>Did buddy attend: </strong><%= rating.buddy_attended %><br>
     <strong>You rated your buddy: </strong><%= rating.buddy_rating %><br>
     <strong>Comment: </strong><%= rating.comment %><br></p>
   <% end %>
-  <%= render "ratings/form" %>
   <br><br>
   <br><br>
 </div>

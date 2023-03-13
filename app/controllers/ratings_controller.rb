@@ -9,8 +9,7 @@ class RatingsController < ApplicationController
 
   def create
     @rating = Rating.new(rating_params)
-    @rating.user = @user
-    @rating.booking = @booking
+    @rating.booking_id = @booking
     if @rating.save
       redirect_to booking_path(@booking)
     else
@@ -33,6 +32,6 @@ class RatingsController < ApplicationController
   end
 
   def rating_params
-    params.require(:review).permit(:buddy_attended, :buddy_rating, :comment, :booking_id)
+    params.require(:rating).permit(:buddy_attended, :buddy_rating, :comment, :booking_id)
   end
 end

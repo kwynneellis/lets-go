@@ -70,8 +70,8 @@
                 <h1 class="modal-title fs-5" id="feedbackModalLabel">How was <%= buddy.first_name %>?</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-              <div class="modal-body">
-              <p>Insert ratings form</p>
+              <div class="modal-body" >
+                <%= render "ratings/form", workout: @workout, booking: @workout.bookings.first, rating: @rating %>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Close</button>
