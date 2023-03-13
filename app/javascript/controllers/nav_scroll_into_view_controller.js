@@ -13,7 +13,7 @@ export default class extends Controller {
       Object.values(this.filterLinksTarget.children).forEach(linkItem => {
         if (linkItem.innerText.includes(this.categoryValue)) {
           linkItem.setAttribute("class", "btn btn-ghost active")
-          linkItem.scrollIntoViewIfNeeded()({ behavior: "smooth", inline: "center" })
+          linkItem.scrollIntoViewIfNeeded({ behavior: "smooth", inline: "center" })
         }
       })
     }

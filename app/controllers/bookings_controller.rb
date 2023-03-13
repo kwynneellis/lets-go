@@ -28,6 +28,16 @@ class BookingsController < ApplicationController
     end
   end
 
+  def destroy
+    @booking = Booking.find(params[:id])
+
+    if @booking.destroy!
+      redirect_to workouts_path, status: :see_other
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def set_user

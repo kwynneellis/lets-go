@@ -9,16 +9,25 @@
   <br><br>
 <div>
   <h1>Congratulations! 🎉🎉🎉🎉🎉</h1>
-  <h1>You've booked <%= @booking.workout.activity_type %> with <%= @booking.workout.user.first_name %></h1>
+  <h1>You've booked a <%= @booking.workout.activity_type %> with <%= @booking.workout.user.first_name %></h1>
   <br>
-  <strong>Your workout is on: </strong><%= @booking.booking_date.strftime("%e %h %Y") %><br></p>
+  <strong>Your workout is on: </strong><%= @booking.booking_date.strftime("%e %h %Y") %>
+    <% if current_user == @booking.user %>
+      <%= link_to booking_path(@booking),
+      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+        <div>
+          <i class="fa-solid fa-xmark"></i>
+        </div>
+      <% end %>
+    <% end %>
 
-  <%= link_to "View #{@booking.workout.user.first_name}'s workout", workout_path(@booking.workout_id), class: "button-design-small-font" %>
+  <%= link_to "View #{@booking.workout.user.first_name}'s workout", workout_path(@booking.workout_id), class: "btn btn-ghost" %>
 
   <br>
-  <%= link_to "View #{@booking.workout.user.first_name}'s profile", user_path(@booking.workout.user), class: "button-design-small-font" %>
+  <%= link_to "View #{@booking.workout.user.first_name}'s profile", user_path(@booking.workout.user), class: "btn btn-ghost" %>
 
   <br>
+  <%= link_to "Message #{@booking.workout.user.first_name}", user_path(@booking.workout.user), class: "btn btn-ghost" %>
   <%= link_to "Message #{@booking.workout.user.first_name}", booking_chat_path(@booking.id, @booking.chat.id), class: "button-design-small-font" %>
   <br><br>
 </div>
@@ -27,9 +36,8 @@
     <p class="text-start"> There are no ratings yet 💔 </p>
   <% else %>
 
-    <p class="text-start"> Your buddy has a rating of: <%= @booking.ratings.first.buddy_rating %><br>
-    <p class="text-start"> Your buddy has been reviewed: <br>
-    <%= @booking.ratings.first.comment %><br>
+    <p class="text-start"> Your buddy's rating: <%= @booking.ratings.first.buddy_rating %><br>
+    <p class="text-start"> Your buddy's review: <%= @booking.ratings.first.comment %><br>
   <% end %>
 
   <% @booking.ratings.each do |rating| %>
