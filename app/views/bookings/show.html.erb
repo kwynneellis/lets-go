@@ -19,7 +19,7 @@
   <%= link_to "View #{@booking.workout.user.first_name}'s profile", user_path(@booking.workout.user), class: "button-design-small-font" %>
 
   <br>
-  <%= link_to "Message #{@booking.workout.user.first_name}", user_path(@booking.workout.user), class: "button-design-small-font" %>
+  <%= link_to "Message #{@booking.workout.user.first_name}", booking_chat_path(@booking.id, @booking.chat.id), class: "button-design-small-font" %>
   <br><br>
 </div>
   <h3>Ratings</h3>
