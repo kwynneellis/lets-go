@@ -2,7 +2,7 @@
   <h1>Workouts</h1>
 </div>
 
-<div class="container mt-2"><h2>Next up: </h2></div>
+<div class="container mt-2"><h2>Your schedule </h2></div>
 <% @upcoming_workouts.each do |workout| %>
   <% host = workout.user %>
   <% has_booking = workout.bookings.first.present? %>
@@ -38,8 +38,10 @@
     </div>
   <% end %>
 <% end %>
-<hr>
-<div class="container mt-2"><h2>Past workouts </h2></div>
+<% if @past_workouts.present? %>
+  <hr>
+  <div class="container mt-2"><h2>History </h2></div>
+<% end %>
 <% @past_workouts.each do |workout| %>
   <% host = workout.user %>
   <% has_booking = workout.bookings.first.present? %>
