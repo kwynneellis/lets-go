@@ -22,7 +22,7 @@
         </div>
         <div class="align-items-end w-10 my-1 p-2">
           <%= link_to workouts_path, style: "text-decoration: none" do %>
-            <div>Reset
+            <div>All workouts
               <i class="fa-solid fa-lg fa-rotate mx-1"></i>
             </div>
           <% end %>
@@ -30,15 +30,14 @@
       </div>
       <div class="p-2 bd-highlight">
         <div class="nav-horizontal-scroll">
-          <div class="nav-list" data-controller="nav-scroll-into-view" data-action="click->nav-scroll-into-view#scrollIntoView" data-nav-scroll-into-view-target="btn" >
+          <div class="container nav-list" data-controller="nav-scroll-into-view">
             <% Workout::WORKOUT_EMOJIS.each do |key, value|%>
-              <%= link_to value, workouts_path(category: key), class: "btn btn-ghost" %>
+              <%= link_to value, workouts_path(category: key), class: "btn btn-ghost", data: {action: "click->nav_scroll_into_view#scrollIntoView"}%>
             <% end %>
           </div>
         </div>
       </div>
     </div>
-
   </div>
 
   <h3><%= @search_copy %></h3>
