@@ -1,0 +1,9 @@
+<div class="container">
+  <h2>This is <%= current_user.first_name %>'s chat index page</h2>
+  <%# <% @user.chat_ids.each do |chat| %>
+    <%# <%= link_to @user.chat_ids.booking_id, booking_chat_path(booking) %>
+  <%# <% end %>
+  <p><%= @current_user.messages %></p>
+  <p><%= @current_user.chats %></p>
+</div>
+<%= render "shared/navbar_footer" %>
