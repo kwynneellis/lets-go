@@ -1,6 +1,8 @@
 <% host = @workout.user %>
 <% guest = @workout.has_a_booking? ? @workout.bookings.first.user : "buddy" %>
 <% buddy = (@workout.user == current_user ? guest : host)  %>
+<%# RJ CHAT CODE BELOW %>
+<% workout_chat = Chat.where(booking_id: @workout.bookings.ids.first) %>
 <% ask_for_rating = (@workout.is_host?(current_user) && !@workout.has_host_rating? || !@workout.is_host?(current_user) && !@workout.has_guest_rating?) %>
 <div class="container pb-5 mb-4">
   <div class="container-white">
@@ -25,6 +27,8 @@
       <% unless @workout.is_host?(current_user) %>
         <h3>Hosted by <%= buddy.first_name.capitalize %></h3>
       <% end %>
+      <%# RJ CHAT CODE BELOW %>
+      <%= link_to "Chat", booking_chat_path(@workout.bookings.first.id, workout_chat.first.id) if has_booking %>
       <p><%= @workout.duration %> mins, <%= @workout.intensity_level %>/5 intensity</p>
 
       <% if @workout.bookings.empty? && current_user != host %>
