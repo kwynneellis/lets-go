@@ -10,12 +10,16 @@ require "faker"
 require "open-uri"
 require "date"
 
+# Delete users, workouts. bookings
+puts "Destroying users, workouts, bookings, ratings."
+
 User.destroy_all
 Workout.destroy_all
 Booking.destroy_all
+Rating.destroy_all
 
 # Create users
-puts "Creating 10 Let's Go users."
+puts "Creating 10 Let's Go users:"
 
 user1 = User.create!(
   first_name: 'Sarah',
@@ -234,7 +238,7 @@ workout_one = Workout.create!(
   user_id: user1.id
 )
 
-workout_photo_file_one = URI.open("https://katiecouric.com/wp-content/uploads/2022/04/GettyImages-1192508928.jpg")
+workout_photo_file_one = URI.open("https://globalsportmatters.com/wp-content/uploads/2019/08/Walking.jpg")
 workout_one.photo.attach(io: workout_photo_file_one, filename: "#{workout_photo_file_one}.jpg", content_type: "image/jpg")
 if !workout_one.save!
   puts "workout one failed"
@@ -276,7 +280,7 @@ workout_three = Workout.create!(
   user_id: user5.id
 )
 
-workout_photo_file_three = URI.open("https://katiecouric.com/wp-content/uploads/2022/04/GettyImages-1192508928.jpg")
+workout_photo_file_three = URI.open("https://i.insider.com/616729ff38c19600182fb536?width=700")
 workout_three.photo.attach(io: workout_photo_file_three, filename: "#{workout_photo_file_three}.jpg", content_type: "image/jpg")
 if !workout_three.save!
   puts "workout_three failed"
@@ -296,7 +300,7 @@ workout_four = Workout.create!(
   user_id: user5.id
 )
 
-workout_photo_file_four = URI.open("https://hctennis.co.uk/static/images/ballonra.jpg")
+workout_photo_file_four = URI.open("https://www.playyourcourt.com/news/wp-content/uploads/2015/03/social-blog.jpg")
 workout_four.photo.attach(io: workout_photo_file_four, filename: "#{workout_photo_file_four}.jpg", content_type: "image/jpg")
 if !workout_four.save!
   puts "workout_four failed"
@@ -318,7 +322,7 @@ workout_five = Workout.create!(
   user_id: user6.id
 )
 
-workout_photo_file_five = URI.open("https://thebridge.in/wp-content/uploads/2020/12/Source-Cyclist.png")
+workout_photo_file_five = URI.open("https://www.siroko.com/blog/c/app/uploads/2021/07/efectos-positivos_f766ef96-0811-452d-bbf8-ec38d244637a-1440x900.jpg")
 workout_five.photo.attach(io: workout_photo_file_five, filename: "#{workout_photo_file_five}.png", content_type: "image/png")
 if !workout_five.save!
   puts "workout_five failed"
@@ -338,7 +342,7 @@ workout_six = Workout.create!(
   user_id: user6.id
 )
 
-workout_photo_file_six = URI.open("https://static01.nyt.com/images/2022/05/27/well/27WELL-SWIM-FOR-EXERCISE3/27WELL-SWIM-FOR-EXERCISE3-mobileMasterAt3x.jpg")
+workout_photo_file_six = URI.open("https://cdn.shopify.com/s/files/1/0216/5991/0208/articles/05-Lap-Swim-Etiquette-blog-header.webp?v=1665774583")
 workout_six.photo.attach(io: workout_photo_file_six, filename: "#{workout_photo_file_six}.jpg", content_type: "image/jpg")
 if !workout_six.save!
   puts "workout_six failed"
@@ -402,7 +406,7 @@ workout_nine = Workout.create!(
   user_id: user7.id
 )
 
-workout_photo_file_nine = URI.open("https://images.unsplash.com/photo-1521800641212-77d98bb90d21?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80")
+workout_photo_file_nine = URI.open("https://lafayettefamilyymca.org/wp-content/uploads/2022/03/88366919_m-1-1024x683.jpg")
 workout_nine.photo.attach(io: workout_photo_file_nine, filename: "#{workout_photo_file_nine}.jpg", content_type: "image/jpg")
 if !workout_nine.save!
   puts "workout_nine failed"
@@ -444,7 +448,7 @@ workout_eleven = Workout.create!(
   user_id: user8.id
 )
 
-workout_photo_file_eleven = URI.open("https://katiecouric.com/wp-content/uploads/2022/04/GettyImages-1192508928.jpg")
+workout_photo_file_eleven = URI.open("https://i.insider.com/616729ff38c19600182fb536?width=700")
 workout_eleven.photo.attach(io: workout_photo_file_eleven, filename: "#{workout_photo_file_eleven}.jpg", content_type: "image/jpg")
 if !workout_eleven.save!
   puts "workout_eleven failed"
@@ -466,7 +470,7 @@ workout_twelve = Workout.create!(
   user_id: user8.id
 )
 
-workout_photo_file_twelve = URI.open("https://images.unsplash.com/photo-1599058917212-d750089bc07e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80")
+workout_photo_file_twelve = URI.open("https://lafayettefamilyymca.org/wp-content/uploads/2022/03/88366919_m-1-1024x683.jpg")
 workout_twelve.photo.attach(io: workout_photo_file_twelve, filename: "#{workout_photo_file_twelve}.jpg", content_type: "image/jpg")
 if !workout_twelve.save!
   puts "workout_twelve failed"
@@ -509,30 +513,31 @@ puts "#{user1.username}: #{rating_one.comment}"
 # TODO - Add more ratings
 
 # Create tags
-puts "Creating tags..."
+# puts "Creating tags..."
 
-tag_one = Tag.create!(
-    name: 'brunch',
-  )
+# tag_one = Tag.create!(
+#     name: 'brunch',
+#   )
 
-tag_two = Tag.create!(
-  name: 'sleep',
-)
+# tag_two = Tag.create!(
+#   name: 'sleep',
+# )
 
-tag_three = Tag.create!(
-  name: 'spa',
-)
+# tag_three = Tag.create!(
+#   name: 'spa',
+# )
 
-tag_four = Tag.create!(
-  name: 'food',
-)
+# tag_four = Tag.create!(
+#   name: 'food',
+# )
 
-tag_five = Tag.create!(
-  name: 'music',
-)
+# tag_five = Tag.create!(
+#   name: 'music',
+# )
 
-tag_six = Tag.create!(
-  name: 'TV',
-)
+# tag_six = Tag.create!(
+#   name: 'TV',
+# )
 
-puts "#{tag_one.name}, #{tag_two.name}, #{tag_three.name}, #{tag_four.name}, #{tag_five.name}, #{tag_six.name} ... to be continued."
+# puts "#{tag_one.name}, #{tag_two.name}, #{tag_three.name}, #{tag_four.name}, #{tag_five.name}, #{tag_six.name} ... to be continued."
+puts "Finished!"
