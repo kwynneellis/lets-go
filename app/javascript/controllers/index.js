@@ -12,3 +12,6 @@ application.register("hello", HelloController)
 
 import MapController from "./map_controller"
 application.register("map", MapController)
+
+import NavScrollIntoViewController from "./nav_scroll_into_view_controller"
+application.register("nav-scroll-into-view", NavScrollIntoViewController)
