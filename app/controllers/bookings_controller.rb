@@ -18,9 +18,10 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new
     @booking.user = @user
-    @booking.workout = @workout
+    @booking.workout_id = @workout.id
     @booking.booking_date = @workout.date
     if @booking.save!
+      # @chat = Chat.create(booking_id: @booking.id)
       redirect_to booking_path(@booking)
     else
       render "workouts/show", status: :unprocessable_entity
@@ -45,6 +46,10 @@ class BookingsController < ApplicationController
 
   def set_workout
     @workout = Workout.find(params[:workout_id])
+  end
+
+  def set_chat
+    @chat = Chat.find(params[:chat_id])
   end
 
   def set_rating
