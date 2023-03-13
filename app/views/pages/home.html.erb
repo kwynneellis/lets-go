@@ -7,7 +7,7 @@
       <p>We are stronger together</p>
     </div>
     <div>
-      <%= link_to "Get Started", workouts_path, class: "btn btn-primary px-5 py-2" %>
+      <%= link_to "Get Started", workouts_path, class: "btn button-design-small-font" %>
     </div>
   </div>
 </div>
@@ -16,23 +16,74 @@
   <div class="container-home-text">
     <p>Let's Go helps you find a local workout buddy to motivate you to achieve your fitness goals, no matter what stage of your exercise journey you are at.</p>
   </div>
-  <div class="container-home-text">
-    <p>*****<br>"Before I signed up to Let's Go, my dream of exercising more was just that, a dream! Now I exercise twice a week, meeting a different buddy from my local area each time."</p>
-    <p style="font-size: 12px"><em>-MotivatedMary</em></p>
+
+  <div class="container-testimonials">
+<!-- Carousel -->
+    <div id="testimonials-carousel" class="carousel slide" data-bs-ride="carousel">
+
+  <!-- Indicators/dots -->
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#testimonials-carousel" data-bs-slide-to="0" class="active"></button>
+    <button type="button" data-bs-target="#testimonials-carousel" data-bs-slide-to="1"></button>
+    <button type="button" data-bs-target="#testimonials-carousel" data-bs-slide-to="2"></button>
   </div>
-</div>
 
-<div class="container-white">
-<div class="container">
-  <h2>Why Let's Go</h2>
+  <!-- The slideshow/carousel -->
+  <div class="carousel-inner">
+    <div class="carousel-item active" data-bs-interval="3000">
+      <div class="testimonial-card">
+          <div class="card-image">
+                            <img class=" testimonial-user-img img-fluid d-flex mx-auto" src="https://ca.slack-edge.com/T02NE0241-U03PRDJEMNG-c649a4eb21a3-512">
+                        </div>
+                        <div class="card-text">
+                            <div class="card-title">Energetic Ethan</div>
+                            <p>*****<br>"Before I signed up to Let's Go, my dream of exercising more was just that, a dream! Now I exercise twice a week, meeting a different buddy from my local area each time."</p>
+                        </div>
+                        <div class="testimonial-footer">
+                            <span id="name">Ethan<br></span>
+                            <span id="position">Chief at <a href="#">LeWagon.com</a></span>
+                        </div>
+                        </div>
+    </div>
+    <div class="carousel-item" data-bs-interval="3000">
+    <div class="testimonial-card">
+    <div class="card-image">
+                            <img class="testimonial-user-img img-fluid d-flex mx-auto" src="https://ca.slack-edge.com/T02NE0241-U01HX4EMWG7-2882a4f4d121-512">
+                        </div>
+                        <div class="card-text">
+                            <div class="card-title">Lively Lukáš</div>
+                            <p>*****<br>"Before I signed up to Let's Go, my dream of exercising more was just that, a dream! Now I exercise twice a week, meeting a different buddy from my local area each time."</p>
+                        </div>
+                        <div class="testimonial-footer">
+                            <span id="name">Lukáš<br></span>
+                            <span id="position">Chief at <a href="#">LeWagon.com</a></span>
+                        </div>
+    </div>
+    </div>
+    <div class="carousel-item" data-bs-interval="3000">
+    <div class="testimonial-card">
+      <div class="card-image">
+                            <img class="testimonial-user-img img-fluid d-flex mx-auto" src="https://ca.slack-edge.com/T02NE0241-U03BCJ6HNP8-374030a92114-512">
+                        </div>
+                        <div class="card-text">
+                            <div class="card-title">Buff Borhan</div>
+                            <p>*****<br>"Before I signed up to Let's Go, my dream of exercising more was just that, a dream! Now I exercise twice a week, meeting a different buddy from my local area each time."</p>
+                        </div>
+                        <div class="testimonial-footer">
+                            <span id="name">Borhan<br></span>
+                            <span id="position">Chief at <a href="#">LeWagon.com</a></span>
+                        </div>
+    </div>
+    </div>
+  </div>
 
-  <h6>Community</h6>
-  <p>Let's Go is the community-oriented exercise app. Where other exercise apps match users with a single buddy, Let's Go rewards users who work out with multiple buddies!</p>
-
-  <h6>Reliable</h6>
-  <p>Let's Go works so well because all user profiles are screened manually. Our team of employees closely monitor the app daily.</p>
-
-  <h6>Secure</h6>
-  <p>Your privacy comes first with us. You don't have to fill in anything that isn't necessary. Your data isn't sold and the whole app is secured with an SSL certificate.</p>
-</div>
+  <!-- Left and right controls/icons -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#testimonials-carousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#testimonials-carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
+    </div>
+  </div>
 </div>

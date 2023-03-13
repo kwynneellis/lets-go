@@ -1,9 +1,9 @@
 <% host = @workout.user %>
-<% has_booking = @workout.bookings.first.present? %>
-<% guest = has_booking ? @workout.bookings.first.user : "buddy" %>
+<% guest = @workout.has_a_booking? ? @workout.bookings.first.user : "buddy" %>
 <% buddy = (@workout.user == current_user ? guest : host)  %>
 <%# RJ CHAT CODE BELOW %>
 <% workout_chat = Chat.where(booking_id: @workout.bookings.ids.first) %>
+<% ask_for_rating = (@workout.is_host?(current_user) && !@workout.has_host_rating? || !@workout.is_host?(current_user) && !@workout.has_guest_rating?) %>
 <div class="container pb-5 mb-4">
   <div class="container-white">
     <div class="mb-2">
@@ -17,13 +17,14 @@
       <%= cl_image_tag @workout.photo.key, class: "img" %>
     </div>
     <div class="container-content">
-      <h1 class="m-0"><%= @workout.activity_type %></h1>
-      <% if current_user == host %>
-        <% if has_booking %>
+      <h1><%= @workout.activity_type %></h1>
+      <%# <% if current_user == host %>
+      <% if @workout.is_host?(current_user) %>
+        <% if @workout.has_a_booking? %>
           <h3>Joined by <%= buddy.first_name.capitalize %></h3>
         <% end %>
       <% end %>
-      <% unless current_user == host %>
+      <% unless @workout.is_host?(current_user) %>
         <h3>Hosted by <%= buddy.first_name.capitalize %></h3>
       <% end %>
       <%# RJ CHAT CODE BELOW %>
@@ -33,64 +34,71 @@
       <% if @workout.bookings.empty? && current_user != host %>
         <%= render "bookings/form", workout: @workout, booking: @booking %>
       <% end %>
-
-      <% if @workout.bookings.present? && @workout.date.past?  %>
-        <div class="container-yellow">
-          <div class="d-flex align-items-center justify-content-between mt-1">
-            <div class="flex-fill">
-              <h3 class="m-0">Did <%= buddy.first_name.capitalize %> show up?</h3>
-            </div>
-            <div class="btn-group" role="group" aria-label="Did buddy attend buttons">
-              <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#sorryModal">No</button>
-              <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#feedbackModal">Yes</button>
-            </div>
-          </div>
-            <%# <%= link_to "How was your workout?", new_workout_booking_rating_path(@workout.id, @booking.id) %>
-            <%# <%= render "ratings/form", booking: @workout.bookings, rating: Rating.new %>
-        </div>
-        <!-- Sorry Modal -->
-        <div class="modal fade" id="sorryModal" tabindex="-1" aria-labelledby="sorryModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="sorryModalLabel">We're sorry they didn't show up 😭</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <% if @workout.bookings.present? && @workout.date.past? %>
+        <% if ask_for_rating %>
+          <div class="container-yellow">
+            <div class="d-flex align-items-center justify-content-between mt-1">
+              <div class="flex-fill">
+                <h3>How was it?</h3>
               </div>
-              <%# <div class="modal-body">
-                ...
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-              </div> %>
-            </div>
-          </div>
-        </div>
-        <!-- Feedback Modal -->
-        <div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="feedbackModalLabel">How was <%= buddy.first_name %>?</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-              <p>Insert ratings form</p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Submit</button>
+              <div class="btn-group" role="group" aria-label="Did buddy attend buttons">
+                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#sorryModal"> 👎 </button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#feedbackModal"> 👍 </button>
               </div>
             </div>
           </div>
-        </div>
+          <!-- Sorry Modal -->
+          <div class="modal fade" id="sorryModal" tabindex="-1" aria-labelledby="sorryModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="sorryModalLabel">We're sorry they didn't show up 😭</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <%# <div class="modal-body">
+                  ...
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div> %>
+              </div>
+            </div>
+          </div>
+          <!-- Feedback Modal -->
+          <div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="feedbackModalLabel">How was the workout with <%= buddy.first_name %>?</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" >
+                  <%= render "ratings/form", workout: @workout, booking: @workout.bookings.first, rating: @rating %>
+                </div>
+                <div class="modal-footer">
+                  <%# <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Submit</button> %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        <% if @workout.has_a_rating? %>
+          <% @workout.bookings.first.ratings.each do |rating| %>
+            <div class="container-yellow">
+              <p><%= rating.buddy_rating %> star rating</p>
+              <p><%= rating.comment %></p>
+            </div>
+          <% end %>
+        <% end %>
       <% end %>
     </div>
 
     <div class="container-content">
       <div class="d-flex flex-row justify-content-between">
         <div class="flex-fill">
-          <h4 class="m-0">Workout details</h4>
+          <h4>Workout details</h4>
         </div>
         <div class="align-self-center mx-2">
           <% if current_user == @workout.user %>
@@ -112,13 +120,13 @@
           <% end %>
         </div>
       </div>
-      <p class="m-1"><%=  @workout.description.capitalize %></p>
+      <p><%=  @workout.description.capitalize %></p>
 
 
 
       <div class="d-flex flex-row justify-content-between">
         <div>
-          <h5 class="m-0">When: </h5>
+          <h5>When: </h5>
         </div>
         <div class="flex-fill text-end">
           <p><%= @workout.date.strftime("%e %h %Y") %>, <%= @workout.start_time.strftime("%H:%M") %></p>
@@ -126,7 +134,7 @@
       </div>
       <div class="d-flex flex-row justify-content-between">
         <div>
-          <h5 class="m-0">Duration: </h5>
+          <h5>Duration: </h5>
         </div>
         <div class="flex-fill text-end">
           <p><%= @workout.duration %> (mins)</p>
@@ -134,7 +142,7 @@
       </div>
       <div class="d-flex flex-row justify-content-between">
         <div>
-          <h5 class="m-0">Where: </h5>
+          <h5>Where: </h5>
         </div>
         <div class="flex-fill text-end">
           <p><%= @workout.location%></p>
@@ -148,12 +156,12 @@
         data-map-api-key-value="<%= ENV['MAPBOX_API_KEY']%>">
       </div>
     </div>
-  <% if current_user == host %>
-    <% if has_booking %>
+  <% if @workout.is_host?(current_user) %>
+    <% if @workout.has_a_booking? %>
       <div class="container-content">
         <%= link_to user_path(buddy), style: "color: #2C302E; text-decoration: none;" do %>
           <div class="d-flex flex-row justify-content-between">
-            <div class="flex-fill">
+            <div class="flex-fill pe-1">
               <h4>Meet <%= buddy.first_name.capitalize %> >></h4>
               <p><%= buddy.first_name.capitalize %> joined <span style="color: $fern-green">Let's Go</span> in <%= @user.created_at.strftime("%b %y") %><br>
               A little about them: <%= buddy.about_me.truncate(30) %></p>
@@ -166,7 +174,7 @@
       </div>
     <% end %>
 
-    <% unless has_booking %>
+    <% unless @workout.has_a_booking? %>
       <div class="container-content">
         <div class="d-flex flex-row justify-content-between">
           <div class="flex-fill">
@@ -180,7 +188,7 @@
     <% end %>
   <% end %>
 
-  <% unless current_user == host %>
+  <% unless @workout.is_host?(current_user) %>
     <div class="container-content">
       <%= link_to user_path(@user), style: "color: #2C302E; text-decoration: none;" do %>
         <div class="d-flex flex-row justify-content-between">

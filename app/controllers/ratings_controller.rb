@@ -9,12 +9,12 @@ class RatingsController < ApplicationController
 
   def create
     @rating = Rating.new(rating_params)
-    @rating.user = @user
-    @rating.booking = @booking
-    if @rating.save
-      redirect_to booking_path(@booking)
+    @rating.booking_id = @booking.id
+    @rating.workout_host = current_user.id == @booking.workout.user_id
+    if @rating.save!
+      redirect_to workout_path(@booking.workout)
     else
-      render "bookings/show", status: :unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -33,6 +33,6 @@ class RatingsController < ApplicationController
   end
 
   def rating_params
-    params.require(:review).permit(:buddy_attended, :buddy_rating, :comment, :booking_id)
+    params.require(:rating).permit(:booking_id, :buddy_attended, :buddy_rating, :comment)
   end
 end
