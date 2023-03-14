@@ -1,6 +1,6 @@
 class Workout < ApplicationRecord
   belongs_to :user
-  has_many :bookings, dependent: :destroy
+  has_many :bookings
   has_one_attached :photo
 
   geocoded_by :location
@@ -11,6 +11,8 @@ class Workout < ApplicationRecord
   validates :intensity_level, numericality: { only_integer: true, in: 1..5 }
   validates :duration, numericality: { only_integer: true, greater_than_or_equal_to: 10, less_than_or_equal_to: 300 }
   validates :description, length: { minimum: 10 }
+
+  scope :with_booking, -> { joins(:bookings) }
 
   WORKOUT_EMOJIS = {
     'Run' => 'Run 🏃',
@@ -25,24 +27,50 @@ class Workout < ApplicationRecord
     'Yoga Class' => 'Yoga Class 🧘'
   }
 
-  def is_host?(user)
-    self.user == user
+  def is_host?(logged_in_user)
+    user == logged_in_user
   end
 
   def has_a_booking?
-     self.bookings.first.present?
+    bookings.any?
   end
 
   def has_a_rating?
-    self.bookings.first.ratings.present?
+    has_a_booking? ? bookings.first.ratings.any? : false
     # booking.any? { |booking| booking.ratings.any? }
   end
 
+  def name_of_buddy(logged_in_user)
+    is_host?(logged_in_user) ? (has_a_booking? ? bookings.first.user.first_name.capitalize : "buddy") : user.first_name.capitalize
+  end
+
+  def buddy(logged_in_user)
+    is_host?(logged_in_user) ? (has_a_booking? ? bookings.first.user : "buddy") : user
+  end
+
   def has_host_rating?
-    self.bookings.first.ratings.any?(&:workout_host)
+    bookings.first.ratings.any?(&:workout_host)
   end
 
   def has_guest_rating?
-    self.bookings.first.ratings.any? { |r| r.workout_host == false }
+    bookings.first.ratings.any? { |r| r.workout_host == false }
+  end
+
+  def ask_for_rating?(logged_in_user)
+    # workout should be in the past
+    # workout should have a booking
+    # logged in person (host OR booker) should not have given a rating already
+    (date.past? && bookings.any? && ((is_host?(logged_in_user) && !has_host_rating?) || (!is_host?(logged_in_user) && !has_guest_rating?)))
+  end
+
+  def workout_chat
+    Chat.where(booking_id: bookings.ids.first)
+  end
+
+  def self.chats
+    all.with_booking.map { |workout| workout.bookings.map(&:chat) }.flatten
   end
 end
+
+# [1,2,3].map { |number| number.to_s }
+# [1,2,3].map(&:to_s)

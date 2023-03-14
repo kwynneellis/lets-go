@@ -21,10 +21,19 @@ class BookingsController < ApplicationController
     @booking.workout_id = @workout.id
     @booking.booking_date = @workout.date
     if @booking.save!
-      # @chat = Chat.create(booking_id: @booking.id)
-      redirect_to booking_path(@booking)
+      redirect_to workout_path(@workout)
     else
       render "workouts/show", status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @booking = Booking.find(params[:id])
+
+    if @booking.destroy!
+      redirect_to workouts_path, status: :see_other
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 

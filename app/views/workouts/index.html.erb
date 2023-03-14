@@ -1,102 +1,76 @@
 <div class="container pb-5 mb-4">
-  <ul class="nav nav-tabs" id="myTab" role="tablist">
-    <li class="nav-item" role="presentation">
-      <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Workouts List</button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">View Workouts on Map</button>
-    </li>
-  </ul>
-  <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
-      <%# PAGE WITH WORKOUTS %>
-      <div class="d-flex flex-column bd-highlight mb-3">
-        <div class="container-white-workouts-list-search">
-          <div class="p-2 bd-highlight">
-            <%= form_with url: workouts_path, method: :get, class: "d-flex" do %>
-              <%= text_field_tag :query,
-                params[:query],
-                class: "form-control me-1",
-                placeholder: "🔍 Location"
-              %>
-              <%= submit_tag "Search", class: "btn btn-primary" %>
+
+  <div class="d-flex flex-column bd-highlight mb-3">
+
+    <div class="container-white">
+      <div class="p-2 bd-highlight">
+        <%= form_with url: workouts_path, method: :get, class: "d-flex" do %>
+          <%= text_field_tag :query,
+            params[:query],
+            class: "form-control me-1",
+            placeholder: "🔍 Location"
+          %>
+          <%= submit_tag "Search", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="container-white">
+      <div class="d-flex flex-row justify-content-between">
+        <div>
+          <h3 class="p-2">Activity filter</h3>
+        </div>
+        <div class="align-items-end w-10 my-1 p-2">
+          <%= link_to workouts_path, style: "text-decoration: none" do %>
+            <div>All
+              <i class="fa-solid fa-lg fa-rotate mx-1"></i>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="p-2 bd-highlight">
+        <div class="nav-horizontal-scroll" data-controller="nav-scroll-into-view" data-nav-scroll-into-view-target="filter" data-nav-scroll-into-view-category-value="<%= params[:category] %>">
+          <div class="container nav-list" data-nav-scroll-into-view-target="filterLinks" >
+            <% Workout::WORKOUT_EMOJIS.each do |key, value|%>
+              <%= link_to value, workouts_path(category: key), class: 'btn btn-ghost'%>
             <% end %>
           </div>
         </div>
-        <div class="container-white-workouts-list-filter">
-          <div class="d-flex flex-row justify-content-between">
-            <div>
-              <h3 class="p-2">Activity filter</h3>
-            </div>
-            <div class="align-items-end w-10 my-1 p-2">
-              <%= link_to workouts_path, style: "text-decoration: none" do %>
-                <div>All
-                  <i class="fa-solid fa-lg fa-rotate mx-1"></i>
-                </div>
-              <% end %>
-            </div>
-          </div>
-          <div class="p-2 bd-highlight">
-            <div class="nav-horizontal-scroll" data-controller="nav-scroll-into-view" data-nav-scroll-into-view-target="filter" data-nav-scroll-into-view-category-value="<%= params[:category] %>">
-              <div class="container nav-list" data-nav-scroll-into-view-target="filterLinks" >
-                <% Workout::WORKOUT_EMOJIS.each do |key, value|%>
-                  <%= link_to value, workouts_path(category: key), class: 'btn btn-ghost'%>
-                <% end %>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
-      <h3><%= @search_copy %></h3>
-      <% unless @workouts.present? %>
-        <p class="text-start"> There are no results for your search 💔 </p>
-      <% end %>
-      <% if @workouts.present? %>
-        <div class="container-workouts">
-          <% @workouts.each do |workout| %>
-            <div class="card-workout">
-              <%= link_to workout_path(workout), class: "text-decoration-none" do %>
-                <%= cl_image_tag workout.photo.key %>
-                <div class="card-workout-infos">
-                  <div>
-                    <h2><%= workout.activity_type %></h2>
-                    <p>Date: <%= workout.date.strftime("%e %h %Y") %></p>
-                    <%# <p>Time: <%= workout.time %>
-                    <p>Location: <%= workout.location %></p>
-                    <p>Intensity: <%= workout.intensity_level %></p>
-                  </div>
-                  <p>Duration: <%= workout.duration %> mins</p>
-                  <%= cl_image_tag workout.user.photo.key, class: "card-workout-user card-avatar" %>
-                </div>
-              <% end %>
+    </div>
+  </div>
+
+  <h3><%= @search_copy %></h3>
+  <% unless @workouts.present? %>
+    <p class="text-start"> There are no results for your search 💔 </p>
+  <% end %>
+  <% if @workouts.present? %>
+    <div class="container-workouts">
+      <% @workouts.each do |workout| %>
+        <div class="card-workout">
+          <%= link_to workout_path(workout), class: "text-decoration-none" do %>
+            <%= cl_image_tag workout.photo.key %>
+            <div class="card-workout-infos">
+              <div>
+                <h2><%= workout.activity_type %></h2>
+                <p>Date: <%= workout.date.strftime("%e %h %Y") %></p>
+                <%# <p>Time: <%= workout.time %>
+                <p>Location: <%= workout.location %></p>
+                <p>Intensity: <%= workout.intensity_level %></p>
+              </div>
+              <p>Duration: <%= workout.duration %> mins</p>
+              <%= cl_image_tag workout.user.photo.key, class: "card-workout-user card-avatar" %>
             </div>
           <% end %>
         </div>
       <% end %>
     </div>
-    <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-      <div class="d-flex flex-column bd-highlight mb-2">
-        <div class="container-white-map-page-search">
-            <div class="p-2 bd-highlight">
-              <%= form_with url: workouts_path, method: :get, class: "d-flex" do %>
-                <%= text_field_tag :query,
-                  params[:query],
-                  class: "form-control me-1",
-                  placeholder: "🔍 Location"
-                %>
-                <%= submit_tag "Search", class: "btn btn-primary" %>
-              <% end %>
-            </div>
-        </div>
-        <div class="container-white-map-page">
-          <div style="width: 100%; height: 690px;"
-            data-controller="map"
-            data-map-markers-value="<%= @workout_location.to_json %>"
-            data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-          </div>
-        </div>
-      </div>
-    </div>
+  <% end %>
+
+  <div style="width: 100%; height: 600px;"
+    data-controller="map"
+    data-map-markers-value="<%= @workout_location.to_json %>"
+    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
 </div>
 

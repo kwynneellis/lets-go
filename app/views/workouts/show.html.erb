@@ -1,9 +1,3 @@
-<% host = @workout.user %>
-<% guest = @workout.has_a_booking? ? @workout.bookings.first.user : "buddy" %>
-<% buddy = (@workout.user == current_user ? guest : host)  %>
-<%# RJ CHAT CODE BELOW %>
-<% workout_chat = Chat.where(booking_id: @workout.bookings.ids.first) %>
-<% ask_for_rating = (@workout.is_host?(current_user) && !@workout.has_host_rating? || !@workout.is_host?(current_user) && !@workout.has_guest_rating?) %>
 <div class="container pb-5 mb-4">
   <div class="container-white">
     <div class="mb-2">
@@ -18,32 +12,44 @@
     </div>
     <div class="container-content">
       <h1><%= @workout.activity_type %></h1>
-      <%# <% if current_user == host %>
       <% if @workout.is_host?(current_user) %>
         <% if @workout.has_a_booking? %>
-          <h3>Joined by <%= buddy.first_name.capitalize %></h3>
+          <h3>Joined by <%= @workout.name_of_buddy(current_user) %></h3>
         <% end %>
       <% end %>
+
       <% unless @workout.is_host?(current_user) %>
-        <h3>Hosted by <%= buddy.first_name.capitalize %></h3>
+        <h3>Hosted by <%= @workout.name_of_buddy(current_user) %></h3>
       <% end %>
       <%# RJ CHAT CODE BELOW %>
-      <%= link_to "Chat", booking_chat_path(@workout.bookings.first.id, workout_chat.first.id) if has_booking %>
+      <%= link_to "Chat", booking_chat_path(@workout.bookings.first.id, @workout.workout_chat.first.id) if @workout.has_a_booking? %>
       <p><%= @workout.duration %> mins, <%= @workout.intensity_level %>/5 intensity</p>
-
-      <% if @workout.bookings.empty? && current_user != host %>
+      <% if !@workout.has_a_booking? && !@workout.is_host?(current_user) %>
         <%= render "bookings/form", workout: @workout, booking: @booking %>
       <% end %>
-      <% if @workout.bookings.present? && @workout.date.past? %>
-        <% if ask_for_rating %>
-          <div class="container-yellow">
-            <div class="d-flex align-items-center justify-content-between mt-1">
-              <div class="flex-fill">
-                <h3>How was it?</h3>
+
+      <% if @workout.ask_for_rating?(current_user) %>
+        <div class="container-yellow">
+          <div class="d-flex align-items-center justify-content-between mt-1">
+            <div class="flex-fill">
+              <h3>How was it?</h3>
+            </div>
+            <div class="btn-group" role="group" aria-label="Did buddy attend buttons">
+              <button type="button" class="btn btn-outline-primary bg-light me-1" data-bs-toggle="modal" data-bs-target="#feedbackModal"> 👎 </button>
+              <button type="button" class="btn btn-outline-primary bg-primary" data-bs-toggle="modal" data-bs-target="#feedbackModal"> 👍 </button>
+            </div>
+          </div>
+        </div>
+        <!-- Feedback Modal -->
+        <div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="feedbackModalLabel">How was the <%= @workout.activity_type %> with <%= @workout.name_of_buddy(current_user) %>?</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-              <div class="btn-group" role="group" aria-label="Did buddy attend buttons">
-                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#sorryModal"> 👎 </button>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#feedbackModal"> 👍 </button>
+              <div class="modal-body" >
+                <%= render "ratings/form", workout: @workout, booking: @workout.bookings.first, rating: @rating %>
               </div>
             </div>
           </div>
@@ -93,6 +99,14 @@
           <% end %>
         <% end %>
       <% end %>
+      <% if @workout.has_a_rating? %>
+        <% @workout.bookings.first.ratings.each do |rating| %>
+          <div class="container-yellow">
+            <p><%= rating.buddy_rating %> star rating</p>
+            <p><%= rating.comment %></p>
+          </div>
+        <% end %>
+      <% end %>
     </div>
 
     <div class="container-content">
@@ -101,7 +115,7 @@
           <h4>Workout details</h4>
         </div>
         <div class="align-self-center mx-2">
-          <% if current_user == @workout.user %>
+          <% if @workout.is_host?(current_user) && !@workout.date.past? %>
             <%= link_to edit_workout_path(@workout.id) do %>
               <div>
                   <i class="fa-solid fa-sm fa-pen-to-square"></i>
@@ -110,7 +124,7 @@
           <% end %>
         </div>
         <div class="align-self-center mx-2">
-          <% if current_user == @workout.user %>
+          <% if @workout.is_host?(current_user) && !@workout.date.past? %>
             <%= link_to workout_path(@workout.id),
                 data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
                   <div>
@@ -118,11 +132,19 @@
                   </div>
             <% end %>
           <% end %>
+          <% unless @workout.is_host?(current_user) || @workout.date.past? %>
+            <% if @workout.has_a_booking? %>
+              <%= link_to booking_path(@workout.bookings.first.id), style: "text-decoration: none;",
+              data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to cancel this booking?"} do %>
+                <div>
+                  <i class="fa-solid fa-lg fa-xmark"></i> Cancel
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
         </div>
       </div>
       <p><%=  @workout.description.capitalize %></p>
-
-
 
       <div class="d-flex flex-row justify-content-between">
         <div>
@@ -159,15 +181,15 @@
   <% if @workout.is_host?(current_user) %>
     <% if @workout.has_a_booking? %>
       <div class="container-content">
-        <%= link_to user_path(buddy), style: "color: #2C302E; text-decoration: none;" do %>
+        <%= link_to user_path(@workout.buddy(current_user)), style: "color: #2C302E; text-decoration: none;" do %>
           <div class="d-flex flex-row justify-content-between">
             <div class="flex-fill pe-1">
-              <h4>Meet <%= buddy.first_name.capitalize %> >></h4>
-              <p><%= buddy.first_name.capitalize %> joined <span style="color: $fern-green">Let's Go</span> in <%= @user.created_at.strftime("%b %y") %><br>
-              A little about them: <%= buddy.about_me.truncate(30) %></p>
+              <h4>Meet <%= @workout.name_of_buddy(current_user) %> >></h4>
+              <p><%= @workout.name_of_buddy(current_user) %> joined <span style="color: $fern-green">Let's Go</span> in <%= @user.created_at.strftime("%b %y") %><br>
+              A little about them: <%= @workout.buddy(current_user).about_me.truncate(30) %></p>
             </div>
             <div class="align-self-center">
-              <%= cl_image_tag buddy.photo.key, class: "avatar-large" %>
+              <%= cl_image_tag @workout.buddy(current_user).photo.key, class: "avatar-large" %>
             </div>
           </div>
         <% end %>
