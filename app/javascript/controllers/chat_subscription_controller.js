@@ -25,7 +25,7 @@ export default class extends Controller {
     const messageElement = this.#buildMessageElement(currentUserIsSender, data.message)
 
     // Lines 28 & 29 insert the 'message' into the DOM
-    this.messagesTarget.insertAdjacentHTML("beforeend", data)
+    this.messagesTarget.insertAdjacentHTML("beforeend", messageElement)
     this.messagesTarget.scrollTo(0, this.messagesTarget.scrollHeight)
   }
 

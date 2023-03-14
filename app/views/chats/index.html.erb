@@ -13,16 +13,21 @@
             <% end %>
           </div>
           <div class="ps-2">
-              <% if chat.booking.user.id == current_user.id %>
-                <h6><%= chat.booking.workout.user.username %></h6>
-              <% else %>
-                <h6><%= chat.booking.user.username %></h6>
-              <% end %>
-            <p>
-              <%= chat.booking.workout.activity_type %><br>
-              last message: <%= chat.messages.any? ? chat.messages.last.created_at : "Write the first message!" %><br>
-              <%= chat.booking.workout.date.strftime("%e %h %Y") %>
-            </p>
+            <div class="d-flex flex-row">
+              <div class="p-2">
+                <% if chat.booking.user.id == current_user.id %>
+                  <h6><%= chat.booking.workout.user.username %></h6>
+                <% else %>
+                  <h6><%= chat.booking.user.username %></h6>
+                <% end %>
+              </div>
+              <div class="p-2"><%= chat.booking.workout.activity_type %> </div>
+              <div class="p-2"><%= chat.booking.workout.date.strftime("%e %h %Y") %> </div>
+            </div>
+
+              <div>
+                <em><%= chat.messages.any? ? chat.messages.last.content : "Say hi!" %></em>
+              </div>
           </div>
         </div>
       <% end %>
@@ -32,5 +37,3 @@
 </div>
 
 <%= render "shared/navbar_footer" %>
-
-            <%# <p>Joined by: <%= chat.booking.user.first_name, hosted by: <%= chat.booking.workout.user.first_name %>
