@@ -91,11 +91,13 @@
             <% end %>
           <% end %>
           <% unless @workout.is_host?(current_user) || @workout.date.past? %>
-            <%= link_to workout_path(@workout), style: "text-decoration: none;",
-            data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
-              <div>
-                <i class="fa-solid fa-lg fa-xmark"></i> Cancel
-              </div>
+            <% if @workout.has_a_booking? %>
+              <%= link_to booking_path(@workout.bookings.first.id), style: "text-decoration: none;",
+              data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to cancel this booking?"} do %>
+                <div>
+                  <i class="fa-solid fa-lg fa-xmark"></i> Cancel
+                </div>
+              <% end %>
             <% end %>
           <% end %>
         </div>
