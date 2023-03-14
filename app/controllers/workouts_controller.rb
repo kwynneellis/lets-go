@@ -9,7 +9,7 @@ class WorkoutsController < ApplicationController
   end
 
   def create
-    image = URI.open("https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8d29ya291dHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60")
+    image = URI.open("https://www.wholelifechallenge.com/wp-content/uploads/2018/01/workout_buddy_featured.jpg")
     @workout = Workout.new(workout_params)
     @workout.user_id = current_user.id
     @workout.photo.attach(io: image, filename: "image", content_type: "image/png") unless @workout.photo.attached?

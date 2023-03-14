@@ -44,7 +44,7 @@
 .container-home {
   background-color: #537A5A;
   width: 100%;
-  height: 610px;
+  height: 50vh;
 }
 
 .container-home-text {
@@ -53,4 +53,12 @@
   color: white;
   margin: 0 auto;
   padding-top: 12px;
+}
+
+.container-testimonials {
+  max-width: 950px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Lato', sans-serif;
 }
