@@ -112,6 +112,14 @@
                   </div>
             <% end %>
           <% end %>
+          <% unless @workout.is_host?(current_user) || @workout.date.past? %>
+            <%= link_to workout_path(@workout), style: "text-decoration: none;",
+            data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+              <div>
+                <i class="fa-solid fa-lg fa-xmark"></i> Cancel
+              </div>
+            <% end %>
+          <% end %>
         </div>
       </div>
       <p><%=  @workout.description.capitalize %></p>
