@@ -25,18 +25,18 @@ puts "Creating 10 Let's Go users:"
 
 user1 = User.create!(
   first_name: 'Sarah',
-  last_name: Faker::Name.last_name,
+  last_name: 'Sparkes',
   username: 'sedentary_sarah',
   email: 'sarah@test.com',
   password: '123456',
-  date_of_birth: Faker::Date.between(from: '1975-03-06', to: '2005-03-06'),
+  date_of_birth: '1987-06-25',
   about_me: '35-year-old software engineer spending too many hours sat in a chair.
   Looking for a fitness buddy in the local area to workout with for runs, brisk walks,
   yoga sessions, and swimming.',
   fitness_goal: 'Consistency - to work out 10 days in one month.',
-  fitness_level: rand(1..5),
-  attendance: rand(1..100),
-  avg_rating: rand(1..5),
+  fitness_level: 3,
+  attendance: 100,
+  avg_rating: 5,
 )
 
 user1_photo_file = URI.open("https://media.istockphoto.com/id/1264330893/photo/when-did-i-lose-my-passion-for-this-job.jpg?s=612x612&w=0&k=20&c=5bIbLJvcOAZTd5iAZPWh0ZnYApYOayDEwt9ZUWnXGR0=")
@@ -47,16 +47,17 @@ puts "#{user1.username} created."
 
 user2 = User.create!(
   first_name: 'Lindsay',
-  last_name: Faker::Name.last_name,
+  last_name: 'Harris',
   username: 'lazy_lindsay',
   email: 'lindsay@test.com',
   password: '123456',
-  date_of_birth: Faker::Date.between(from: '1975-03-06', to: '2005-03-06'),
-  about_me: '21-year-old recent graduate who would rather go to the pub than exercise.',
+  date_of_birth: '2002-03-08',
+  about_me: '21-year-old recent graduate who would rather go to the pub than exercise.
+  I would love some exercise buddies to help me get in shape for a 5k run.',
   fitness_goal: 'Complete a 5k run in 3 months time.',
-  fitness_level: rand(1..5),
-  attendance: rand(1..100),
-  avg_rating: rand(1..5),
+  fitness_level: 2,
+  attendance: 75,
+  avg_rating: 3,
 )
 
 user2_photo_file = URI.open("https://pyxis.nymag.com/v1/imgs/8d6/f64/3876ba5a2e4bfad63beb9e99bba217b0eb-bored-quiz.rsquare.w700.jpg")
