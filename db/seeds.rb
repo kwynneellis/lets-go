@@ -13,10 +13,12 @@ require "date"
 # Delete users, workouts. bookings
 puts "Destroying users, workouts, bookings, ratings."
 
-User.destroy_all
-Workout.destroy_all
-Booking.destroy_all
+Message.destroy_all
+Chat.destroy_all
 Rating.destroy_all
+Booking.destroy_all
+Workout.destroy_all
+User.destroy_all
 
 # Create users
 puts "Creating 10 Let's Go users:"
