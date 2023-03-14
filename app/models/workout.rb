@@ -1,6 +1,7 @@
 class Workout < ApplicationRecord
   belongs_to :user
-  has_many :bookings
+  has_many :bookings, dependent: :destroy
+  has_many :ratings, through: :bookings
   has_one_attached :photo
 
   geocoded_by :location
@@ -13,6 +14,7 @@ class Workout < ApplicationRecord
   validates :description, length: { minimum: 10 }
 
   scope :with_booking, -> { joins(:bookings) }
+  scope :with_ratings, -> { joins(:ratings) }
 
   WORKOUT_EMOJIS = {
     'Run' => 'Run 🏃',
@@ -70,7 +72,8 @@ class Workout < ApplicationRecord
   def self.chats
     all.with_booking.map { |workout| workout.bookings.map(&:chat) }.flatten
   end
-end
 
-# [1,2,3].map { |number| number.to_s }
-# [1,2,3].map(&:to_s)
+  def self.ratings_by_others(logged_in_user)
+    Rating.where(id: all.with_ratings.where.not('ratings.user_id' => logged_in_user.id).pluck('ratings.id'))
+  end
+end
