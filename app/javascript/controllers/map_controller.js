@@ -16,9 +16,19 @@ export default class extends Controller {
       container: this.element,
       style: "mapbox://styles/mapbox/streets-v10"
     })
+    const map = this.map
     this.#addMarkersToMap()
     this.#fitMapToMarkers()
+
+    const tabEl = document.querySelector('#profile-tab')
+    tabEl.addEventListener('click', function (event) {
+      map.resize()
+    })
+
+  //   this.map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
+  //     mapboxgl: mapboxgl }))
   }
+
 
   #fitMapToMarkers() {
     const bounds = new mapboxgl.LngLatBounds()

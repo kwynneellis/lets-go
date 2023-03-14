@@ -1,8 +1,63 @@
 .container-white {
   background-color: white;
   padding: 8px;
-  margin-top: 12px;
+  margin-top: 5px;
   border-radius: 8px;
+  margin-bottom: 6px;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+.container-white-workouts-list-search {
+  background-color: white;
+  padding: 8px;
+  margin-top: 5px;
+
+  border-radius: 8px;
+  margin-bottom: 6px;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+
+.container-white-workouts-list-search {
+  background-color: white;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+.container-white-workouts-list-filter {
+  background-color: white;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+.container-white-map-page-search {
+  background-color: white;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+.container-white-map-page {
+  background-color: white;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 8px;
+  margin-bottom: 2px;
+  margin-left: 2px;
+  margin-right: 2px;
 }
 
 .container-yellow {
@@ -27,6 +82,7 @@
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 12px;
   margin: 20px auto;
+  margin-bottom: 90px;
 }
 
 @media(max-width: 992px) {
@@ -44,7 +100,7 @@
 .container-home {
   background-color: #537A5A;
   width: 100%;
-  height: 610px;
+  height: 50vh;
 }
 
 .container-home-text {
@@ -53,4 +109,17 @@
   color: white;
   margin: 0 auto;
   padding-top: 12px;
+}
+
+
+.container-testimonials {
+  max-width: 950px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Lato', sans-serif;
+}
+
+.mapboxgl-canvas-container{
+  height: 100%;
 }
