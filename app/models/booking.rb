@@ -2,7 +2,7 @@ class Booking < ApplicationRecord
   belongs_to :user
   belongs_to :workout
   has_many :ratings, dependent: :destroy
-  has_one :chat
+  has_one :chat, dependent: :destroy
 
   after_create :create_chat
 
