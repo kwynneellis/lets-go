@@ -1,5 +1,6 @@
 <div class="container">
-  <h2>This is <%= current_user.first_name %>'s chat index page</h2>
+<div class="container-white">
+  <h2>Chats</h2>
 
   <% if @my_bookings_guest.present? %>
     <% @my_bookings_guest.each do |guest_booking| %>
@@ -14,6 +15,7 @@
       <p>Host Booking: <%= guest_booker %> <%= link_to booking.chat.id, booking_chat_path(booking, booking.chat.id) %> </p>
     <% end %>
   <% end %>
+</div>
 </div>
 
 <%= render "shared/navbar_footer" %>
