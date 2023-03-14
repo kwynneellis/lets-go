@@ -1,34 +1,34 @@
-import { Controller } from "@hotwired/stimulus"
-import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder"
+// import { Controller } from "@hotwired/stimulus"
+// import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder"
 
-// Connects to data-controller="address-autocomplete"
-export default class extends Controller {
-  static values = { apiKey: String }
+// // Connects to data-controller="address-autocomplete"
+// export default class extends Controller {
+//   static values = { apiKey: String }
 
-  static targets = ["address"]
+//   static targets = ["address"]
 
-  connect() {
-    this.geocoder = new MapboxGeocoder({
-      accessToken: this.apiKeyValue,
-      types: "country,region,place,postcode,locality,neighborhood,address"
-    })
-    this.geocoder.addTo(this.element)
-  }
+//   connect() {
+//     this.geocoder = new MapboxGeocoder({
+//       accessToken: this.apiKeyValue,
+//       types: "country,region,place,postcode,locality,neighborhood,address"
+//     })
+//     this.geocoder.addTo(this.element)
+//   }
 
-  disconnect() {
-    this.geocoder.onRemove()
-  }
+//   disconnect() {
+//     this.geocoder.onRemove()
+//   }
 
-  connect() {
-    this.geocoder.on("result", event => this.#setInputValue(event))
-    this.geocoder.on("clear", () => this.#clearInputValue())
-  }
+//   connect() {
+//     this.geocoder.on("result", event => this.#setInputValue(event))
+//     this.geocoder.on("clear", () => this.#clearInputValue())
+//   }
 
-  #setInputValue(event) {
-    this.addressTarget.value = event.result["place_name"]
-  }
+//   #setInputValue(event) {
+//     this.addressTarget.value = event.result["place_name"]
+//   }
 
-  #clearInputValue() {
-    this.addressTarget.value = ""
-  }
-}
+//   #clearInputValue() {
+//     this.addressTarget.value = ""
+//   }
+// }

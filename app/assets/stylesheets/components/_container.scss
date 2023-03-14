@@ -1,8 +1,51 @@
 .container-white {
   background-color: white;
   padding: 8px;
-  margin-top: 12px;
+  margin-top: 5px;
   border-radius: 8px;
+  margin-bottom: 6px;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+.container-white-workouts-list-search {
+  background-color: white;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+.container-white-workouts-list-filter {
+  background-color: white;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+.container-white-map-page-search {
+  background-color: white;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+.container-white-map-page {
+  background-color: white;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 8px;
+  margin-bottom: 2px;
+  margin-left: 2px;
+  margin-right: 2px;
 }
 
 .container-yellow {
@@ -54,4 +97,8 @@
   color: white;
   margin: 0 auto;
   padding-top: 12px;
+}
+
+.mapboxgl-canvas-container{
+  height: 100%;
 }
