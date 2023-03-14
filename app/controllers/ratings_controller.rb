@@ -3,7 +3,6 @@ class RatingsController < ApplicationController
   before_action :set_user, only: %i[create]
 
   def new
-    # We need @restaurant in our `simple_form_for`
     @booking = Booking.find(params[:booking_id])
     @rating = Rating.new
   end
