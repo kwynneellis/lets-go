@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :bookings_as_owner, through: :workouts, source: :bookings
   has_many :user_tags
   has_many :tags, through: :user_tags
-  has_many :ratings, through: :bookings
+  has_many :ratings
   has_many :messages
   has_many :chats, through: :messages
   has_one_attached :photo

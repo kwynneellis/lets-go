@@ -1,5 +1,6 @@
 class RatingsController < ApplicationController
   before_action :set_booking, only: %i[new create]
+  before_action :set_user, only: %i[create]
 
   def new
     # We need @restaurant in our `simple_form_for`
@@ -10,6 +11,7 @@ class RatingsController < ApplicationController
   def create
     @rating = Rating.new(rating_params)
     @rating.booking_id = @booking.id
+    @rating.user_id = @user.id
     @rating.workout_host = current_user.id == @booking.workout.user_id
     if @rating.save!
       redirect_to workout_path(@booking.workout)
@@ -33,6 +35,6 @@ class RatingsController < ApplicationController
   end
 
   def rating_params
-    params.require(:rating).permit(:booking_id, :buddy_attended, :buddy_rating, :comment)
+    params.require(:rating).permit(:booking_id, :buddy_attended, :buddy_rating, :comment, :user_id)
   end
 end
