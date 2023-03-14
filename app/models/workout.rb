@@ -70,7 +70,8 @@ class Workout < ApplicationRecord
   end
 
   def self.chats
-    all.with_booking.map { |workout| workout.bookings.map(&:chat) }.flatten
+    chats = all.with_booking.map { |workout| workout.bookings.map(&:chat) }.flatten
+    Chat.where(id: chats.map(&:id))
   end
 
   def self.ratings_by_others(logged_in_user)
