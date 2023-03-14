@@ -12,6 +12,8 @@ class Workout < ApplicationRecord
   validates :duration, numericality: { only_integer: true, greater_than_or_equal_to: 10, less_than_or_equal_to: 300 }
   validates :description, length: { minimum: 10 }
 
+  scope :with_booking, -> { joins(:bookings) }
+
   WORKOUT_EMOJIS = {
     'Run' => 'Run 🏃',
     'Walk' => 'Walk 🚶',
@@ -60,4 +62,15 @@ class Workout < ApplicationRecord
     # logged in person (host OR booker) should not have given a rating already
     (date.past? && bookings.any? && ((is_host?(logged_in_user) && !has_host_rating?) || (!is_host?(logged_in_user) && !has_guest_rating?)))
   end
+
+  def workout_chat
+    Chat.where(booking_id: bookings.ids.first)
+  end
+
+  def self.chats
+    all.with_booking.map { |workout| workout.bookings.map(&:chat) }.flatten
+  end
 end
+
+# [1,2,3].map { |number| number.to_s }
+# [1,2,3].map(&:to_s)

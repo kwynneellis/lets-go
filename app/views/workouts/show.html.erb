@@ -1,5 +1,3 @@
-<%# RJ CHAT CODE BELOW %>
-<% workout_chat = Chat.where(booking_id: @workout.bookings.ids.first) %>
 <div class="container pb-5 mb-4">
   <div class="container-white">
     <div class="mb-2">
@@ -24,7 +22,7 @@
         <h3>Hosted by <%= @workout.name_of_buddy(current_user) %></h3>
       <% end %>
       <%# RJ CHAT CODE BELOW %>
-      <%= link_to "Chat", booking_chat_path(@workout.bookings.first.id, workout_chat.first.id) if @workout.has_a_booking? %>
+      <%= link_to "Chat", booking_chat_path(@workout.bookings.first.id, @workout.workout_chat.first.id) if @workout.has_a_booking? %>
       <p><%= @workout.duration %> mins, <%= @workout.intensity_level %>/5 intensity</p>
       <% if !@workout.has_a_booking? && !@workout.is_host?(current_user) %>
         <%= render "bookings/form", workout: @workout, booking: @booking %>

@@ -21,8 +21,7 @@ class BookingsController < ApplicationController
     @booking.workout_id = @workout.id
     @booking.booking_date = @workout.date
     if @booking.save!
-      # @chat = Chat.create(booking_id: @booking.id)
-      redirect_to booking_path(@booking)
+      redirect_to workout_path(@workout)
     else
       render "workouts/show", status: :unprocessable_entity
     end
