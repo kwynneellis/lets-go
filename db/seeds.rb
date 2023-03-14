@@ -11,7 +11,7 @@ require "open-uri"
 require "date"
 
 # Delete users, workouts. bookings
-puts "Destroying users, workouts, bookings, ratings."
+puts "In this order: Destroying messages, chats, ratings, bookings, workouts, users."
 
 Message.destroy_all
 Chat.destroy_all
