@@ -11,7 +11,7 @@
     <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
       <%# PAGE WITH WORKOUTS %>
       <div class="d-flex flex-column bd-highlight mb-3">
-        <div class="container-white-workouts-list">
+        <div class="container-white-workouts-list-search">
           <div class="p-2 bd-highlight">
             <%= form_with url: workouts_path, method: :get, class: "d-flex" do %>
               <%= text_field_tag :query,
@@ -23,7 +23,7 @@
             <% end %>
           </div>
         </div>
-        <div class="container-white-workouts-list-search">
+        <div class="container-white-workouts-list-filter">
           <div class="d-flex flex-row justify-content-between">
             <div>
               <h3 class="p-2">Activity filter</h3>
