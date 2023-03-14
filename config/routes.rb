@@ -14,8 +14,13 @@ Rails.application.routes.draw do
     end
   end
   resources :users, only: [:show]
+  resources :chats, only: [:index]
+
   resources :bookings, only: %i[index show destroy edit update] do
     resources :ratings, only: %i[new create]
+    resources :chats, only: %i[show] do
+      resources :messages, only: :create
+    end
   end
 end
 

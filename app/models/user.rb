@@ -10,6 +10,8 @@ class User < ApplicationRecord
   has_many :user_tags
   has_many :tags, through: :user_tags
   has_many :ratings, through: :bookings
+  has_many :messages
+  has_many :chats, through: :messages
   has_one_attached :photo
 
   validates :email, :password, :first_name, :last_name,
