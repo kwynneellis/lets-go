@@ -1,16 +1,17 @@
 <%= simple_form_for([workout, booking, Rating.new]) do |f| %>
   <%= f.input :buddy_attended,
-              as: :radio_buttons,
-              item_wrapper_tag: false,
-              boolean_style: :inline,
-              label: "Did your buddy show up?" %>
+              as: :boolean,
+              :input_html => { :checked => true },
+              class: "justify-content-between",
+              label: "We worked out" %>
   <%= f.input :buddy_rating,
               as: :radio_buttons,
               collection: [[1, '⭐️'], [2, '⭐️⭐️'], [3, '⭐️⭐️⭐️'], [4, '⭐️⭐️⭐️⭐️'], [5, '⭐️⭐️⭐️⭐️⭐️']],
               label_method: :second,
               value_method: :first,
-              label: "How great was your buddy?" %>
+              label: "The #{workout.activity_type.downcase} was " %>
   <%= f.input :comment,
-              label: "More feedback (optional)" %>
-  <%= f.submit "Submit review", class: "button-design" %>
+              placeholder: "Keep up the great work...\nLet's go again sometime",
+              label: "Share some words of encouragement 🙌 " %>
+  <%= f.submit "Share", class: "button-design" %>
 <% end %>
