@@ -36,13 +36,14 @@ class WorkoutsController < ApplicationController
     # There is a listing class method to ensure that if search is nil, all Listings are displayed
     @workouts = Workout.where.missing(:bookings)
     if params[:query].present?
-      sql_query = <<~SQL
-        workouts.location ILIKE :query
-      SQL
-      # OR workouts.activity_type ILIKE :query
-      # OR workouts.intensity_level::text ILIKE :query
-      # OR users.first_name ILIKE :query
-      @workouts = Workout.joins(:user).where(sql_query, query: "%#{params[:query]}%")
+      # sql_query = <<~SQL
+      #   workouts.location ILIKE :query
+      #   OR workouts.activity_type ILIKE :query
+      #   OR workouts.intensity_level::text ILIKE :query
+      #   OR users.first_name ILIKE :query
+      # SQL
+      # @workouts = Workout.joins(:user).where(sql_query, query: "%#{params[:query]}%")
+      @workouts = @workouts.near(params[:query], 1)
       @search_copy = "Showing search results for: #{params[:query]}"
     end
     if params[:category].present?
