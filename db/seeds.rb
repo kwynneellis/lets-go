@@ -13,10 +13,12 @@ require "date"
 # Delete users, workouts. bookings
 puts "Destroying users, workouts, bookings, ratings."
 
-User.destroy_all
-Workout.destroy_all
-Booking.destroy_all
+Message.destroy_all
+Chat.destroy_all
 Rating.destroy_all
+Booking.destroy_all
+Workout.destroy_all
+User.destroy_all
 
 # Create users
 puts "Creating 10 Let's Go users:"
@@ -313,7 +315,7 @@ puts "Creating workouts for #{user6.username}."
 workout_five = Workout.create!(
   activity_type: 'Cycle',
   intensity_level: 4,
-  location: 'London Fields West Side, London E8 3EU',
+  location: 'London Fields, London E8 3EU',
   date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
   start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
   duration: 60,
@@ -417,7 +419,7 @@ puts "#{user7.username}: #{workout_nine.activity_type} created."
 workout_ten = Workout.create!(
   activity_type: 'Run',
   intensity_level: 4,
-  location: 'London Fields West Side, London E8 3EU',
+  location: 'London Fields, London E8 3EU',
   date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
   start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
   duration: 45,
@@ -488,14 +490,21 @@ booking_one = Booking.create!(
   workout_id: workout_one.id,
   booking_date: workout_one.date
 )
-puts "#{user2.username}: #{booking_one.booking_date}."
+puts "#{user2.username} booked: #{booking_one.booking_date}."
 
 booking_two = Booking.create!(
   user_id: user2.id,
   workout_id: workout_two.id,
   booking_date: workout_two.date
 )
-puts "#{user2.username}: #{booking_two.booking_date}."
+puts "#{user2.username} booked: #{booking_two.booking_date}."
+
+booking_three = Booking.create!(
+  user_id: user1.id,
+  workout_id: workout_three.id,
+  booking_date: workout_three.date
+)
+puts "#{user1.username} booked: #{booking_three.booking_date}."
 
 # TODO - Add more bookings
 
@@ -507,7 +516,8 @@ rating_one = Rating.create!(
   buddy_attended: true,
   buddy_rating: 4,
   comment: 'Best buddy on Earth!',
-  workout_host: false
+  workout_host: false,
+  user_id: user2.id,
 )
 puts "#{user1.username}: #{rating_one.comment}"
 
