@@ -18,7 +18,7 @@
         <% if @workout.has_a_booking? %>
           <h3>Joined by <%= @workout.name_of_buddy(current_user) %></h3>
         <% end %>
-      <% end %>
+    <% end %>
 
       <% unless @workout.is_host?(current_user) %>
         <h3>Hosted by <%= @workout.name_of_buddy(current_user) %></h3>
@@ -26,7 +26,6 @@
 
       <%= link_to "Chat", booking_chat_path(@workout.bookings.first.id, @workout.workout_chat.first.id) if @workout.has_a_booking? %>
 
-      <p><%= @workout.duration %> mins, <%= @workout.intensity_level %>/5 intensity</p>
       <% if !@workout.has_a_booking? && !@workout.is_host?(current_user) %>
         <%= render "bookings/form", workout: @workout, booking: @booking %>
       <% end %>
@@ -107,25 +106,25 @@
 
       <div class="d-flex flex-row justify-content-between">
         <div>
-          <h5>When: </h5>
+          <h5><i class="fa-solid fa-calendar text-primary"></i> </h5>
         </div>
-        <div class="flex-fill text-end">
+        <div class="flex-fill text-start">
           <p><%= @workout.date.strftime("%e %h %Y") %>, <%= @workout.start_time.strftime("%H:%M") %></p>
         </div>
       </div>
       <div class="d-flex flex-row justify-content-between">
         <div>
-          <h5>Duration: </h5>
+          <h5><i class="fa-solid fa-clock text-primary"></i> </h5>
         </div>
-        <div class="flex-fill text-end">
+        <div class="flex-fill text-start">
           <p><%= @workout.duration %> (mins)</p>
         </div>
       </div>
       <div class="d-flex flex-row justify-content-between">
         <div>
-          <h5>Where: </h5>
+          <h5><i class="fa-solid fa-map-pin text-primary"></i> </h5>
         </div>
-        <div class="flex-fill text-end">
+        <div class="flex-fill text-start">
           <p><%= @workout.location%></p>
         </div>
       </div>
@@ -143,7 +142,7 @@
         <%= link_to user_path(@workout.buddy(current_user)), style: "color: #2C302E; text-decoration: none;" do %>
           <div class="d-flex flex-row justify-content-between">
             <div class="flex-fill pe-1">
-              <h4>Meet <%= @workout.name_of_buddy(current_user) %> >></h4>
+              <h4>Meet <%= @workout.name_of_buddy(current_user) %></h4>
               <p><%= @workout.name_of_buddy(current_user) %> joined <span style="color: $fern-green">Let's Go</span> in <%= @user.created_at.strftime("%b %y") %><br>
               A little about them: <%= @workout.buddy(current_user).about_me.truncate(30) %></p>
             </div>
@@ -174,7 +173,7 @@
       <%= link_to user_path(@user), style: "color: #2C302E; text-decoration: none;" do %>
         <div class="d-flex flex-row justify-content-between">
           <div class="flex-fill">
-            <h4>Check out <%= @workout.user.first_name.capitalize %>'s profile >></h4>
+            <h4>Check out <%= @workout.user.first_name.capitalize %>'s profile</h4>
             <p><%= @workout.user.first_name.capitalize %> joined <span style="color: $fern-green">Let's Go</span> in <%= @user.created_at.strftime("%b %y") %><br>
             A little about them: <%= @workout.user.about_me.truncate(30) %></p>
           </div>
