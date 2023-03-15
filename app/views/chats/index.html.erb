@@ -14,20 +14,24 @@
           </div>
           <div class="ps-2">
             <div class="d-flex flex-row">
-              <div class="p-2">
+              <div>
                 <% if chat.booking.user.id == current_user.id %>
                   <h6><%= chat.booking.workout.user.username %></h6>
                 <% else %>
                   <h6><%= chat.booking.user.username %></h6>
                 <% end %>
               </div>
-              <div class="p-2"><%= chat.booking.workout.activity_type %> </div>
-              <div class="p-2"><%= chat.booking.workout.date.strftime("%e %h %Y") %> </div>
+              <div class="px-2">
+                <h6><%= chat.booking.workout.activity_type %></h6>
+              </div>
             </div>
 
-              <div>
-                <em><%= chat.messages.any? ? chat.messages.last.content : "Say hi!" %></em>
-              </div>
+            <p><%= chat.booking.workout.date.strftime("%e %h %Y") %></p>
+
+            <div>
+              <em><%= chat.messages.any? ? chat.messages.last.content : "Say hi!" %></em>
+            </div>
+
           </div>
         </div>
       <% end %>
