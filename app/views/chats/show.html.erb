@@ -1,6 +1,14 @@
+<% provide(:title, "Messages") %>
+
 <div class="banner-my-workouts"
   style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @chat.booking.workout.photo.key, crop: :fill %>')"
 >
+
+<div class="chat"
+    data-controller="chat-subscription"
+    data-chat-subscription-chat-id-value="<%= @chat.id %>"
+    data-chat-subscription-current-user-id-value="<%= current_user.id %>"
+
   <div class="back-button">
     <%= link_to chats_path do %>
       <div>
