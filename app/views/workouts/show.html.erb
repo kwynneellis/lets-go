@@ -71,11 +71,14 @@
         </div>
       <% end %>
       <% if @workout.has_a_rating? %>
-        <% @workout.bookings.first.ratings.each do |rating| %>
-          <div class="container-yellow">
-            <p><%= rating.buddy_rating %> star rating</p>
-            <p><%= rating.comment %></p>
-          </div>
+        <% @workout.ratings.each do |rating| %>
+          <div class="container-content text-center">
+            <p><% rating.buddy_rating.times do %>
+              <%= '⭐️' %>
+            <% end %><br>
+            <%= rating.comment %><br></p>
+            <h6><%= rating.user.first_name %></h6>
+        </div>
         <% end %>
       <% end %>
     </div>
