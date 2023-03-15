@@ -64,14 +64,16 @@
               <%= link_to workout_path(workout), class: "text-decoration-none" do %>
                 <%= cl_image_tag workout.photo.key %>
                 <div class="card-workout-infos">
-                  <div>
+                  <div style="width: 80%">
                     <h2><%= workout.activity_type %></h2>
-                    <p>Date: <%= workout.date.strftime("%e %h %Y") %></p>
-                    <%# <p>Time: <%= workout.time %>
-                    <p>Location: <%= workout.location %></p>
-                    <p>Intensity: <%= workout.intensity_level %></p>
+                    <p><% workout.intensity_level.times do %>
+                      <%= '💪' %>
+                    <% end %></p>
+                    <p><i class="fa-solid fa-calendar text-primary"></i> <%= workout.start_time.strftime("%H:%M") %> <%= workout.date.strftime("%e %h %Y") %></p>
+                    <p><i class="fa-solid fa-map-pin text-primary"></i> <%= workout.location %></p>
+
                   </div>
-                  <p>Duration: <%= workout.duration %> mins</p>
+                  <p class="duration-pill-box"><%= workout.duration %> mins</p>
                   <%= cl_image_tag workout.user.photo.key, class: "card-workout-user card-avatar" %>
                 </div>
               <% end %>
