@@ -29,7 +29,7 @@
       </div>
     <% end %>
   </div>
-  <div class="m-0">
+  <div class="m-2 p-2">
     <%= simple_form_for [@booking, @chat, @message],
           html: {class: "d-flex m-0 p-2",
           data: { action: "turbo:submit-end->chat-subscription#resetForm" }
