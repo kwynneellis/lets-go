@@ -267,7 +267,7 @@ user12.save!
 puts "#{user12.username} created."
 
 # Create workouts
-puts "Creating 20 Let's Go workouts:"
+puts "Creating 21 Let's Go workouts:"
 
 puts "Creating workouts for #{user1.username}."
 
@@ -316,7 +316,7 @@ puts "Creating workouts for #{user5.username}."
 workout_three = Workout.create!(
   activity_type: 'Yoga Class',
   intensity_level: 2,
-  location: 'TriYoga, 10 Cygnet Street, London E1 6GW',
+  location: '10 Cygnet Street, London E1 6GW',
   date: '2023-03-14',
   start_time: '23/03/14 08:00',
   duration: 50,
@@ -548,7 +548,7 @@ puts "#{user3.username} created #{workout_thirteen.activity_type}."
 workout_fourteen = Workout.create!(
   activity_type: 'Strength',
   intensity_level: 5,
-  location: 'Pure Gym Shoreditch, 8 Bacon Street, London E1 6LF',
+  location: '8 Bacon Street, London E1 6LF',
   date: '2023-03-04',
   start_time: '23/03/04 12:00',
   duration: 60,
@@ -568,7 +568,7 @@ puts "#{user3.username} created #{workout_fourteen.activity_type}."
 workout_fifteen = Workout.create!(
   activity_type: 'Cycle',
   intensity_level: 3,
-  location: 'Fitness First, 7 Frying Pan Alley, London E1 7HS',
+  location: '7 Frying Pan Alley, London E1 7HS',
   date: '2023-03-12',
   start_time: '23/03/12 15:00',
   duration: 60,
@@ -713,7 +713,7 @@ puts "#{user12.username} created #{workout_twenty_one.activity_type}."
 
 #  Create bookings
 
-puts "Creating bookings."
+puts "Creating bookings:"
 
 booking_one = Booking.create!(
   user_id: user3.id,
@@ -744,7 +744,7 @@ booking_four = Booking.create!(
 puts "#{user12.username} booked: #{workout_fifteen.activity_type} on #{booking_four.booking_date}."
 
 # Create ratings
-puts "Creating ratings for #{user3.username}."
+puts "Creating ratings:"
 
 rating_one = Rating.create!(
   booking_id: booking_three.id,
