@@ -10,10 +10,10 @@ class ChatsController < ApplicationController
 
     @all_chats = @my_workouts_chats.or(@my_bookings_chats)
     @chats_with_messages = @all_chats.joins(:messages).distinct
-    @chats_ordered_by_messages = @chats_with_messages.includes(:messages).order("messages.created_at DESC")
+    @chats_ordered_by_messages = @chats_with_messages.includes(:messages).order("messages.updated_at DESC")
     @chats_without_messages = @all_chats.where.missing(:messages)
 
-    @all_ordered_chats = @chats_without_messages + @chats_ordered_by_messages
+    @all_ordered_chats = @chats_ordered_by_messages + @chats_without_messages
   end
 
   def show
