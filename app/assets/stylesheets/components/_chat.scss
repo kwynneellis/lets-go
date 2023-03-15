@@ -1,7 +1,7 @@
 .chat {
   background: white;
   margin: 12px;
-  height: calc(100vh - 75px);
+  height: 75vh;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -17,7 +17,7 @@
   .messages {
     height: 100%;
     overflow: scroll;
-    padding: 1rem;
+    padding-top: 4px;
   }
 
   #new_message {
