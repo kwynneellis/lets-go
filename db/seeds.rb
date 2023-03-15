@@ -108,16 +108,16 @@ puts "#{user4.username} created."
 
 user5 = User.create!(
   first_name: 'Sandra',
-  last_name: Faker::Name.last_name,
+  last_name: 'Thompson',
   username: 'sleepy_sandra',
   email: 'sandra@test.com',
   password: '123456',
-  date_of_birth: Faker::Date.between(from: '1975-03-06', to: '2005-03-06'),
-  about_me: 'Looking for a fitness buddy in the local area',
-  fitness_goal: Faker::Movie.quote,
-  fitness_level: rand(1..5),
-  attendance: rand(1..100),
-  avg_rating: rand(1..5),
+  date_of_birth: '1984-05-20',
+  about_me: '38-year-old database manager.',
+  fitness_goal: 'To feel more energised and to become more flexible.',
+  fitness_level: 3,
+  attendance: 75,
+  avg_rating: 4,
 )
 
 user5_photo_file = URI.open("https://cdn.vanguardngr.com/wp-content/uploads/2017/02/sleep11.png")
@@ -128,16 +128,16 @@ puts "#{user5.username} created."
 
 user6 = User.create!(
   first_name: 'Damon',
-  last_name: Faker::Name.last_name,
+  last_name: 'Dalton',
   username: 'drowsy_damon',
   email: 'damon@test.com',
   password: '123456',
-  date_of_birth: Faker::Date.between(from: '1975-03-06', to: '2005-03-06'),
-  about_me: 'Looking for a fitness buddy in the local area',
-  fitness_goal: Faker::Movie.quote,
-  fitness_level: rand(1..5),
-  attendance: rand(1..100),
-  avg_rating: rand(1..5),
+  date_of_birth: '1986-08-18',
+  about_me: '36-year-old television director.',
+  fitness_goal: 'To train for an upcoming cross-fit competition.',
+  fitness_level: 5,
+  attendance: 75,
+  avg_rating: 4,
 )
 
 user6_photo_file = URI.open("https://media.gq-magazine.co.uk/photos/5e6902a155ca550008940db8/master/pass/20200311-Sleep")
@@ -148,16 +148,16 @@ puts "#{user6.username} created."
 
 user7 = User.create!(
   first_name: 'Maya',
-  last_name: Faker::Name.last_name,
+  last_name: 'Moodie',
   username: 'moderate_maya',
   email: 'maya@test.com',
   password: '123456',
-  date_of_birth: Faker::Date.between(from: '1975-03-06', to: '2005-03-06'),
-  about_me: 'Looking for a fitness buddy in the local area',
-  fitness_goal: Faker::Movie.quote,
-  fitness_level: rand(1..5),
-  attendance: rand(1..100),
-  avg_rating: rand(1..5),
+  date_of_birth: '1989-02-08',
+  about_me: '34-year-old journalist, living in Richmond with my sausage dog Dora.',
+  fitness_goal: 'To get fit for a holiday in France.',
+  fitness_level: 3,
+  attendance: 80,
+  avg_rating: 4,
 )
 
 user7_photo_file = URI.open("https://media.istockphoto.com/id/1217692711/photo/portrait-of-bored-lazy-upset-girl-with-brunette-hair-leaning-on-hand-and-looking-with-gloomy.jpg?s=612x612&w=0&k=20&c=gVtK9b3PcORY5xwH6m3F-9Okj_HiRycMw_fbRkGegp4=")
@@ -316,7 +316,7 @@ puts "Creating workouts for #{user5.username}."
 workout_three = Workout.create!(
   activity_type: 'Yoga Class',
   intensity_level: 2,
-  location: 'Held, Hoxton, London N1 6PB',
+  location: 'TriYoga, 10 Cygnet Street, London E1 6GW',
   date: '2023-03-14',
   start_time: '23/03/14 08:00',
   duration: 50,
@@ -358,7 +358,7 @@ puts "Creating workouts for #{user6.username}."
 workout_five = Workout.create!(
   activity_type: 'Cycle',
   intensity_level: 4,
-  location: 'Burgess Park, London SE5 0AL',
+  location: 'Burgess Park, Cobourg Road, London SE5 0JD',
   date: '2023-03-28',
   start_time: '23/03/28 13:00',
   duration: 45,
@@ -400,7 +400,7 @@ puts "Creating workouts for #{user9.username}."
 workout_seven = Workout.create!(
   activity_type: 'Pilates Class',
   intensity_level: 2,
-  location: 'One Life Studio, London N16 0JT',
+  location: '19-20 Barn St, London N16 0JT',
   date: '2023-03-30',
   start_time: '23/04/05 17:00',
   duration: 50,
@@ -471,7 +471,7 @@ workout_ten = Workout.create!(
   user_id: user7.id
 )
 
-workout_photo_file_ten = URI.open("https://media.istockphoto.com/id/604370074/photo/young-fitness-woman-runner-running-on-sunrise-seaside-trail.jpg?s=612x612&w=0&k=20&c=P0T5W3su9k6ERaViMwQIXrat47BX_TMJ3d-XkDXPLzo=")
+workout_photo_file_ten = URI.open("https://mybestruns.com/street/55573b096687311d76f7fb2f757ad0d544d5840dc262f1e42ff3737a1b0467bf.jpg?i=9881&t=1676647606")
 workout_ten.photo.attach(io: workout_photo_file_ten, filename: "#{workout_photo_file_ten}.jpg", content_type: "image/jpg")
 if !workout_ten.save!
   puts "workout_ten failed"
@@ -597,7 +597,7 @@ workout_sixteen = Workout.create!(
   user_id: user3.id
 )
 
-workout_photo_file_sixteen = URI.open("https://gymplus.ie/wp-content/uploads/2023/01/Recipe-Inside-Image-12.png")
+workout_photo_file_sixteen = URI.open("https://marathonhandbook.com/wp-content/uploads/2022/10/How-Long-Does-It-Take-to-Run-2-Miles.jpg")
 workout_sixteen.photo.attach(io: workout_photo_file_sixteen, filename: "#{workout_photo_file_sixteen}.jpg", content_type: "image/jpg")
 if !workout_sixteen.save!
   puts "workout_sixteen failed"
@@ -608,11 +608,11 @@ puts "#{user3.username} created #{workout_sixteen.activity_type}."
 workout_seventeen = Workout.create!(
   activity_type: 'Run',
   intensity_level: 2,
-  location: 'Victoria Park, London E3 5TB',
+  location: 'Victoria Park, London E2 9JA',
   date: '2023-03-23',
   start_time: '23/03/23 09:00',
   duration: 30,
-  description: 'Join me for a gentle run around London Fields.',
+  description: 'Join me for a gentle run around Victoria Park.',
   capacity: 2,
   user_id: user3.id
 )
