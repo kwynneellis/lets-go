@@ -713,39 +713,35 @@ puts "#{user12.username} created #{workout_twenty_one.activity_type}."
 
 #  Create bookings
 
-puts "Creating bookings for #{user3.username}."
+puts "Creating bookings."
 
 booking_one = Booking.create!(
   user_id: user3.id,
   workout_id: workout_three.id,
   booking_date: workout_three.date
 )
-puts "#{user3.username} booked: #{workout_three.activity_type}."
-
-puts "Creating bookings for #{user9.username}."
+puts "#{user3.username} booked: #{workout_three.activity_type} on #{booking_one.booking_date}."
 
 booking_two = Booking.create!(
   user_id: user9.id,
   workout_id: workout_fourteen.id,
   booking_date: workout_fourteen.date
 )
-puts "#{user9.username} booked: #{workout_fourteen.activity_type}."
+puts "#{user9.username} booked: #{workout_fourteen.activity_type} on #{booking_two.booking_date}."
 
 booking_three = Booking.create!(
   user_id: user11.id,
   workout_id: workout_thirteen.id,
   booking_date: workout_thirteen.date
 )
-puts "#{user11.username} booked: #{workout_thirteen.activity_type}."
+puts "#{user11.username} booked: #{workout_thirteen.activity_type} on #{booking_three.booking_date}."
 
 booking_four = Booking.create!(
   user_id: user12.id,
   workout_id: workout_fifteen.id,
   booking_date: workout_fifteen.date
 )
-puts "#{user12.username} booked: #{workout_fifteen.activity_type}."
-
-# TODO - Add more bookings
+puts "#{user12.username} booked: #{workout_fifteen.activity_type} on #{booking_four.booking_date}."
 
 # Create ratings
 puts "Creating ratings for #{user3.username}."
@@ -772,4 +768,4 @@ puts "#{user12.username} rated #{user3.username}: #{rating_two.comment}"
 
 # TODO - Add more ratings
 
-puts "Finished!"
+puts "Finished! Let's Go!"
