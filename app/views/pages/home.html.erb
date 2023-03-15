@@ -1,22 +1,18 @@
-<div class="banner-home hero-container" style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(https://cdn.create.vista.com/api/media/medium/167048250/stock-photo-high-five?token=); background-size: cover; background-position: 30%;">
+<div class="banner-home hero-container" style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(<%= asset_path "Lets_Go_homepage2.png" %>); background-size: cover; background-position: 40%;">
   <link href='https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato&display=swap' rel='stylesheet' type='text/css'>
   <div class="d-flex flex-column">
-    <div class="hero-container-text" class="animate fadeInLeft">
-      <%= image_tag "Logo-green", class: "hero-logo-image", class: "animate fadeInLeft"%>
-      <h4 class="animate fadeInLeft">Together stronger</h4>
-      <br>
+    <div class="hero-container-text animate fadeInLeft">
+      <%= image_tag "Logo-white.gif", class: "hero-logo-image" %>
+      <h4>Together stronger</h4>
     </div>
     <div>
-
-      <br>
-      <br>
-      <br>
       <p class="animate fadeIn delay">Let's Go helps you find a local workout buddy to motivate you to achieve your fitness goals, no matter what stage of your exercise journey you are at.</p>
     </div>
-      <br>
-      <br>
     <div>
       <%= link_to "Let's Go", workouts_path, class: "btn button-design animate fadeIn delay-long" %>
+    </div>
+    <div class="home-down-arrow">
+        👇
     </div>
   </div>
 </div>
