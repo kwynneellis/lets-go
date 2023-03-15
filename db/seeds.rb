@@ -21,7 +21,7 @@ Workout.destroy_all
 User.destroy_all
 
 # Create users
-puts "Creating 10 Let's Go users:"
+puts "Creating 12 Let's Go users:"
 
 user1 = User.create!(
   first_name: 'Sarah',
@@ -33,7 +33,7 @@ user1 = User.create!(
   about_me: '35-year-old software engineer spending too many hours sat in a chair.
   Looking for a fitness buddy in the local area to workout with for runs, brisk walks,
   yoga sessions, and swimming.',
-  fitness_goal: 'Consistency - to work out 10 days in one month.',
+  fitness_goal: 'To work out more consistently and commit to 10 buddy workouts per month.',
   fitness_level: 3,
   attendance: 100,
   avg_rating: 5,
@@ -67,20 +67,20 @@ user2.save!
 puts "#{user2.username} created."
 
 user3 = User.create!(
-  first_name: 'Lucy',
-  last_name: Faker::Name.last_name,
-  username: 'lethargic_lucy',
-  email: 'lucy@test.com',
+  first_name: 'Kat',
+  last_name: 'Wynne-Ellis',
+  username: 'comatose_kat',
+  email: 'kat@test.com',
   password: '123456',
-  date_of_birth: Faker::Date.between(from: '1975-03-06', to: '2005-03-06'),
-  about_me: 'Looking for a fitness buddy in the local area',
-  fitness_goal: Faker::Movie.quote,
-  fitness_level: rand(1..5),
-  attendance: rand(1..100),
-  avg_rating: rand(1..5),
+  date_of_birth: '1989-04-17',
+  about_me: '33-year old cross-fit fanatic.',
+  fitness_goal: 'To do more and more cross-fit and become less comatose.',
+  fitness_level: 5,
+  attendance: 100,
+  avg_rating: 5,
 )
 
-user3_photo_file = URI.open("https://media.istockphoto.com/id/1028394762/photo/woman-eating-pizza-image-taken-from-above.jpg?s=612x612&w=0&k=20&c=bmbNfNtLf22xd9Ecjk7Kr89DSkvtrGiSnsCcizrYBy0=")
+user3_photo_file = URI.open("https://ca.slack-edge.com/T02NE0241-U04JHKF45MM-0d08fe2ae67d-512")
 user3.photo.attach(io: user3_photo_file, filename: "#{user3_photo_file}.png", content_type: "image/png")
 user3.save!
 
@@ -88,19 +88,19 @@ puts "#{user3.username} created."
 
 user4 = User.create!(
   first_name: 'Anthony',
-  last_name: Faker::Name.last_name,
+  last_name: 'Deadman',
   username: 'apathetic_anthony',
   email: 'anthony@test.com',
   password: '123456',
-  date_of_birth: Faker::Date.between(from: '1975-03-06', to: '2005-03-06'),
-  about_me: 'Looking for a fitness buddy in the local area',
-  fitness_goal: Faker::Movie.quote,
-  fitness_level: rand(1..5),
-  attendance: rand(1..100),
-  avg_rating: rand(1..5),
+  date_of_birth: '1997-04-03',
+  about_me: '25-year old software engineer, loves to eat all the pastries.',
+  fitness_goal: 'To balance out the pastry eating by getting super fit.',
+  fitness_level: 1,
+  attendance: 0,
+  avg_rating: 0,
 )
 
-user4_photo_file = URI.open("https://wp-media.patheos.com/blogs/sites/507/2015/10/lazy-man-on-couch.jpeg")
+user4_photo_file = URI.open("https://ca.slack-edge.com/T02NE0241-U04KB42E0RX-00801b481bde-512")
 user4.photo.attach(io: user4_photo_file, filename: "#{user4_photo_file}.jpg", content_type: "image/png")
 user4.save!
 
@@ -188,7 +188,7 @@ puts "#{user8.username} created."
 
 user9 = User.create!(
   first_name: 'Doris',
-  last_name: Faker::Name.last_name,
+  last_name: 'Faker::Name.last_name',
   username: 'dormant_doris',
   email: 'doris@test.com',
   password: '123456',
@@ -226,15 +226,57 @@ user10.save!
 
 puts "#{user10.username} created."
 
+user11 = User.create!(
+  first_name: 'Rachel',
+  last_name: 'Jones',
+  username: 'reluctant_rachel',
+  email: 'rachel@test.com',
+  password: '123456',
+  date_of_birth: '1988-11-19',
+  about_me: '34-year old software engineer looking to get fit.',
+  fitness_goal: 'To commit to two buddy workout sessions a week.',
+  fitness_level: 2,
+  attendance: 100,
+  avg_rating: 5,
+)
+
+user11_photo_file = URI.open("https://ca.slack-edge.com/T02NE0241-U04JX48AECD-12bfbc4a382a-512")
+user11.photo.attach(io: user11_photo_file, filename: "#{user11_photo_file}.jpg", content_type: "image/jpg")
+user11.save!
+
+puts "#{user11.username} created."
+
+user12 = User.create!(
+  first_name: 'Becky',
+  last_name: 'Lomax',
+  username: 'bone_idle_becky',
+  email: 'becky@test.com',
+  password: '123456',
+  date_of_birth: '1979-08-15',
+  about_me: '43-year old software engineer looking to get fit.',
+  fitness_goal: 'To commit to two buddy workout sessions a week.',
+  fitness_level: 3,
+  attendance: 100,
+  avg_rating: 5,
+)
+
+user12_photo_file = URI.open("https://ca.slack-edge.com/T02NE0241-U04K81P8R4Z-7acb4b5d03cd-512")
+user12.photo.attach(io: user12_photo_file, filename: "#{user12_photo_file}.jpg", content_type: "image/jpg")
+user12.save!
+
+puts "#{user12.username} created."
+
 # Create workouts
+puts "Creating 20 Let's Go workouts:"
+
 puts "Creating workouts for #{user1.username}."
 
 workout_one = Workout.create!(
   activity_type: 'Walk',
   intensity_level: 2,
   location: 'Shoreditch Park, London N1 6TA',
-  date: Faker::Date.between(from: '2023-03-10', to: '2023-03-13'),
-  start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
+  date: '2023-03-25',
+  start_time: '23/03/25 10:00',
   duration: 60,
   description: 'Planning a brisk walk around Victoria Park.',
   capacity: 2,
@@ -244,17 +286,17 @@ workout_one = Workout.create!(
 workout_photo_file_one = URI.open("https://globalsportmatters.com/wp-content/uploads/2019/08/Walking.jpg")
 workout_one.photo.attach(io: workout_photo_file_one, filename: "#{workout_photo_file_one}.jpg", content_type: "image/jpg")
 if !workout_one.save!
-  puts "workout one failed"
+  puts "workout_one failed"
 end
 
-puts "#{user1.username}: #{workout_one.activity_type} created."
+puts "#{user1.username} created #{workout_one.activity_type}."
 
 workout_two = Workout.create!(
   activity_type: 'Run',
   intensity_level: 5,
   location: '283 Kingsland Road, London E2 8AS',
-  date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
-  start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
+  date: '2023-04-11',
+  start_time: '23/04/11 19:00',
   duration: 30,
   description: 'An interval run along a lovely stretch of Regents Canal.',
   capacity: 2,
@@ -267,7 +309,7 @@ if !workout_two.save!
   puts "workout_two failed"
 end
 
-puts "#{user1.username}: #{workout_two.activity_type} created."
+puts "#{user1.username} created #{workout_two.activity_type}."
 
 puts "Creating workouts for #{user5.username}."
 
@@ -275,7 +317,7 @@ workout_three = Workout.create!(
   activity_type: 'Yoga Class',
   intensity_level: 2,
   location: '42 Hoxton Square, London N1 6PB',
-  date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
+  date: Faker::Date.between(from: '2023-03-18', to: '2023-06-18'),
   start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
   duration: 50,
   description: 'Join me for a beginners yoga class.',
@@ -289,13 +331,13 @@ if !workout_three.save!
   puts "workout_three failed"
 end
 
-puts "#{user5.username}: #{workout_three.activity_type} created."
+puts "#{user5.username} created #{workout_three.activity_type}."
 
 workout_four = Workout.create!(
   activity_type: 'Tennis',
   intensity_level: 4,
   location: 'London Fields Tennis Courts, London E8 3QN',
-  date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
+  date: Faker::Date.between(from: '2023-03-18', to: '2023-06-18'),
   start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
   duration: 60,
   description: 'Join me for a tennis session. Underarm serves only!',
@@ -309,7 +351,7 @@ if !workout_four.save!
   puts "workout_four failed"
 end
 
-puts "#{user5.username}: #{workout_four.activity_type} created."
+puts "#{user5.username} created #{workout_four.activity_type}."
 
 puts "Creating workouts for #{user6.username}."
 
@@ -317,7 +359,7 @@ workout_five = Workout.create!(
   activity_type: 'Cycle',
   intensity_level: 4,
   location: 'London Fields, London E8 3EU',
-  date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
+  date: Faker::Date.between(from: '2023-03-18', to: '2023-06-18'),
   start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
   duration: 60,
   description: 'Join me for a cycle ride.',
@@ -331,13 +373,13 @@ if !workout_five.save!
   puts "workout_five failed"
 end
 
-puts "#{user6.username}: #{workout_five.activity_type} created."
+puts "#{user6.username} created #{workout_five.activity_type}."
 
 workout_six = Workout.create!(
   activity_type: 'Swim',
   intensity_level: 4,
   location: 'Britannia Leisure Centre, London N1 5FT',
-  date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
+  date: Faker::Date.between(from: '2023-03-18', to: '2023-06-18'),
   start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
   duration: 60,
   description: 'Join me for a swim - planning to do 30 lengths',
@@ -351,7 +393,7 @@ if !workout_six.save!
   puts "workout_six failed"
 end
 
-puts "#{user6.username}: #{workout_six.activity_type} created."
+puts "#{user6.username} created #{workout_six.activity_type}."
 
 puts "Creating workouts for #{user9.username}."
 
@@ -359,7 +401,7 @@ workout_seven = Workout.create!(
   activity_type: 'Pilates Class',
   intensity_level: 2,
   location: 'Hoxton',
-  date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
+  date: Faker::Date.between(from: '2023-03-18', to: '2023-06-18'),
   start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
   duration: 50,
   description: 'Join me for a pilates class.',
@@ -373,13 +415,13 @@ if !workout_seven.save!
   puts "workout_seven failed"
 end
 
-puts "#{user9.username}: #{workout_seven.activity_type} created."
+puts "#{user9.username} created #{workout_seven.activity_type}."
 
 workout_eight = Workout.create!(
   activity_type: 'Park Workout',
   intensity_level: 2,
   location: 'Haggerston Park, London E2 8NH',
-  date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
+  date: Faker::Date.between(from: '2023-03-18', to: '2023-06-18'),
   start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
   duration: 30,
   description: 'Join me for a gentle park workout.',
@@ -393,7 +435,7 @@ if !workout_eight.save!
   puts "workout_eight failed"
 end
 
-puts "#{user9.username}: #{workout_eight.activity_type} created."
+puts "#{user9.username} created #{workout_eight.activity_type}."
 
 puts "Creating workouts for #{user7.username}."
 
@@ -401,7 +443,7 @@ workout_nine = Workout.create!(
   activity_type: 'Strength',
   intensity_level: 4,
   location: '2-4 Rufus St, London N1 6PE',
-  date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
+  date: Faker::Date.between(from: '2023-03-18', to: '2023-06-18'),
   start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
   duration: 45,
   description: 'Join me for a boxing class.',
@@ -415,13 +457,13 @@ if !workout_nine.save!
   puts "workout_nine failed"
 end
 
-puts "#{user7.username}: #{workout_nine.activity_type} created."
+puts "#{user7.username} created #{workout_nine.activity_type}."
 
 workout_ten = Workout.create!(
   activity_type: 'Run',
   intensity_level: 4,
   location: 'London Fields, London E8 3EU',
-  date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
+  date: Faker::Date.between(from: '2023-03-18', to: '2023-06-18'),
   start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
   duration: 45,
   description: 'Join me for a HIIT run in London Fields.',
@@ -429,13 +471,13 @@ workout_ten = Workout.create!(
   user_id: user7.id
 )
 
-workout_photo_file_ten = URI.open("https://hips.hearstapps.com/hmg-prod/images/4-interval-training-sessions-for-runners-1657810907.jpg")
+workout_photo_file_ten = URI.open("https://media.istockphoto.com/id/604370074/photo/young-fitness-woman-runner-running-on-sunrise-seaside-trail.jpg?s=612x612&w=0&k=20&c=P0T5W3su9k6ERaViMwQIXrat47BX_TMJ3d-XkDXPLzo=")
 workout_ten.photo.attach(io: workout_photo_file_ten, filename: "#{workout_photo_file_ten}.jpg", content_type: "image/jpg")
 if !workout_ten.save!
   puts "workout_ten failed"
 end
 
-puts "#{user7.username}: #{workout_ten.activity_type} created."
+puts "#{user7.username} created #{workout_ten.activity_type}."
 
 puts "Creating workouts for #{user8.username}."
 
@@ -443,7 +485,7 @@ workout_eleven = Workout.create!(
   activity_type: 'Yoga Class',
   intensity_level: 2,
   location: '42 Hoxton Square, London N1 6PB',
-  date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
+  date: Faker::Date.between(from: '2023-03-18', to: '2023-06-18'),
   start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
   duration: 45,
   description: 'Join me for a vinyasa yoga session.',
@@ -451,13 +493,13 @@ workout_eleven = Workout.create!(
   user_id: user8.id
 )
 
-workout_photo_file_eleven = URI.open("https://i.insider.com/616729ff38c19600182fb536?width=700")
+workout_photo_file_eleven = URI.open("https://hips.hearstapps.com/hmg-prod/images/young-sporty-black-man-in-plank-pose-royalty-free-image-922344970-1534365835.jpg")
 workout_eleven.photo.attach(io: workout_photo_file_eleven, filename: "#{workout_photo_file_eleven}.jpg", content_type: "image/jpg")
 if !workout_eleven.save!
   puts "workout_eleven failed"
 end
 
-puts "#{user8.username}: #{workout_eleven.activity_type} created."
+puts "#{user8.username} created #{workout_eleven.activity_type}."
 
 puts "Creating workouts for #{user8.username}."
 
@@ -465,7 +507,7 @@ workout_twelve = Workout.create!(
   activity_type: 'Strength',
   intensity_level: 5,
   location: '2-4 Rufus St, London N1 6PE',
-  date: Faker::Date.between(from: '2023-03-18', to: '2023-08-18'),
+  date: Faker::Date.between(from: '2023-03-18', to: '2023-06-18'),
   start_time: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
   duration: 45,
   description: 'Join me for an high energy strength session.',
@@ -473,83 +515,219 @@ workout_twelve = Workout.create!(
   user_id: user8.id
 )
 
-workout_photo_file_twelve = URI.open("https://lafayettefamilyymca.org/wp-content/uploads/2022/03/88366919_m-1-1024x683.jpg")
+workout_photo_file_twelve = URI.open("https://blackhealthmatters.com/wp-content/uploads/2019/01/Hit-the-Weight-Room.jpg")
 workout_twelve.photo.attach(io: workout_photo_file_twelve, filename: "#{workout_photo_file_twelve}.jpg", content_type: "image/jpg")
 if !workout_twelve.save!
   puts "workout_twelve failed"
 end
 
-puts "#{user8.username}: #{workout_twelve.activity_type} created."
+puts "#{user8.username} created #{workout_twelve.activity_type}."
+
+puts "Creating workouts for #{user3.username}."
+
+workout_thirteen = Workout.create!(
+  activity_type: 'Workout Class',
+  intensity_level: 5,
+  location: 'Amica, 89A Rivington Street, London EC2A 3AY',
+  date: '2023-03-11',
+  start_time: '23/03/11 09:00',
+  duration: 60,
+  description: 'Join me for an intense cross-fit session at Amica Cross Fit Shoreditch.',
+  capacity: 2,
+  user_id: user3.id
+)
+
+workout_photo_file_thirteen = URI.open("https://www.wellandgood.com/wp-content/uploads/2018/11/Stocksy-crossfit-friends-BONNINSTUDIO.jpg")
+workout_thirteen.photo.attach(io: workout_photo_file_thirteen, filename: "#{workout_photo_file_thirteen}.jpg", content_type: "image/jpg")
+if !workout_thirteen.save!
+  puts "workout_thirteen failed"
+end
+
+puts "#{user3.username} created #{workout_thirteen.activity_type}."
+
+workout_fourteen = Workout.create!(
+  activity_type: 'Strength',
+  intensity_level: 5,
+  location: 'Pure Gym Shoreditch, 8 Bacon Street, London E1 6LF',
+  date: '2023-03-04',
+  start_time: '23/03/04 12:00',
+  duration: 60,
+  description: 'Join me for a strength session at Pure Gym Shoreditch.',
+  capacity: 2,
+  user_id: user3.id
+)
+
+workout_photo_file_fourteen = URI.open("https://media1.popsugar-assets.com/files/thumbor/etJR77cn5FUYQGi8nCiZE-HM_T4/fit-in/1024x1024/filters:format_auto-!!-:strip_icc-!!-/2019/06/14/012/n/1922729/a7c150cf5d042b2a7a44b9.08049726_/i/Full-Body-Workout-Partners.jpg")
+workout_fourteen.photo.attach(io: workout_photo_file_fourteen, filename: "#{workout_photo_file_fourteen}.jpg", content_type: "image/jpg")
+if !workout_fourteen.save!
+  puts "workout_fourteen failed"
+end
+
+puts "#{user3.username} created #{workout_fourteen.activity_type}."
+
+workout_fifteen = Workout.create!(
+  activity_type: 'Cycle',
+  intensity_level: 3,
+  location: 'Pure Gym Shoreditch, 8 Bacon Street, London E1 6LF',
+  date: '2023-03-12',
+  start_time: '23/03/12 15:00',
+  duration: 60,
+  description: 'Join me for a high energy spin session at Pure Gym Shoreditch.',
+  capacity: 2,
+  user_id: user3.id
+)
+
+workout_photo_file_fifteen = URI.open("https://media.istockphoto.com/id/1134717663/photo/attractive-woman-and-handsome-man-doing-exercising-on-cycling-bikes.jpg?s=612x612&w=0&k=20&c=FUaIkj3HNWGpUknUMIe84OnYWkfqvymtsPH_wK2kG-Y=")
+workout_fifteen.photo.attach(io: workout_photo_file_fifteen, filename: "#{workout_photo_file_fifteen}.jpg", content_type: "image/jpg")
+if !workout_fifteen.save!
+  puts "workout_fifteen failed"
+end
+
+puts "#{user3.username} created #{workout_fifteen.activity_type}."
+
+workout_sixteen = Workout.create!(
+  activity_type: 'Run',
+  intensity_level: 3,
+  location: 'Homerton High Street, London',
+  date: '2023-03-09',
+  start_time: '23/03/09 19:00',
+  duration: 60,
+  description: 'Join me for an interval run around Homerton.',
+  capacity: 2,
+  user_id: user3.id
+)
+
+workout_photo_file_sixteen = URI.open("https://gymplus.ie/wp-content/uploads/2023/01/Recipe-Inside-Image-12.png")
+workout_sixteen.photo.attach(io: workout_photo_file_sixteen, filename: "#{workout_photo_file_sixteen}.jpg", content_type: "image/jpg")
+if !workout_sixteen.save!
+  puts "workout_sixteen failed"
+end
+
+puts "#{user3.username} created #{workout_sixteen.activity_type}."
+
+workout_seventeen = Workout.create!(
+  activity_type: 'Run',
+  intensity_level: 2,
+  location: 'London Fields West Side, London E8 3EU',
+  date: '2023-03-25',
+  start_time: '23/03/25 10:00',
+  duration: 30,
+  description: 'Join me for an gentle run around the London Fields area.',
+  capacity: 2,
+  user_id: user3.id
+)
+
+workout_photo_file_seventeen = URI.open("https://media.istockphoto.com/id/1169157186/photo/there-are-no-shortcuts-when-it-comes-to-fitness.jpg?s=612x612&w=0&k=20&c=iu36xBmMBXvUjEyGw6craZjHSTo8l1lBOfZqmRvstJA=")
+workout_seventeen.photo.attach(io: workout_photo_file_seventeen, filename: "#{workout_photo_file_seventeen}.jpg", content_type: "image/jpg")
+if !workout_seventeen.save!
+  puts "workout_seventeen failed"
+end
+
+puts "#{user3.username} created #{workout_seventeen.activity_type}."
+
+puts "Creating workouts for #{user11.username}."
+
+workout_eighteen = Workout.create!(
+  activity_type: 'Park Workout',
+  intensity_level: 2,
+  location: 'Hackney Downs Park, Downs Park Road, London E5 8NP',
+  date: '2023-04-01',
+  start_time: '23/04/01 11:00',
+  duration: 45,
+  description: 'Join me for a park workout at Hackney Downs Park.',
+  capacity: 2,
+  user_id: user11.id
+)
+
+workout_photo_file_eighteen = URI.open("https://lucasjamespersonaltraining.com/wp-content/uploads/2015/05/The-30-Minute-Park-Workout-1280x720.jpg")
+workout_eighteen.photo.attach(io: workout_photo_file_eighteen, filename: "#{workout_photo_file_eighteen}.jpg", content_type: "image/jpg")
+if !workout_eighteen.save!
+  puts "workout_eighteen failed"
+end
+
+puts "#{user11.username} created #{workout_eighteen.activity_type}."
+
+workout_nineteen = Workout.create!(
+  activity_type: 'Walk',
+  intensity_level: 2,
+  location: 'Clissold Park, Green Lanes, London N16 9HJ',
+  date: '2023-04-04',
+  start_time: '23/04/04 19:00',
+  duration: 45,
+  description: 'Join me for a brisk walk after work around Clissold Park.',
+  capacity: 2,
+  user_id: user11.id
+)
+
+workout_photo_file_nineteen = URI.open("https://blog.myfitnesspal.com/wp-content/uploads/2020/09/6-Common-Walking-Myths-Busted-1200x675.jpg")
+workout_nineteen.photo.attach(io: workout_photo_file_nineteen, filename: "#{workout_photo_file_nineteen}.jpg", content_type: "image/jpg")
+if !workout_nineteen.save!
+  puts "workout_nineteen failed"
+end
+
+puts "#{user11.username} created #{workout_nineteen.activity_type}."
 
 # TODO - add more workouts
 
-# Create bookings
-puts "Creating bookings for #{user2.username}."
+#  Create bookings
+
+puts "Creating bookings for #{user7.username}."
 
 booking_one = Booking.create!(
-  user_id: user2.id,
-  workout_id: workout_one.id,
-  booking_date: workout_one.date
+  user_id: user7.id,
+  workout_id: workout_sixteen.id,
+  booking_date: workout_sixteen.date
 )
-puts "#{user2.username} booked: #{booking_one.booking_date}."
+puts "#{user7.username} booked: #{workout_sixteen.activity_type}."
+
+puts "Creating bookings for #{user9.username}."
 
 booking_two = Booking.create!(
-  user_id: user2.id,
-  workout_id: workout_two.id,
-  booking_date: workout_two.date
+  user_id: user9.id,
+  workout_id: workout_fourteen.id,
+  booking_date: workout_fourteen.date
 )
-puts "#{user2.username} booked: #{booking_two.booking_date}."
+puts "#{user9.username} booked: #{workout_fourteen.activity_type}."
 
 booking_three = Booking.create!(
-  user_id: user1.id,
-  workout_id: workout_three.id,
-  booking_date: workout_three.date
+  user_id: user11.id,
+  workout_id: workout_thirteen.id,
+  booking_date: workout_thirteen.date
 )
-puts "#{user1.username} booked: #{booking_three.booking_date}."
+puts "#{user11.username} booked: #{workout_thirteen.activity_type}."
+
+booking_four = Booking.create!(
+  user_id: user12.id,
+  workout_id: workout_fifteen.id,
+  booking_date: workout_fifteen.date
+)
+puts "#{user12.username} booked: #{workout_fifteen.activity_type}."
 
 # TODO - Add more bookings
 
 # Create ratings
-puts "Creating ratings for #{user1.username}."
+puts "Creating ratings for #{user3.username}."
 
 rating_one = Rating.create!(
-  booking_id: booking_one.id,
+  booking_id: booking_three.id,
   buddy_attended: true,
   buddy_rating: 4,
   comment: 'Best buddy on Earth!',
   workout_host: false,
-  user_id: user2.id,
+  user_id: user11.id,
 )
-puts "#{user1.username}: #{rating_one.comment}"
+puts "#{user11.username} rated #{user3.username}: #{rating_one.comment}"
+
+rating_two = Rating.create!(
+  booking_id: booking_four.id,
+  buddy_attended: true,
+  buddy_rating: 5,
+  comment: 'Best buddy in the Universe!',
+  workout_host: false,
+  user_id: user12.id,
+)
+puts "#{user12.username} rated #{user3.username}: #{rating_two.comment}"
 
 # TODO - Add more ratings
 
-# Create tags
-# puts "Creating tags..."
-
-# tag_one = Tag.create!(
-#     name: 'brunch',
-#   )
-
-# tag_two = Tag.create!(
-#   name: 'sleep',
-# )
-
-# tag_three = Tag.create!(
-#   name: 'spa',
-# )
-
-# tag_four = Tag.create!(
-#   name: 'food',
-# )
-
-# tag_five = Tag.create!(
-#   name: 'music',
-# )
-
-# tag_six = Tag.create!(
-#   name: 'TV',
-# )
-
-# puts "#{tag_one.name}, #{tag_two.name}, #{tag_three.name}, #{tag_four.name}, #{tag_five.name}, #{tag_six.name} ... to be continued."
 puts "Finished!"
