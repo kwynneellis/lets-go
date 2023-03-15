@@ -1,30 +1,43 @@
 <% provide(:title, @workout.activity_type) %>
 
+<div class="banner-my-workouts"
+  style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @workout.photo.key, crop: :fill %>')"
+>
+  <div class="back-button">
+    <%= link_to workouts_path do %>
+      <div>
+        <i class="fa-solid fa-arrow-left"></i>
+      </div>
+    <% end %>
+  </div>
+  <h1><%= @workout.activity_type %></h1>
+</div>
+
 <div class="container pb-5 mb-4">
   <div class="container-white">
-    <div class="mb-2">
-      <%= link_to workouts_path do %>
-        <div>
-          <i class="fa-solid fa-arrow-left"></i>
-        </div>
-      <% end %>
-    </div>
-    <div class="card-workout">
-      <%= cl_image_tag @workout.photo.key, class: "img" %>
-    </div>
     <div class="container-content">
-      <h1><%= @workout.activity_type %></h1>
-      <% if @workout.is_host?(current_user) %>
-        <% if @workout.has_a_booking? %>
-          <h3>Joined by <%= @workout.name_of_buddy(current_user) %></h3>
-        <% end %>
-      <% end %>
+      <div class="d-flex flex-row justify-content-around">
+        <div class="flex-fill">
+          <% if @workout.is_host?(current_user) %>
+            <% if @workout.has_a_booking? %>
+              <h3>Joined by <%= link_to @workout.name_of_buddy(current_user), user_path(@user), style: "text-decoration: none" %></h3>
+            <% end %>
+          <% end %>
 
-      <% unless @workout.is_host?(current_user) %>
-        <h3>Hosted by <%= @workout.name_of_buddy(current_user) %></h3>
-      <% end %>
-
-      <%= link_to "Chat", booking_chat_path(@workout.bookings.first.id, @workout.workout_chat.first.id) if @workout.has_a_booking? %>
+          <% unless @workout.is_host?(current_user) %>
+            <h3>Hosted by <%= link_to @workout.name_of_buddy(current_user), user_path(@user), style: "text-decoration: none" %></h3>
+          <% end %>
+        </div>
+        <div class="flex-shrink-0">
+          <% if @workout.has_a_booking? %>
+            <%= link_to booking_chat_path(@workout.bookings.first.id, @workout.workout_chat.first.id) do %>
+              <div>
+                <i class="fa-regular fa-lg fa-message"></i>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
 
       <p><%= @workout.duration %> mins, <%= @workout.intensity_level %>/5 intensity</p>
       <% if !@workout.has_a_booking? && !@workout.is_host?(current_user) %>
@@ -170,7 +183,7 @@
   <% end %>
 
   <% unless @workout.is_host?(current_user) %>
-    <div class="container-content">
+    <div class="container-yellow">
       <%= link_to user_path(@user), style: "color: #2C302E; text-decoration: none;" do %>
         <div class="d-flex flex-row justify-content-between">
           <div class="flex-fill">
