@@ -1,7 +1,12 @@
       <div id="message-<%= message.id %>">
-        <small>
-          <strong><%= message.user.username %></strong>
-          <i><%= message.created_at.strftime("%a %e %b at %H:%M") %></i>
-        </small>
-        <p><%= message.content %></p>
+        <div class="d-flex flex-row align-items-around align-items-center">
+          <div class="flex-fill">
+            <%= message.content %>
+          </div>
+          <div class="flex-shrink-0 ps-3">
+            <small>
+              <i><%= message.created_at.strftime("%H:%M") %></i>
+            </small>
+          </div>
+        </div>
       </div>
