@@ -9,9 +9,9 @@
     <% end %>
   </div>
   <% if @chat.booking.user.id == current_user.id %>
-    <h1><%= @chat.booking.workout.user.first_name %> · <%= @chat.booking.workout.activity_type %> · <%= @chat.booking.workout.date.strftime("%e %h %Y") %> </h1>
+    <h1><%= @chat.booking.workout.user.first_name %> · <%= @chat.booking.workout.activity_type %> <br> <%= @chat.booking.workout.date.strftime("%e %h %Y") %> </h1>
   <% else %>
-    <h1><%= @chat.booking.user.first_name %> · <%= @chat.booking.workout.activity_type %> · <%= @chat.booking.workout.date.strftime("%e %h %Y") %> </h1>
+    <h1><%= @chat.booking.user.first_name %> · <%= @chat.booking.workout.activity_type %> <br> <%= @chat.booking.workout.date.strftime("%e %h %Y") %> </h1>
   <% end %>
 </div>
 
