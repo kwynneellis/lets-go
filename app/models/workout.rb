@@ -11,7 +11,7 @@ class Workout < ApplicationRecord
             :date, :start_time, :duration, :description, presence: true
   validates :intensity_level, numericality: { only_integer: true, in: 1..5 }
   validates :duration, numericality: { only_integer: true, greater_than_or_equal_to: 10, less_than_or_equal_to: 300 }
-  validates :description, length: { minimum: 10 }
+  validates :description, length: { minimum: 1 }
 
   scope :with_booking, -> { joins(:bookings) }
   scope :with_ratings, -> { joins(:ratings) }
@@ -27,6 +27,14 @@ class Workout < ApplicationRecord
     'Tennis' => 'Tennis 🎾',
     'Workout Class' => 'Workout Class 🏋️',
     'Yoga Class' => 'Yoga Class 🧘'
+  }
+
+  WORKOUT_INTENSITY = {
+    1 => "Gentle",
+    2 => "Less Gentle",
+    3 => "Moderate",
+    4 => "Fairly Intense",
+    5 => "Hardcore"
   }
 
   def is_host?(logged_in_user)

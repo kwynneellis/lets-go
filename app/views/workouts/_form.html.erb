@@ -21,8 +21,12 @@
                             label: "Level of exertion",
                             required: true %>
             <%= f.input :location, placeholder: 'Location' %>
-            <%= f.input :date, as: :date, html5: true, label: 'Date' %>
-            <%= f.input :start_time, label: 'Time' %>
+            <%= f.input :date, as: :date,
+                        html5: true,
+                        label: 'Date' %>
+            <%= f.input :start_time,
+                        label: 'Time',
+                        default: Time.parse('10:00') %>
             <%= f.input :duration, placeholder: 'E.g. 30', label: 'Duration (mins)' %>
             <%= f.input :description, placeholder: 'Provide full details of the workout' %>
             <%= f.input :photo, as: :file %>
