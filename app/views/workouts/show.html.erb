@@ -20,12 +20,12 @@
         <div class="flex-fill">
           <% if @workout.is_host?(current_user) %>
             <% if @workout.has_a_booking? %>
-              <h3>Joined by <%= link_to @workout.name_of_buddy(current_user), user_path(@user), style: "text-decoration: none" %></h3>
+              <h3>Joined by <%= link_to @workout.name_of_buddy(current_user), user_path(@workout.bookings.first.user.id), style: "text-decoration: none" %></h3>
             <% end %>
           <% end %>
 
           <% unless @workout.is_host?(current_user) %>
-            <h3>Hosted by <%= link_to @workout.name_of_buddy(current_user), user_path(@user), style: "text-decoration: none" %></h3>
+            <h3>Hosted by <%= link_to @workout.name_of_buddy(current_user), user_path(@workout.user.id), style: "text-decoration: none" %></h3>
           <% end %>
         </div>
         <div class="flex-shrink-0">
