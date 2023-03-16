@@ -2,6 +2,7 @@
   overflow: hidden;
   background: white;
   box-shadow: 0 0 8px rgba(0,0,0,0.2);
+  border-radius: 4px;
 }
 
 .card-workout img {
@@ -37,7 +38,7 @@
   border-radius: 50%;
   position: absolute;
   bottom: 64px;
-  right: 12px;
+  right: 0.5rem;
   border-style: solid;
   border-color: white;
   box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.2);
@@ -76,4 +77,17 @@
 
 .card-my-workouts .card-my-workouts-info {
   padding: 16px;
+}
+
+.duration-pill-box {
+  background-color: white;
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  color: black;
+  border: 1px solid black;
+  padding: 2px 8px;
+  border-radius: 50px;
+  margin: 4px;
+  font-weight: lighter;
 }
