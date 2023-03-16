@@ -1,9 +1,9 @@
 // Specific CSS for your home-page
 .home-down-arrow {
+  display: flex;
   position: absolute;
   bottom: 3rem;
-  left: 50%;
+  left: 45%;
   justify-content: center;
   align-items:center;
-  display: flex;
 }
