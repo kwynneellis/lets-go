@@ -34,7 +34,7 @@ class WorkoutsController < ApplicationController
   def index
     # The code below enables a filtered search
     # There is a listing class method to ensure that if search is nil, all Listings are displayed
-    @workouts = Workout.where.missing(:bookings)
+    @workouts = Workout.where.missing(:bookings).order("workouts.date ASC")
     if params[:query].present?
       # sql_query = <<~SQL
       #   workouts.location ILIKE :query
