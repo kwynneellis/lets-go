@@ -43,8 +43,8 @@ class WorkoutsController < ApplicationController
       #   OR users.first_name ILIKE :query
       # SQL
       # @workouts = Workout.joins(:user).where(sql_query, query: "%#{params[:query]}%")
-      @workouts = @workouts.near(params[:query], 3)
-      @search_copy = "#{@workouts.count} results for: #{params[:query]}"
+      @workouts = @workouts.near(params[:query], 2)
+      @search_copy = "#{@workouts.length} results near #{params[:query]}"
     end
     if params[:category].present?
       @workouts = @workouts.where(activity_type: params[:category])

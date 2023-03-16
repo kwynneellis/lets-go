@@ -73,8 +73,8 @@ user3 = User.create!(
   email: 'kat@test.com',
   password: '123456',
   date_of_birth: '1989-04-17',
-  about_me: '33-year old cross-fit fanatic.',
-  fitness_goal: 'To do more and more cross-fit and become less comatose.',
+  about_me: "I’m a budding software developer who’s just moved to London and is looking to meet new people and workout more.",
+  fitness_goal: "Couch To 5K - I really want to be comfortable running 5k and further by the end of the year.",
   fitness_level: 5,
   attendance: 100,
   avg_rating: 5,
@@ -358,7 +358,7 @@ puts "Creating workouts for #{user6.username}."
 workout_five = Workout.create!(
   activity_type: 'Cycle',
   intensity_level: 4,
-  location: 'Burgess Park, Cobourg Road, London SE5 0JD',
+  location: 'Burgess Park, London SE5 0JD',
   date: '2023-03-28',
   start_time: '23/03/28 13:00',
   duration: 45,
@@ -630,7 +630,7 @@ puts "Creating workouts for #{user11.username}."
 workout_eighteen = Workout.create!(
   activity_type: 'Park Workout',
   intensity_level: 2,
-  location: 'Hackney Downs Park, Downs Park Road, London E5 8NP',
+  location: 'Hackney Downs Park, London E5 8NP',
   date: '2023-04-01',
   start_time: '23/04/01 11:00',
   duration: 45,
