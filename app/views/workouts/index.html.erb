@@ -66,8 +66,8 @@
                     <p><% workout.intensity_level.times do %>
                       <%= '💪' %>
                     <% end %></p>
-                    <p><i class="fa-solid fa-calendar text-primary"></i> <%= workout.start_time.strftime("%H:%M") %> <%= workout.date.strftime("%e %h %Y") %></p>
-                    <p><i class="fa-solid fa-map-pin text-primary"></i> <%= workout.location %></p>
+                    <p><i class="fa-solid fa-calendar text-primary pe-1"></i> <%= workout.start_time.strftime("%H:%M") %> <%= workout.date.strftime("%e %h %Y") %></p>
+                    <p><i class="fa-solid fa-map-pin text-primary pe-2"></i> <%= workout.location %></p>
 
                   </div>
                   <p class="duration-pill-box"><%= workout.duration %> mins</p>
