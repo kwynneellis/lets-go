@@ -594,7 +594,7 @@ workout_sixteen = Workout.create!(
   duration: 60,
   description: 'Join me for an interval run around Homerton.',
   capacity: 2,
-  user_id: user3.id
+  user_id: user10.id
 )
 
 workout_photo_file_sixteen = URI.open("https://marathonhandbook.com/wp-content/uploads/2022/10/How-Long-Does-It-Take-to-Run-2-Miles.jpg")
