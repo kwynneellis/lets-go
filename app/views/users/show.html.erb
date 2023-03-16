@@ -105,9 +105,11 @@
     <div class="container-white p-1">
       <% @all_my_ratings.each do |rating| %>
         <div class="container-content text-center">
+
           <p><% rating.buddy_rating.times do %>
             <%= '⭐️' %>
           <% end %><br>
+          
           <%= rating.comment %><br></p>
           <h6><%= rating.user.first_name %></h6>
         </div>
