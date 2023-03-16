@@ -1,4 +1,4 @@
-  require 'open-uri'
+require 'open-uri'
 
 class WorkoutsController < ApplicationController
   before_action :set_user, only: %i[new create show destroy]
