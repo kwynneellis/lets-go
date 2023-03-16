@@ -43,12 +43,12 @@ class WorkoutsController < ApplicationController
       #   OR users.first_name ILIKE :query
       # SQL
       # @workouts = Workout.joins(:user).where(sql_query, query: "%#{params[:query]}%")
-      @workouts = @workouts.near(params[:query], 1)
-      @search_copy = "Showing search results for: #{params[:query]}"
+      @workouts = @workouts.near(params[:query], 3)
+      @search_copy = "#{@workouts.count} results for: #{params[:query]}"
     end
     if params[:category].present?
-      @search_copy = "Showing filter results for: #{params[:category]}"
       @workouts = @workouts.where(activity_type: params[:category])
+      @search_copy = "#{@workouts.count} results for: #{params[:category]}"
     end
     @workout_location = @workouts.geocoded.map do |workout|
       {

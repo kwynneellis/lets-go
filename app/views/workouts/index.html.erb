@@ -28,32 +28,29 @@
   <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
       <%# PAGE WITH WORKOUTS %>
-      <div class="d-flex flex-column bd-highlight mb-3">
-        <div class="container-white-workouts-list-filter">
-          <div class="d-flex flex-row justify-content-between">
-            <div>
-              <h3 class="p-2">Activity filter</h3>
-            </div>
-            <div class="align-items-end w-10 my-1 p-2">
-              <%= link_to workouts_path, style: "text-decoration: none" do %>
-                <div>All
-                  <i class="fa-solid fa-lg fa-rotate mx-1"></i>
-                </div>
-              <% end %>
-            </div>
-          </div>
-          <div class="p-2 bd-highlight">
-            <div class="nav-horizontal-scroll" data-controller="nav-scroll-into-view" data-nav-scroll-into-view-target="filter" data-nav-scroll-into-view-category-value="<%= params[:category] %>">
-              <div class="container nav-list" data-nav-scroll-into-view-target="filterLinks" >
-                <% Workout::WORKOUT_EMOJIS.each do |key, value|%>
-                  <%= link_to value, workouts_path(category: key), class: 'btn btn-ghost'%>
-                <% end %>
+      <div class="container-white-workouts-list-filter">
+        <div class="d-flex flex-row justify-content-between align-items-center">
+          <div class="my-1 text-center">
+            <%= link_to workouts_path, style: "text-decoration: none" do %>
+              <div>
+                <i class="fa-solid fa-lg fa-rotate mx-1"></i>
               </div>
+            <% end %>
+          </div>
+          <div class="nav-horizontal-scroll" data-controller="nav-scroll-into-view" data-nav-scroll-into-view-target="filter" data-nav-scroll-into-view-category-value="<%= params[:category] %>">
+            <div class="container nav-list" data-nav-scroll-into-view-target="filterLinks" >
+              <% Workout::WORKOUT_EMOJIS.each do |key, value|%>
+                <%= link_to value, workouts_path(category: key), class: 'btn btn-ghost'%>
+              <% end %>
             </div>
           </div>
         </div>
       </div>
-      <h3><%= @search_copy %></h3>
+      <% if @search_copy %>
+        <div class="container-content bg-none text-primary my-0 py-0">
+          <h2 class=""><%= @search_copy %></h2>
+        </div>
+      <% end %>
       <% unless @workouts.present? %>
         <p class="text-start"> There are no results for your search 💔 </p>
       <% end %>
