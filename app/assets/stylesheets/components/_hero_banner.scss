@@ -23,9 +23,9 @@
   }
 
   h4 {
-    color: #537A5A;
+    color: white;
     width:fit-content;
-    // text-shadow: 0.5px 0.5px 5px white;
+    text-shadow: 0.5px 0.5px 5px #2C302E;
   }
 }
 
@@ -107,4 +107,10 @@
 img {
   height: 100%;
 }
+}
+
+.arrow {
+  display: flex;
+  justify-content: center;
+  align-items:center;
 }
