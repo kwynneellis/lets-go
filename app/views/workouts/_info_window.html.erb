@@ -1,5 +1,10 @@
-<h2><%= workout.activity_type %></h2>
-<p>Location: <%= workout.location %></p>
-<p>Intensity-level: <%= workout.intensity_level %></p>
-<p>Date: <%= workout.date %></p>
-<p>Duration: <%= workout.duration %> mins</p>
+<%= link_to workout_path(workout), style: "color: #2C302E;", class: "text-decoration-none" do %>
+  <div class="d-flex flex-row justify-content-around">
+    <div class="flex-fill">
+      <h4 class="mb-0"><%= workout.activity_type %></h4>
+      <p class="mb-0"><i class="fa-regular fa-user text-primary"></i> <%= workout.user.username %></p>
+      <p class="mb-0"><i class="fa-regular fa-calendar text-primary"></i> <%= workout.date.strftime("%e %h %Y") %>, <%= workout.start_time.strftime("%H:%M") %></p>
+      <p class="mb-0"><i class="fa-regular fa-clock text-primary"></i> <%= workout.duration %> mins</p>
+    </div>
+  </div>
+<% end %>
