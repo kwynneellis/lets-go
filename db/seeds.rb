@@ -484,7 +484,7 @@ puts "Creating workouts for #{user8.username}."
 workout_eleven = Workout.create!(
   activity_type: 'Yoga Class',
   intensity_level: 2,
-  location: 'More Yoga, London SE1 2LN',
+  location: 'Adler Street, London E1 1EG',
   date: '2023-03-22',
   start_time: '23/03/26 20:00',
   duration: 45,
