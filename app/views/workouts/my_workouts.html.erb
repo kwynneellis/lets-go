@@ -28,17 +28,16 @@
             <h2><%= workout.activity_type %><%= has_booking ? " with " + buddy.first_name : "" %></h2>
             <p class="m-0"><%= workout.date.strftime("%e %h %Y") %>, <%= workout.start_time.strftime("%H") %>:00</p>
           </div>
-          <div class="flex-shrink-0">
-            <% if has_booking %>
-              <p class="mx-1 my-0">🤜 🤛</p>
-            <% end %>
-          </div>
           <div class="p-1">
-            <% unless workout.user == current_user %>
-              <%= cl_image_tag workout.user.photo.key, class: "p-2", height: 72, width: 72, radius: "max", crop: "fill", gravity: "face" %>
-            <% end %>
+            <%# <% unless workout.user == current_user %>
+              <%# <%= cl_image_tag workout.user.photo.key, class: "p-2", height: 72, width: 72, radius: "max", crop: "fill", gravity: "face" %>
+            <%# <% end %>
             <% if has_booking && current_user == host %>
-              <%= cl_image_tag buddy.photo.key , class: "p-2", height: 72, width: 72, radius: "max", crop: "fill", gravity: "face" %>
+              <%= cl_image_tag buddy.photo.key, class: "p-2", height: 72, width: 72, radius: "max", crop: "fill", gravity: "face" %>
+            <% elsif workout.user != current_user %>
+              <%= cl_image_tag workout.user.photo.key, class: "p-2", height: 72, width: 72, radius: "max", crop: "fill", gravity: "face" %>
+            <% else %>
+              <%= image_tag "Go-transparent.png", class: "p-2", height: 72, width: 72, radius: "max", crop: "fill" %>
             <% end %>
           </div>
         </div>
@@ -66,11 +65,6 @@
           <div class="flex-fill card-my-workouts-info">
             <h2><%= workout.activity_type %><%= has_booking ? " with " + buddy.first_name : "" %></h2>
             <p class="m-0"><%= workout.date.strftime("%e %h %Y") %>, <%= workout.start_time.strftime("%H") %>:00</p>
-          </div>
-          <div class="flex-shrink-0">
-            <% if has_booking %>
-              <p class="mx-1 my-0">🤜 🤛</p>
-            <% end %>
           </div>
           <div class="p-1">
             <% unless workout.user == current_user %>
