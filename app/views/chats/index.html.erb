@@ -22,9 +22,9 @@
             <% else %>
               <h6 class="m-0"><%= chat.booking.workout.activity_type %> with <%= chat.booking.user.first_name %></h6>
             <% end %>
-            <p class="m-0"><%= chat.booking.workout.date.strftime("%e %h %Y") %></p>
+            <p class="m-0">On <%= chat.booking.workout.date.strftime("%e %h %Y") %></p>
             <div>
-              <em><%= chat.messages.any? ? chat.messages[0].content.truncate(22) : "Say hi!" %></em>
+              <p><em><%= chat.messages.any? ? chat.messages[0].content.truncate(22) : "Say hi!" %></em></p>
             </div>
           </div>
           <div class="flex-shrink-0 mx-3 align-items-center">
