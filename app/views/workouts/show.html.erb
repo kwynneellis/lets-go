@@ -39,10 +39,6 @@
         </div>
       </div>
 
-      <% if !@workout.has_a_booking? && !@workout.is_host?(current_user) %>
-        <%= render "bookings/form", workout: @workout, booking: @booking %>
-      <% end %>
-
       <% if @workout.ask_for_rating?(current_user) %>
         <div class="container-yellow">
           <div class="d-flex align-items-center justify-content-between mt-1">
@@ -144,6 +140,9 @@
           <p><%= @workout.location%></p>
         </div>
       </div>
+      <% if !@workout.has_a_booking? && !@workout.is_host?(current_user) %>
+        <%= render "bookings/form", workout: @workout, booking: @booking %>
+      <% end %>
     </div>
     <div class="container-content">
       <div class="show-page-map"
