@@ -80,6 +80,7 @@ Then go to [localhost:3000](http://localhost:3000/)
 Created as part of the Le Wagon Fullstack Web Development program.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
+
 ## Acknowledgments and Contact
 
 Made with love by:
