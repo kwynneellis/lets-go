@@ -4,7 +4,18 @@
 
 Not everyone is self-motivated to exercise and stay active. Let's Go enables it's users to pair up with a local workout buddy in their area to hold them accountable and motivate them.
 
+#### User journey: Search, join and book a workout then chat to buddy
+<img width="200"  alt="book workout and chat to buddy gif" src="https://user-images.githubusercontent.com/53523467/228527806-781a4814-c873-4f74-93e4-77df509db708.gif">
+
+#### Map search
+<img width="200"  alt="map search gif" src="https://user-images.githubusercontent.com/53523467/228523851-66c13c91-fc55-4efb-8807-5485cbf61f46.gif">
+
+#### Leave rating on past workout
+<img width="200"  alt="map search gif" src="https://user-images.githubusercontent.com/53523467/228528928-ef1ca586-f113-4843-8866-b4df0aab5c1b.gif">
+
+
 ### Database schema
+<img width="646" alt="let's go database schema" src="https://user-images.githubusercontent.com/53523467/228519528-2d2fa676-62d2-4d19-ae9d-42ebe8247f95.png">
 
 
 ### Tech stack
@@ -92,6 +103,8 @@ Made with love by:
   * Check me out on Github https://github.com/rachelscjones
 * Kat Wynne-Ellis
   * Check me out on Github https://github.com/kwynneellis
+
+<img width="602" alt="Team photo" src="https://user-images.githubusercontent.com/53523467/228519708-bf9648ee-7f95-41ee-ae2d-0b4f0cf126e9.png">
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
