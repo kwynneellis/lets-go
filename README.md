@@ -96,5 +96,5 @@ Made with love by:
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <p align="center">
-  <img src="https://visitor-badge.laobi.icu/badge?page_id=RebeccaL23/trace" id="counter">
+  <img src="https://visitor-badge.laobi.icu/badge?page_id=kwynneellis/lets-go" id="counter">
 </p>
