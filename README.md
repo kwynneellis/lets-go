@@ -4,6 +4,9 @@
 
 Not everyone is self-motivated to exercise and stay active. Let's Go enables it's users to pair up with a local workout buddy in their area to hold them accountable and motivate them.
 
+### Database schema
+
+
 ### Tech stack
 
 Trace was designed for a desktop experience for admins and organisers, and a mobile experience for players.
