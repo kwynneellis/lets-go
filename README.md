@@ -4,6 +4,17 @@
 
 Not everyone is self-motivated to exercise and stay active. Let's Go enables it's users to pair up with a local workout buddy in their area to hold them accountable and motivate them.
 
+*How it works - join someone else's workout*
+1. Browse the workouts                                                   
+2. Filter by activity type or search by location
+3. Select a workout and checkout the information and buddy's profile
+4. Join the workout
+5. Chat to your workout buddy
+6. Leave a rating & review after the workout
+
+*How it works - create your own workout*
+1. Add a new workout and await for a buddy to join you
+
 #### User journey: Search, join and book a workout then chat to buddy
 <img width="200"  alt="book workout and chat to buddy gif" src="https://user-images.githubusercontent.com/53523467/228527806-781a4814-c873-4f74-93e4-77df509db708.gif">
 
