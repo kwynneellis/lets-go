@@ -1,4 +1,4 @@
-## About The Project
+## About Let's Go
 
 #### Find a local workout buddy today to motivate you to achieve your exercise goals.
 
@@ -31,9 +31,9 @@ Not everyone is self-motivated to exercise and stay active. Let's Go enables it'
 
 ### Tech stack
 
-Trace was designed for a desktop experience for admins and organisers, and a mobile experience for players.
+Let's Go was designed for a mobile-first experience for users.
 
-Frameworks & libraries used to make Trace
+Frameworks & libraries used to make Let's Go
 * [Ruby on Rails](https://rubyonrails.org/)
 * [JavaScript](https://www.javascript.com/)
 * [CSS & SASS](https://sass-lang.com/)
