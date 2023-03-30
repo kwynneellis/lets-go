@@ -2,7 +2,7 @@
 
 #### Find a local workout buddy today to motivate you to achieve your exercise goals.
 
-Not everyone is self-motivated to exercise and stay active. Let's Go enables it's users to pair up with a local workout buddy in their area to hold them accountable and motivate them.
+Not everyone is self-motivated to exercise and stay active. Let's Go enables its users to pair up with a local workout buddy in their area to hold them accountable and motivate them.
 
 *How it works - join someone else's workout*
 1. Browse the workouts                                                   
