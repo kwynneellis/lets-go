@@ -54,7 +54,7 @@ Version control & deployment
 0. In order to run our app locally, you will need to have already installed Yarn and Rails. Check them with:
 
 
-```
+```bash
 $ yarn -v
 $ rails --version
 ```
@@ -64,7 +64,8 @@ If no version number is returned, please install [Yarn](https://classic.yarnpkg.
 #### Dependencies
 
 1. You'll also need to install all dependencies of the project with:
-```
+
+```bash
 $ bundle install && yarn install
 ```
 
@@ -73,7 +74,8 @@ The `bundle` command installs all Ruby Gems specified in our Gemfile. The `yarn 
 <br>
 
 2. Run the following command to create a database, load the schema, and initialize it with our seed data.
-```
+
+```bash
 $ rails db:create db:migrate db:seed
 ```
 
@@ -85,11 +87,11 @@ $ rails db:create db:migrate db:seed
 
 Finally! Lets launch the app by running:
 
-```
+```bash
 $ rails s
 ```
 
-```
+```bash
 $ yarn build --watch
 ```
 
