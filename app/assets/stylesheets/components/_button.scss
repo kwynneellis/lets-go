@@ -3,7 +3,7 @@
   display: block;
   border: 1px solid transparent;
   box-shadow: 0 0.25px 0.25px 0 #474A48;
-  color: white;
+  color: white !important;
   padding: 8px;
   cursor: pointer;
   line-height: 1;
@@ -21,6 +21,9 @@
   margin: 10px auto;
   p {
     margin-bottom: 0;
+  }
+  &:hover {
+    background-color: #2C302E;
   }
 }
 
